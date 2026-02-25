@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Your Data - SportTracking</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background: #f8f8f8;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: #111;
+        }
+        .last-updated {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 32px;
+        }
+        h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-top: 36px;
+            margin-bottom: 12px;
+            color: #111;
+            border-bottom: 3px solid #111;
+            padding-bottom: 4px;
+        }
+        p { margin-bottom: 14px; }
+        ul {
+            margin-left: 24px;
+            margin-bottom: 14px;
+        }
+        li { margin-bottom: 6px; }
+        .section {
+            background: #fff;
+            border: 3px solid #111;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 4px 4px 0 #111;
+        }
+        .intro {
+            font-size: 1.05rem;
+            margin-bottom: 24px;
+        }
+        a { color: #2563eb; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            align-items: flex-start;
+        }
+        .step-number {
+            background: #111;
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+        .step-content {
+            flex: 1;
+        }
+        .step-content strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+        .auto-badge {
+            display: inline-block;
+            background: #2563eb;
+            color: #fff;
+            padding: 2px 10px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-left: 8px;
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+        .data-table th, .data-table td {
+            border: 2px solid #111;
+            padding: 10px 14px;
+            text-align: left;
+        }
+        .data-table th {
+            background: #111;
+            color: #fff;
+            font-weight: 600;
+        }
+        .data-table tr:nth-child(even) {
+            background: #f3f4f6;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #ddd;
+            font-size: 0.85rem;
+            color: #888;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px 16px; }
+            h1 { font-size: 1.6rem; }
+            h2 { font-size: 1.15rem; }
+            .section { padding: 16px; }
+            .data-table { font-size: 0.85rem; }
+            .data-table th, .data-table td { padding: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Delete Your Data</h1>
+        <p class="last-updated">Last updated: February 25, 2026</p>
+
+        <p class="intro">
+            SportTracking by SLAMA Consulting allows you to delete specific data
+            without deleting your entire account. This page explains what data you can
+            delete, how to do it, and when data is automatically removed.
+        </p>
+
+        <div class="section">
+            <h2>1. Delete a Trip (Activity)</h2>
+            <p>You can permanently delete any of your recorded sport activities (trips).</p>
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <strong>Open Trip History</strong>
+                    Tap the <strong>History</strong> tab in the bottom navigation bar.
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <strong>Select a trip</strong>
+                    Tap on the trip you want to delete to open the Trip Detail screen.
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <strong>Tap the trash icon</strong>
+                    In the top-right corner, tap the <strong>trash icon (&#128465;)</strong>.
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <strong>Confirm deletion</strong>
+                    A confirmation dialog will appear. Tap <strong>"Delete"</strong> to permanently remove the trip.
+                </div>
+            </div>
+
+            <p><strong>Data deleted:</strong> Trip record, all GPS track points, speed, distance, calories, elevation, and weather data associated with the trip. Deleted from both your device and our servers.</p>
+        </div>
+
+        <div class="section">
+            <h2>2. Delete an Event</h2>
+            <p>Event creators can permanently delete events they have created.</p>
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <strong>Open Events</strong>
+                    Tap the <strong>Events</strong> tab in the bottom navigation bar.
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <strong>Select your event</strong>
+                    Tap on the event you created to open the Event Detail screen.
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <strong>Tap the trash icon</strong>
+                    In the top-right corner, tap the <strong>trash icon (&#128465;)</strong>.
+                    This button is only visible if you are the event creator.
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <strong>Confirm deletion</strong>
+                    A confirmation dialog will appear. Tap <strong>"Delete"</strong> to permanently remove the event.
+                </div>
+            </div>
+
+            <p><strong>Data deleted:</strong> Event details (title, description, location, date), participant list, and all associated notifications. Deleted from both your device and our servers.</p>
+        </div>
+
+        <div class="section">
+            <h2>3. Delete a Chat Message</h2>
+            <p>You can delete your own messages in event group chats.</p>
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <strong>Open the event chat</strong>
+                    Go to an event, then tap the <strong>chat icon</strong> in the top bar to enter the group chat.
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <strong>Long-press your message</strong>
+                    Press and hold on the message you want to delete. A menu will appear.
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <strong>Tap "Delete"</strong>
+                    Select the <strong>Delete</strong> option from the menu.
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <strong>Confirm deletion</strong>
+                    A confirmation dialog will appear. Tap <strong>"Delete"</strong> to remove the message.
+                </div>
+            </div>
+
+            <p><strong>Data deleted:</strong> The message content is marked as deleted and no longer visible to any users in the chat. You can only delete your own messages.</p>
+            <p><strong>Reporting:</strong> To report another user's inappropriate message, long-press their message and select <strong>"Report"</strong>, then choose a reason.</p>
+        </div>
+
+        <div class="section">
+            <h2>4. Delete Notifications</h2>
+            <p>You can delete individual notifications or clear all notifications at once.</p>
+
+            <p><strong>Delete a single notification:</strong></p>
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <strong>Open Notifications</strong>
+                    Tap the <strong>Notifications</strong> tab in the bottom navigation bar.
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <strong>Tap the X button</strong>
+                    On the notification you want to remove, tap the <strong>X (close) icon</strong> on the card.
+                    The notification is deleted immediately.
+                </div>
+            </div>
+
+            <p><strong>Delete all notifications:</strong></p>
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <strong>Tap the sweep icon</strong>
+                    In the top-right corner of the Notifications screen, tap the <strong>sweep (clear all) icon</strong>.
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <strong>Confirm</strong>
+                    A confirmation dialog will appear. Tap <strong>"Delete"</strong> to remove all notifications.
+                </div>
+            </div>
+
+            <p><strong>Data deleted:</strong> Notification records are permanently removed from both your device and our servers.</p>
+        </div>
+
+        <div class="section">
+            <h2>5. Edit Profile Data</h2>
+            <p>You can modify your personal information at any time:</p>
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <strong>Go to Profile &#8594; Edit</strong>
+                    Tap the <strong>Profile</strong> tab, then tap the <strong>"Edit"</strong> button.
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <strong>Modify your data</strong>
+                    You can update your name, gender, date of birth, weight, height, fitness level, and profile photo.
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <strong>Save</strong>
+                    Tap <strong>"Save"</strong> to apply changes. Previous values are overwritten.
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>6. Automatic Data Deletion <span class="auto-badge">Automatic</span></h2>
+            <p>Some data is automatically cleaned up by the app:</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Data Type</th>
+                        <th>Auto-Deleted When</th>
+                        <th>What Is Removed</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Past events</td>
+                        <td>After the event end time has passed</td>
+                        <td>The event and all its chat messages are permanently deleted from servers (checked every hour)</td>
+                    </tr>
+                    <tr>
+                        <td>Event-related notifications</td>
+                        <td>When the associated event is deleted or expires</td>
+                        <td>All notifications linked to the event are removed</td>
+                    </tr>
+                    <tr>
+                        <td>Reported user messages (auto-moderation)</td>
+                        <td>When a user receives 2+ reports in the same event</td>
+                        <td>All messages from the reported user in that event are automatically removed</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>7. Delete Your Entire Account</h2>
+            <p>If you want to delete your account and ALL associated data, please visit our
+            <a href="delete-account.html">Account Deletion page</a> for instructions.</p>
+        </div>
+
+        <div class="section">
+            <h2>8. Contact Us</h2>
+            <p>If you need help deleting specific data or have questions, contact us at:</p>
+            <p><strong>SLAMA Consulting</strong><br>
+            Email: <a href="mailto:slama.walid1985@gmail.com">slama.walid1985@gmail.com</a></p>
+            <p>See also our <a href="sportTracking.html">Privacy Policy</a> for more information.</p>
+        </div>
+
+        <div class="footer">
+            &copy; 2026 SLAMA Consulting. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>
