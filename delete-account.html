@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Account - SportTracking</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
+            color: #1a1a1a;
+            background: #f8f8f8;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+        h1 {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            color: #111;
+        }
+        .last-updated {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 32px;
+        }
+        h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            margin-top: 36px;
+            margin-bottom: 12px;
+            color: #111;
+            border-bottom: 3px solid #111;
+            padding-bottom: 4px;
+        }
+        h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-top: 20px;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        p { margin-bottom: 14px; }
+        ul {
+            margin-left: 24px;
+            margin-bottom: 14px;
+        }
+        li { margin-bottom: 6px; }
+        .section {
+            background: #fff;
+            border: 3px solid #111;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 4px 4px 0 #111;
+        }
+        .intro {
+            font-size: 1.05rem;
+            margin-bottom: 24px;
+        }
+        a { color: #2563eb; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        .warning {
+            background: #fef3c7;
+            border: 3px solid #f59e0b;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 4px 4px 0 #f59e0b;
+        }
+        .warning-title {
+            font-weight: 700;
+            color: #92400e;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+        }
+        .step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            align-items: flex-start;
+        }
+        .step-number {
+            background: #111;
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+        .step-content {
+            flex: 1;
+        }
+        .step-content strong {
+            display: block;
+            margin-bottom: 4px;
+        }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+        }
+        .data-table th, .data-table td {
+            border: 2px solid #111;
+            padding: 10px 14px;
+            text-align: left;
+        }
+        .data-table th {
+            background: #111;
+            color: #fff;
+            font-weight: 600;
+        }
+        .data-table tr:nth-child(even) {
+            background: #f3f4f6;
+        }
+        .deleted { color: #dc2626; font-weight: 600; }
+        .retained { color: #d97706; font-weight: 600; }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #ddd;
+            font-size: 0.85rem;
+            color: #888;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px 16px; }
+            h1 { font-size: 1.6rem; }
+            h2 { font-size: 1.15rem; }
+            .section { padding: 16px; }
+            .data-table { font-size: 0.85rem; }
+            .data-table th, .data-table td { padding: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Delete Your Account</h1>
+        <p class="last-updated">Last updated: February 25, 2026</p>
+
+        <p class="intro">
+            SLAMA Consulting ("we", "our", or "us") respects your right to delete your account
+            and associated data from the SportTracking mobile application. This page explains
+            how to request account deletion and what data is affected.
+        </p>
+
+        <div class="warning">
+            <p class="warning-title">&#9888; Warning: This action is permanent</p>
+            <p>Deleting your account will permanently remove all your personal data, trip history,
+            event participation, chat messages, challenge progress, and leaderboard scores.
+            This action <strong>cannot be undone</strong>.</p>
+        </div>
+
+        <div class="section">
+            <h2>1. How to Delete Your Account</h2>
+
+            <h3>Option A: Delete from within the app (Recommended)</h3>
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <strong>Open SportTracking</strong>
+                    Launch the app and make sure you are logged in.
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <strong>Go to your Profile</strong>
+                    Tap the <strong>Profile</strong> tab in the bottom navigation bar.
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <strong>Open Settings</strong>
+                    Tap the settings icon (gear) in the top-right corner of the Profile screen.
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <strong>Delete Account</strong>
+                    Scroll down and tap <strong>"Delete Account"</strong>. A confirmation dialog will appear.
+                    Confirm to permanently delete your account and all associated data.
+                </div>
+            </div>
+
+            <h3>Option B: Request deletion by email</h3>
+            <p>If you are unable to access the app, you can request account deletion by sending an email to:</p>
+            <p><strong><a href="mailto:slama.walid1985@gmail.com?subject=Account%20Deletion%20Request%20-%20SportTracking&body=Hello%2C%0A%0AI%20would%20like%20to%20request%20the%20deletion%20of%20my%20SportTracking%20account.%0A%0AAccount%20email%3A%20%5Byour%20email%20here%5D%0A%0AThank%20you.">slama.walid1985@gmail.com</a></strong></p>
+            <p>Please include the email address associated with your SportTracking account.
+            We will process your request within <strong>30 days</strong>.</p>
+        </div>
+
+        <div class="section">
+            <h2>2. Data Deleted</h2>
+            <p>When you delete your account, the following data is <strong>permanently removed</strong> from our servers:</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Data Type</th>
+                        <th>Status</th>
+                        <th>Timeframe</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Personal information (name, email, date of birth, gender, phone)</td>
+                        <td class="deleted">Deleted</td>
+                        <td>Immediately</td>
+                    </tr>
+                    <tr>
+                        <td>Profile photo</td>
+                        <td class="deleted">Deleted</td>
+                        <td>Immediately</td>
+                    </tr>
+                    <tr>
+                        <td>Trip history and GPS tracks</td>
+                        <td class="deleted">Deleted</td>
+                        <td>Immediately</td>
+                    </tr>
+                    <tr>
+                        <td>Event participation and created events</td>
+                        <td class="deleted">Deleted</td>
+                        <td>Immediately</td>
+                    </tr>
+                    <tr>
+                        <td>Chat messages</td>
+                        <td class="deleted">Deleted</td>
+                        <td>Immediately</td>
+                    </tr>
+                    <tr>
+                        <td>Challenge progress and scores</td>
+                        <td class="deleted">Deleted</td>
+                        <td>Immediately</td>
+                    </tr>
+                    <tr>
+                        <td>Leaderboard entries</td>
+                        <td class="deleted">Deleted</td>
+                        <td>Immediately</td>
+                    </tr>
+                    <tr>
+                        <td>Notifications</td>
+                        <td class="deleted">Deleted</td>
+                        <td>Immediately</td>
+                    </tr>
+                    <tr>
+                        <td>Push notification token (FCM)</td>
+                        <td class="deleted">Deleted</td>
+                        <td>Immediately</td>
+                    </tr>
+                    <tr>
+                        <td>Local data (Room database, preferences)</td>
+                        <td class="deleted">Deleted</td>
+                        <td>Immediately</td>
+                    </tr>
+                    <tr>
+                        <td>Firebase Authentication account</td>
+                        <td class="deleted">Deleted</td>
+                        <td>Immediately</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2>3. Data Retained</h2>
+            <p>Some data may be retained for a limited period after account deletion:</p>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Data Type</th>
+                        <th>Retention Period</th>
+                        <th>Reason</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Crash logs (Firebase Crashlytics)</td>
+                        <td class="retained">Up to 90 days</td>
+                        <td>Firebase default retention for debugging</td>
+                    </tr>
+                    <tr>
+                        <td>Aggregated analytics data (Firebase Analytics)</td>
+                        <td class="retained">Up to 14 months</td>
+                        <td>Firebase default retention (anonymized, not personally identifiable)</td>
+                    </tr>
+                    <tr>
+                        <td>Chat reports filed by other users</td>
+                        <td class="retained">Up to 90 days</td>
+                        <td>Safety and moderation purposes</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Retained data is either anonymized or not personally identifiable. It cannot be used to reconstruct your account or identify you.</p>
+        </div>
+
+        <div class="section">
+            <h2>4. What Happens After Deletion</h2>
+            <ul>
+                <li>You will be <strong>logged out</strong> immediately from the app.</li>
+                <li>You will <strong>no longer appear</strong> on leaderboards or in event participant lists.</li>
+                <li>Your <strong>chat messages</strong> in event groups will be removed.</li>
+                <li>Any events you created will be <strong>deleted</strong>.</li>
+                <li>You can <strong>create a new account</strong> with the same email address if you wish to use SportTracking again, but your previous data will not be recovered.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2>5. Contact Us</h2>
+            <p>If you have any questions about account deletion or data removal, please contact us at:</p>
+            <p><strong>SLAMA Consulting</strong><br>
+            Email: <a href="mailto:slama.walid1985@gmail.com">slama.walid1985@gmail.com</a></p>
+            <p>See also our <a href="sportTracking.html">Privacy Policy</a> for more information about how we handle your data.</p>
+        </div>
+
+        <div class="footer">
+            &copy; 2026 SLAMA Consulting. All rights reserved.
+        </div>
+    </div>
+</body>
+</html>
