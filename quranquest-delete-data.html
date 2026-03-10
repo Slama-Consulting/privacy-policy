@@ -4,60 +4,101 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Delete Your Data - QuranQuest</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.7;
-            color: #1a1a1a;
-            background: #f8f8f8;
+            color: #1A1035;
+            background: linear-gradient(180deg, #F5F0FF 0%, #FAFAF8 40%);
             padding: 0;
+        }
+        .header-banner {
+            background: linear-gradient(135deg, #1E0845 0%, #4B2A7A 50%, #3A1A70 100%);
+            padding: 48px 24px 36px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .header-banner::before {
+            content: '\u262A';
+            position: absolute;
+            top: 12px;
+            right: 24px;
+            font-size: 2.5rem;
+            color: #D4A843;
+            opacity: 0.3;
+        }
+        .header-banner h1 {
+            font-family: 'Nunito', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 4px;
+        }
+        .header-banner .app-name {
+            font-family: 'Amiri', serif;
+            font-size: 1.3rem;
+            color: #D4A843;
+            margin-bottom: 8px;
+        }
+        .header-banner .last-updated {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
         }
         .container {
             max-width: 800px;
             margin: 0 auto;
-            padding: 40px 24px;
-        }
-        h1 {
-            font-size: 2rem;
-            font-weight: 800;
-            margin-bottom: 8px;
-            color: #111;
-        }
-        .last-updated {
-            font-size: 0.9rem;
-            color: #666;
-            margin-bottom: 32px;
+            padding: 32px 24px 40px;
         }
         h2 {
-            font-size: 1.35rem;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.3rem;
             font-weight: 700;
-            margin-top: 36px;
-            margin-bottom: 12px;
-            color: #111;
-            border-bottom: 3px solid #111;
-            padding-bottom: 4px;
+            margin-top: 0;
+            margin-bottom: 16px;
+            color: #4B2A7A;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        h2 .num {
+            background: #4B2A7A;
+            color: #FFF;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            flex-shrink: 0;
         }
         p { margin-bottom: 14px; }
-        ul {
-            margin-left: 24px;
-            margin-bottom: 14px;
-        }
+        ul { margin-left: 20px; margin-bottom: 14px; }
         li { margin-bottom: 6px; }
+        li::marker { color: #C9A84C; }
         .section {
-            background: #fff;
-            border: 3px solid #111;
+            background: #FFFFFF;
+            border: 1px solid #EDE9FE;
+            border-left: 4px solid #4B2A7A;
             border-radius: 12px;
             padding: 24px;
-            margin-bottom: 20px;
-            box-shadow: 4px 4px 0 #111;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(75, 42, 122, 0.06);
         }
         .intro {
             font-size: 1.05rem;
             margin-bottom: 24px;
+            padding: 20px;
+            background: #EDE9FE;
+            border-radius: 12px;
+            border-left: 4px solid #C9A84C;
         }
-        a { color: #2563eb; text-decoration: none; }
-        a:hover { text-decoration: underline; }
+        a { color: #4B2A7A; text-decoration: none; font-weight: 600; }
+        a:hover { text-decoration: underline; color: #C9A84C; }
         .step {
             display: flex;
             gap: 16px;
@@ -65,8 +106,8 @@
             align-items: flex-start;
         }
         .step-number {
-            background: #111;
-            color: #fff;
+            background: #4B2A7A;
+            color: #FFF;
             width: 32px;
             height: 32px;
             border-radius: 50%;
@@ -77,42 +118,40 @@
             flex-shrink: 0;
             font-size: 0.9rem;
         }
-        .step-content {
-            flex: 1;
-        }
-        .step-content strong {
-            display: block;
-            margin-bottom: 4px;
-        }
+        .step-content { flex: 1; }
+        .step-content strong { display: block; margin-bottom: 4px; }
         .data-table {
             width: 100%;
             border-collapse: collapse;
             margin: 16px 0;
+            border-radius: 8px;
+            overflow: hidden;
         }
         .data-table th, .data-table td {
-            border: 2px solid #111;
+            border: 1px solid #EDE9FE;
             padding: 10px 14px;
             text-align: left;
         }
         .data-table th {
-            background: #111;
-            color: #fff;
+            background: #4B2A7A;
+            color: #FFF;
             font-weight: 600;
         }
-        .data-table tr:nth-child(even) {
-            background: #f3f4f6;
-        }
+        .data-table tr:nth-child(even) { background: #F5F0FF; }
         .footer {
             margin-top: 40px;
-            padding-top: 20px;
-            border-top: 2px solid #ddd;
-            font-size: 0.85rem;
-            color: #888;
+            padding: 24px;
             text-align: center;
+            background: linear-gradient(135deg, #1E0845, #3A1A70);
+            border-radius: 12px;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
         }
+        .footer a { color: #D4A843; }
         @media (max-width: 600px) {
             .container { padding: 20px 16px; }
-            h1 { font-size: 1.6rem; }
+            .header-banner { padding: 36px 16px 28px; }
+            .header-banner h1 { font-size: 1.7rem; }
             h2 { font-size: 1.15rem; }
             .section { padding: 16px; }
             .data-table { font-size: 0.85rem; }
@@ -121,10 +160,13 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <div class="header-banner">
         <h1>Delete Your Data</h1>
+        <div class="app-name">QuranQuest</div>
         <p class="last-updated">Last updated: March 10, 2026</p>
+    </div>
 
+    <div class="container">
         <p class="intro">
             QuranQuest by SLAMA Consulting allows you to manage and delete specific data
             without deleting your entire account. This page explains what data you can
@@ -132,9 +174,8 @@
         </p>
 
         <div class="section">
-            <h2>1. Reset Memorization Progress (Hifz)</h2>
+            <h2><span class="num">1</span> Reset Memorization Progress (Hifz)</h2>
             <p>You can reset your memorization progress for specific surahs or all surahs.</p>
-
             <div class="step">
                 <div class="step-number">1</div>
                 <div class="step-content">
@@ -156,14 +197,12 @@
                     Use the reset option to clear your memorization progress for that surah. This removes mastery levels, review schedules, and session history for the selected surah.
                 </div>
             </div>
-
-            <p><strong>Data deleted:</strong> Mastery levels, spaced repetition data (intervals, ease factor, repetitions), review dates, and session scores for the selected surah. Deleted from both your device and our servers.</p>
+            <p><strong>Data deleted:</strong> Mastery levels, spaced repetition data, review dates, and session scores for the selected surah. Deleted from both your device and our servers.</p>
         </div>
 
         <div class="section">
-            <h2>2. Manage Analytics and Crash Reporting Consent</h2>
+            <h2><span class="num">2</span> Manage Analytics and Crash Reporting Consent</h2>
             <p>You can withdraw your consent for analytics and crash reporting data collection at any time.</p>
-
             <div class="step">
                 <div class="step-number">1</div>
                 <div class="step-content">
@@ -185,14 +224,12 @@
                     Toggle off <strong>"Allow usage analytics"</strong> and/or <strong>"Allow crash reports"</strong>, or tap <strong>"Reject all"</strong> to disable both.
                 </div>
             </div>
-
             <p><strong>Effect:</strong> Firebase Analytics and/or Firebase Crashlytics will stop collecting data immediately. Previously collected anonymous data may be retained by Firebase for up to 14 months (analytics) or 90 days (crash reports) but cannot be linked to your identity.</p>
         </div>
 
         <div class="section">
-            <h2>3. Reset App Settings</h2>
+            <h2><span class="num">3</span> Reset App Settings</h2>
             <p>You can reset all app settings to their default values.</p>
-
             <div class="step">
                 <div class="step-number">1</div>
                 <div class="step-content">
@@ -214,14 +251,12 @@
                     A confirmation dialog will appear. Tap <strong>"Reset"</strong> to restore all settings to defaults.
                 </div>
             </div>
-
             <p><strong>Data reset:</strong> Theme mode, language, font size, Arabic font, notification preferences, and child mode settings are restored to defaults. Your account and progress data are <strong>not affected</strong>.</p>
         </div>
 
         <div class="section">
-            <h2>4. Clear Local Cached Data</h2>
+            <h2><span class="num">4</span> Clear Local Cached Data</h2>
             <p>QuranQuest stores data locally on your device for offline access. You can clear this local cache through your device settings:</p>
-
             <div class="step">
                 <div class="step-number">1</div>
                 <div class="step-content">
@@ -236,69 +271,35 @@
                     Tap <strong>"Clear Cache"</strong> to remove temporary files, or <strong>"Clear Data"</strong> to remove all local data including your login session.
                 </div>
             </div>
-
             <p><strong>Data cleared:</strong> Locally cached memorization progress, leaderboard data, downloaded audio files, and app preferences. Your data on our servers is <strong>not affected</strong> and will be re-synced when you log in again.</p>
         </div>
 
         <div class="section">
-            <h2>5. Data You Can Manage</h2>
-
+            <h2><span class="num">5</span> Data You Can Manage</h2>
             <table class="data-table">
                 <thead>
-                    <tr>
-                        <th>Data Type</th>
-                        <th>How to Delete / Manage</th>
-                        <th>Where Deleted</th>
-                    </tr>
+                    <tr><th>Data Type</th><th>How to Delete / Manage</th><th>Where Deleted</th></tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Hifz memorization progress</td>
-                        <td>Reset per surah in the Hifz section</td>
-                        <td>Device + Server</td>
-                    </tr>
-                    <tr>
-                        <td>Analytics consent</td>
-                        <td>Settings &gt; Manage Consent</td>
-                        <td>Stops future collection</td>
-                    </tr>
-                    <tr>
-                        <td>Crash reporting consent</td>
-                        <td>Settings &gt; Manage Consent</td>
-                        <td>Stops future collection</td>
-                    </tr>
-                    <tr>
-                        <td>App settings and preferences</td>
-                        <td>Settings &gt; Reset Settings</td>
-                        <td>Device only</td>
-                    </tr>
-                    <tr>
-                        <td>Local cached data</td>
-                        <td>Android Settings &gt; Apps &gt; QuranQuest &gt; Clear Cache</td>
-                        <td>Device only</td>
-                    </tr>
-                    <tr>
-                        <td>Profile information</td>
-                        <td>Edit your profile in the Profile tab</td>
-                        <td>Device + Server</td>
-                    </tr>
-                    <tr>
-                        <td>Push notifications</td>
-                        <td>Disable in Settings &gt; Notifications</td>
-                        <td>Stops future notifications</td>
-                    </tr>
+                    <tr><td>Hifz memorization progress</td><td>Reset per surah in the Hifz section</td><td>Device + Server</td></tr>
+                    <tr><td>Analytics consent</td><td>Settings &gt; Manage Consent</td><td>Stops future collection</td></tr>
+                    <tr><td>Crash reporting consent</td><td>Settings &gt; Manage Consent</td><td>Stops future collection</td></tr>
+                    <tr><td>App settings and preferences</td><td>Settings &gt; Reset Settings</td><td>Device only</td></tr>
+                    <tr><td>Local cached data</td><td>Android Settings &gt; Apps &gt; QuranQuest &gt; Clear Cache</td><td>Device only</td></tr>
+                    <tr><td>Profile information</td><td>Edit your profile in the Profile tab</td><td>Device + Server</td></tr>
+                    <tr><td>Push notifications</td><td>Disable in Settings &gt; Notifications</td><td>Stops future notifications</td></tr>
                 </tbody>
             </table>
         </div>
 
         <div class="section">
-            <h2>6. Delete Your Entire Account</h2>
+            <h2><span class="num">6</span> Delete Your Entire Account</h2>
             <p>If you want to delete your account and ALL associated data (memorization progress, gamification, leaderboard, badges, and personal information), please visit our
             <a href="quranquest-delete-account.html">Account Deletion page</a> for instructions.</p>
         </div>
 
         <div class="section">
-            <h2>7. Contact Us</h2>
+            <h2><span class="num">7</span> Contact Us</h2>
             <p>If you need help deleting specific data or have questions, contact us at:</p>
             <p><strong>SLAMA Consulting</strong><br>
             Email: <a href="mailto:slama.walid1985@gmail.com">slama.walid1985@gmail.com</a></p>
@@ -306,7 +307,8 @@
         </div>
 
         <div class="footer">
-            &copy; 2026 SLAMA Consulting. All rights reserved.
+            <p>&copy; 2026 SLAMA Consulting. All rights reserved.</p>
+            <p style="margin-top: 8px;"><a href="quranquest.html">Privacy Policy</a> &middot; <a href="quranquest-delete-account.html">Delete Account</a></p>
         </div>
     </div>
 </body>
