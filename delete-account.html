@@ -13,6 +13,24 @@
             background: #f8f8f8;
             padding: 0;
         }
+        .lang-switcher {
+            position: sticky;
+            top: 0;
+            background: #f8f8f8;
+            padding: 10px 24px;
+            text-align: right;
+            z-index: 100;
+            border-bottom: 2px solid #eee;
+        }
+        .lang-switcher select {
+            padding: 8px 16px;
+            border: 2px solid #FF6B35;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            background: white;
+            cursor: pointer;
+            color: #333;
+        }
         .container {
             max-width: 800px;
             margin: 0 auto;
@@ -22,7 +40,7 @@
             font-size: 2rem;
             font-weight: 800;
             margin-bottom: 8px;
-            color: #111;
+            color: #FF6B35;
         }
         .last-updated {
             font-size: 0.9rem;
@@ -35,7 +53,7 @@
             margin-top: 36px;
             margin-bottom: 12px;
             color: #111;
-            border-bottom: 3px solid #111;
+            border-bottom: 3px solid #FF6B35;
             padding-bottom: 4px;
         }
         h3 {
@@ -63,8 +81,23 @@
             font-size: 1.05rem;
             margin-bottom: 24px;
         }
-        a { color: #2563eb; text-decoration: none; }
+        a { color: #FF6B35; text-decoration: none; font-weight: 600; }
         a:hover { text-decoration: underline; }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 2px solid #ddd;
+            font-size: 0.85rem;
+            color: #888;
+            text-align: center;
+        }
+        @media (max-width: 600px) {
+            .container { padding: 20px 16px; }
+            h1 { font-size: 1.6rem; }
+            h2 { font-size: 1.15rem; }
+            .section { padding: 16px; }
+        }
+
         .warning {
             background: #fef3c7;
             border: 3px solid #f59e0b;
@@ -98,242 +131,1973 @@
             flex-shrink: 0;
             font-size: 0.9rem;
         }
-        .step-content {
-            flex: 1;
-        }
-        .step-content strong {
-            display: block;
-            margin-bottom: 4px;
-        }
-        .data-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 16px 0;
-        }
-        .data-table th, .data-table td {
-            border: 2px solid #111;
-            padding: 10px 14px;
-            text-align: left;
-        }
-        .data-table th {
-            background: #111;
-            color: #fff;
-            font-weight: 600;
-        }
-        .data-table tr:nth-child(even) {
-            background: #f3f4f6;
-        }
+        .step-content { flex: 1; }
+        .step-content strong { display: block; margin-bottom: 4px; }
+        .data-table { width: 100%; border-collapse: collapse; margin: 16px 0; }
+        .data-table th, .data-table td { border: 2px solid #111; padding: 10px 14px; text-align: left; }
+        .data-table th { background: #111; color: #fff; font-weight: 600; }
+        .data-table tr:nth-child(even) { background: #f3f4f6; }
         .deleted { color: #dc2626; font-weight: 600; }
         .retained { color: #d97706; font-weight: 600; }
-        .footer {
-            margin-top: 40px;
-            padding-top: 20px;
-            border-top: 2px solid #ddd;
-            font-size: 0.85rem;
-            color: #888;
-            text-align: center;
-        }
         @media (max-width: 600px) {
-            .container { padding: 20px 16px; }
-            h1 { font-size: 1.6rem; }
-            h2 { font-size: 1.15rem; }
-            .section { padding: 16px; }
             .data-table { font-size: 0.85rem; }
             .data-table th, .data-table td { padding: 8px; }
         }
     </style>
 </head>
 <body>
+    <div class="lang-switcher">
+        <select id="langSelect" onchange="switchLanguage(this.value)">
+            <option value="en">English</option>
+            <option value="fr">Français</option>
+            <option value="de">Deutsch</option>
+            <option value="es">Español</option>
+            <option value="ar">العربية</option>
+            <option value="cs">Čeština</option>
+            <option value="da">Dansk</option>
+            <option value="el">Ελληνικά</option>
+            <option value="hi">हिन्दी</option>
+            <option value="hu">Magyar</option>
+            <option value="id">Indonesia</option>
+            <option value="it">Italiano</option>
+            <option value="iw">עברית</option>
+            <option value="ja">日本語</option>
+            <option value="ko">한국어</option>
+            <option value="nb">Norsk</option>
+            <option value="nl">Nederlands</option>
+            <option value="pl">Polski</option>
+            <option value="pt">Português</option>
+            <option value="ro">Română</option>
+            <option value="ru">Русский</option>
+            <option value="sv">Svenska</option>
+            <option value="th">ไทย</option>
+            <option value="tr">Türkçe</option>
+            <option value="vi">Tiếng Việt</option>
+            <option value="zh">中文</option>
+        </select>
+    </div>
     <div class="container">
-        <h1>Delete Your Account</h1>
-        <p class="last-updated">Last updated: February 25, 2026</p>
+        <h1 data-i18n="title">Delete Your Account</h1>
+        <p class="last-updated" data-i18n="last_updated">Last updated: March 13, 2026</p>
 
-        <p class="intro">
+        <p class="intro" data-i18n="intro">
             SLAMA Consulting ("we", "our", or "us") respects your right to delete your account
             and associated data from the SportTracking mobile application. This page explains
             how to request account deletion and what data is affected.
         </p>
 
         <div class="warning">
-            <p class="warning-title">&#9888; Warning: This action is permanent</p>
-            <p>Deleting your account will permanently remove all your personal data, trip history,
-            event participation, chat messages, challenge progress, and leaderboard scores.
+            <p class="warning-title" data-i18n="warning_title">&#9888; Warning: This action is permanent</p>
+            <p data-i18n="warning_text">Deleting your account will permanently remove all your personal data, trip history,
+            event participation, chat messages, challenge progress, leaderboard scores,
+            AI Coach conversations, training plans, referral data, and saved routes.
             This action <strong>cannot be undone</strong>.</p>
         </div>
 
         <div class="section">
-            <h2>1. How to Delete Your Account</h2>
+            <h2 data-i18n="s1_title">1. How to Delete Your Account</h2>
 
-            <h3>Option A: Delete from within the app (Recommended)</h3>
+            <h3 data-i18n="s1_option_a">Option A: Delete from within the app (Recommended)</h3>
 
             <div class="step">
                 <div class="step-number">1</div>
                 <div class="step-content">
-                    <strong>Open SportTracking</strong>
-                    Launch the app and make sure you are logged in.
+                    <strong data-i18n="s1_step1_title">Open SportTracking</strong>
+                    <span data-i18n="s1_step1_text">Launch the app and make sure you are logged in.</span>
                 </div>
             </div>
-
             <div class="step">
                 <div class="step-number">2</div>
                 <div class="step-content">
-                    <strong>Go to your Profile</strong>
-                    Tap the <strong>Profile</strong> tab in the bottom navigation bar.
+                    <strong data-i18n="s1_step2_title">Go to your Profile</strong>
+                    <span data-i18n="s1_step2_text">Tap the <strong>Profile</strong> tab in the bottom navigation bar.</span>
                 </div>
             </div>
-
             <div class="step">
                 <div class="step-number">3</div>
                 <div class="step-content">
-                    <strong>Open Settings</strong>
-                    Tap the settings icon (gear) in the top-right corner of the Profile screen.
+                    <strong data-i18n="s1_step3_title">Open Settings</strong>
+                    <span data-i18n="s1_step3_text">Tap the settings icon (gear) in the top-right corner of the Profile screen.</span>
                 </div>
             </div>
-
             <div class="step">
                 <div class="step-number">4</div>
                 <div class="step-content">
-                    <strong>Delete Account</strong>
-                    Scroll down and tap <strong>"Delete Account"</strong>. A confirmation dialog will appear.
-                    Confirm to permanently delete your account and all associated data.
+                    <strong data-i18n="s1_step4_title">Delete Account</strong>
+                    <span data-i18n="s1_step4_text">Scroll down and tap <strong>"Delete Account"</strong>. A confirmation dialog will appear. Confirm to permanently delete your account and all associated data.</span>
                 </div>
             </div>
 
-            <h3>Option B: Request deletion by email</h3>
-            <p>If you are unable to access the app, you can request account deletion by sending an email to:</p>
+            <h3 data-i18n="s1_option_b">Option B: Request deletion by email</h3>
+            <p data-i18n="s1_email_intro">If you are unable to access the app, you can request account deletion by sending an email to:</p>
             <p><strong><a href="mailto:slama.walid1985@gmail.com?subject=Account%20Deletion%20Request%20-%20SportTracking&body=Hello%2C%0A%0AI%20would%20like%20to%20request%20the%20deletion%20of%20my%20SportTracking%20account.%0A%0AAccount%20email%3A%20%5Byour%20email%20here%5D%0A%0AThank%20you.">slama.walid1985@gmail.com</a></strong></p>
-            <p>Please include the email address associated with your SportTracking account.
-            We will process your request within <strong>30 days</strong>.</p>
+            <p data-i18n="s1_email_note">Please include the email address associated with your SportTracking account. We will process your request within <strong>30 days</strong>.</p>
         </div>
 
         <div class="section">
-            <h2>2. Data Deleted</h2>
-            <p>When you delete your account, the following data is <strong>permanently removed</strong> from our servers:</p>
+            <h2 data-i18n="s2_title">2. Data Deleted</h2>
+            <p data-i18n="s2_intro">When you delete your account, the following data is <strong>permanently removed</strong> from our servers:</p>
 
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>Data Type</th>
-                        <th>Status</th>
-                        <th>Timeframe</th>
+                        <th data-i18n="th_data_type">Data Type</th>
+                        <th data-i18n="th_status">Status</th>
+                        <th data-i18n="th_timeframe">Timeframe</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Personal information (name, email, date of birth, gender, phone)</td>
-                        <td class="deleted">Deleted</td>
-                        <td>Immediately</td>
-                    </tr>
-                    <tr>
-                        <td>Profile photo</td>
-                        <td class="deleted">Deleted</td>
-                        <td>Immediately</td>
-                    </tr>
-                    <tr>
-                        <td>Trip history and GPS tracks</td>
-                        <td class="deleted">Deleted</td>
-                        <td>Immediately</td>
-                    </tr>
-                    <tr>
-                        <td>Event participation and created events</td>
-                        <td class="deleted">Deleted</td>
-                        <td>Immediately</td>
-                    </tr>
-                    <tr>
-                        <td>Chat messages</td>
-                        <td class="deleted">Deleted</td>
-                        <td>Immediately</td>
-                    </tr>
-                    <tr>
-                        <td>Challenge progress and scores</td>
-                        <td class="deleted">Deleted</td>
-                        <td>Immediately</td>
-                    </tr>
-                    <tr>
-                        <td>Leaderboard entries</td>
-                        <td class="deleted">Deleted</td>
-                        <td>Immediately</td>
-                    </tr>
-                    <tr>
-                        <td>Notifications</td>
-                        <td class="deleted">Deleted</td>
-                        <td>Immediately</td>
-                    </tr>
-                    <tr>
-                        <td>Push notification token (FCM)</td>
-                        <td class="deleted">Deleted</td>
-                        <td>Immediately</td>
-                    </tr>
-                    <tr>
-                        <td>Local data (Room database, preferences)</td>
-                        <td class="deleted">Deleted</td>
-                        <td>Immediately</td>
-                    </tr>
-                    <tr>
-                        <td>Firebase Authentication account</td>
-                        <td class="deleted">Deleted</td>
-                        <td>Immediately</td>
-                    </tr>
+                    <tr><td data-i18n="d_personal">Personal information (name, email, date of birth, gender, phone)</td><td class="deleted" data-i18n="status_deleted">Deleted</td><td data-i18n="timeframe_immediately">Immediately</td></tr>
+                    <tr><td data-i18n="d_photo">Profile photo</td><td class="deleted" data-i18n="status_deleted">Deleted</td><td data-i18n="timeframe_immediately">Immediately</td></tr>
+                    <tr><td data-i18n="d_trips">Trip history and GPS tracks</td><td class="deleted" data-i18n="status_deleted">Deleted</td><td data-i18n="timeframe_immediately">Immediately</td></tr>
+                    <tr><td data-i18n="d_events">Event participation and created events</td><td class="deleted" data-i18n="status_deleted">Deleted</td><td data-i18n="timeframe_immediately">Immediately</td></tr>
+                    <tr><td data-i18n="d_chat">Chat messages</td><td class="deleted" data-i18n="status_deleted">Deleted</td><td data-i18n="timeframe_immediately">Immediately</td></tr>
+                    <tr><td data-i18n="d_challenges">Challenge progress and scores</td><td class="deleted" data-i18n="status_deleted">Deleted</td><td data-i18n="timeframe_immediately">Immediately</td></tr>
+                    <tr><td data-i18n="d_leaderboard">Leaderboard entries</td><td class="deleted" data-i18n="status_deleted">Deleted</td><td data-i18n="timeframe_immediately">Immediately</td></tr>
+                    <tr><td data-i18n="d_notifications">Notifications</td><td class="deleted" data-i18n="status_deleted">Deleted</td><td data-i18n="timeframe_immediately">Immediately</td></tr>
+                    <tr><td data-i18n="d_fcm">Push notification token (FCM)</td><td class="deleted" data-i18n="status_deleted">Deleted</td><td data-i18n="timeframe_immediately">Immediately</td></tr>
+                    <tr><td data-i18n="d_local">Local data (Room database, preferences)</td><td class="deleted" data-i18n="status_deleted">Deleted</td><td data-i18n="timeframe_immediately">Immediately</td></tr>
+                    <tr><td data-i18n="d_auth">Firebase Authentication account</td><td class="deleted" data-i18n="status_deleted">Deleted</td><td data-i18n="timeframe_immediately">Immediately</td></tr>
+                    <tr><td data-i18n="d_ai">AI Coach conversations and training plans</td><td class="deleted" data-i18n="status_deleted">Deleted</td><td data-i18n="timeframe_immediately">Immediately</td></tr>
+                    <tr><td data-i18n="d_referral">Referral codes and referral history</td><td class="deleted" data-i18n="status_deleted">Deleted</td><td data-i18n="timeframe_immediately">Immediately</td></tr>
+                    <tr><td data-i18n="d_routes">Saved routes</td><td class="deleted" data-i18n="status_deleted">Deleted</td><td data-i18n="timeframe_immediately">Immediately</td></tr>
+                    <tr><td data-i18n="d_reminders">Event reminder preferences</td><td class="deleted" data-i18n="status_deleted">Deleted</td><td data-i18n="timeframe_immediately">Immediately</td></tr>
                 </tbody>
             </table>
         </div>
 
         <div class="section">
-            <h2>3. Data Retained</h2>
-            <p>Some data may be retained for a limited period after account deletion:</p>
+            <h2 data-i18n="s3_title">3. Data Retained</h2>
+            <p data-i18n="s3_intro">Some data may be retained for a limited period after account deletion:</p>
 
             <table class="data-table">
                 <thead>
                     <tr>
-                        <th>Data Type</th>
-                        <th>Retention Period</th>
-                        <th>Reason</th>
+                        <th data-i18n="th_data_type">Data Type</th>
+                        <th data-i18n="th_retention">Retention Period</th>
+                        <th data-i18n="th_reason">Reason</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Crash logs (Firebase Crashlytics)</td>
-                        <td class="retained">Up to 90 days</td>
-                        <td>Firebase default retention for debugging</td>
-                    </tr>
-                    <tr>
-                        <td>Aggregated analytics data (Firebase Analytics)</td>
-                        <td class="retained">Up to 14 months</td>
-                        <td>Firebase default retention (anonymized, not personally identifiable)</td>
-                    </tr>
-                    <tr>
-                        <td>Chat reports filed by other users</td>
-                        <td class="retained">Up to 90 days</td>
-                        <td>Safety and moderation purposes</td>
-                    </tr>
+                    <tr><td data-i18n="r_crash">Crash logs (Firebase Crashlytics)</td><td class="retained" data-i18n="r_crash_period">Up to 90 days</td><td data-i18n="r_crash_reason">Firebase default retention for debugging</td></tr>
+                    <tr><td data-i18n="r_analytics">Aggregated analytics data (Firebase Analytics)</td><td class="retained" data-i18n="r_analytics_period">Up to 14 months</td><td data-i18n="r_analytics_reason">Firebase default retention (anonymized, not personally identifiable)</td></tr>
+                    <tr><td data-i18n="r_reports">Chat reports filed by other users</td><td class="retained" data-i18n="r_reports_period">Up to 90 days</td><td data-i18n="r_reports_reason">Safety and moderation purposes</td></tr>
                 </tbody>
             </table>
 
-            <p>Retained data is either anonymized or not personally identifiable. It cannot be used to reconstruct your account or identify you.</p>
+            <p data-i18n="s3_note">Retained data is either anonymized or not personally identifiable. It cannot be used to reconstruct your account or identify you.</p>
         </div>
 
         <div class="section">
-            <h2>4. What Happens After Deletion</h2>
+            <h2 data-i18n="s4_title">4. What Happens After Deletion</h2>
             <ul>
-                <li>You will be <strong>logged out</strong> immediately from the app.</li>
-                <li>You will <strong>no longer appear</strong> on leaderboards or in event participant lists.</li>
-                <li>Your <strong>chat messages</strong> in event groups will be removed.</li>
-                <li>Any events you created will be <strong>deleted</strong>.</li>
-                <li>You can <strong>create a new account</strong> with the same email address if you wish to use SportTracking again, but your previous data will not be recovered.</li>
+                <li data-i18n="s4_li1">You will be <strong>logged out</strong> immediately from the app.</li>
+                <li data-i18n="s4_li2">You will <strong>no longer appear</strong> on leaderboards or in event participant lists.</li>
+                <li data-i18n="s4_li3">Your <strong>chat messages</strong> in event groups will be removed.</li>
+                <li data-i18n="s4_li4">Any events you created will be <strong>deleted</strong>.</li>
+                <li data-i18n="s4_li5">Your <strong>AI Coach conversations</strong> and training plans will be deleted.</li>
+                <li data-i18n="s4_li6">Your <strong>referral code</strong> will be deactivated.</li>
+                <li data-i18n="s4_li7">Your <strong>saved routes</strong> will be removed.</li>
+                <li data-i18n="s4_li8">You can <strong>create a new account</strong> with the same email address if you wish to use SportTracking again, but your previous data will not be recovered.</li>
             </ul>
         </div>
 
         <div class="section">
-            <h2>5. Contact Us</h2>
-            <p>If you have any questions about account deletion or data removal, please contact us at:</p>
-            <p><strong>SLAMA Consulting</strong><br>
+            <h2 data-i18n="s5_title">5. Contact Us</h2>
+            <p data-i18n="s5_text">If you have any questions about account deletion or data removal, please contact us at:</p>
+            <p data-i18n="s5_contact"><strong>SLAMA Consulting</strong><br>
             Email: <a href="mailto:slama.walid1985@gmail.com">slama.walid1985@gmail.com</a></p>
-            <p>See also our <a href="sportTracking.html">Privacy Policy</a> for more information about how we handle your data.</p>
+            <p data-i18n="s5_link">See also our <a href="sportTracking.html">Privacy Policy</a> for more information about how we handle your data.</p>
         </div>
 
-        <div class="footer">
+        <div class="footer" data-i18n="footer">
             &copy; 2026 SLAMA Consulting. All rights reserved.
         </div>
     </div>
+
+    <script>
+    const translations = {
+  "en": {},
+  "fr": {
+    "title": "Supprimer votre compte",
+    "last_updated": "Dernière mise à jour : 13 mars 2026",
+    "intro": "SLAMA Consulting (« nous », « notre » ou « nos ») respecte votre droit de supprimer votre compte et les données associées de l'application mobile SportTracking. Cette page explique comment demander la suppression de votre compte et quelles données sont concernées.",
+    "warning_title": "&#9888; Attention : Cette action est définitive",
+    "warning_text": "La suppression de votre compte entraînera la suppression définitive de toutes vos données personnelles, l'historique de vos trajets, la participation aux événements, les messages de chat, la progression des défis, les scores du classement, les conversations AI Coach, les plans d'entraînement, les données de parrainage et les itinéraires enregistrés. Cette action <strong>ne peut pas être annulée",
+    "s1_title": "1. Comment supprimer votre compte",
+    "s1_option_a": "Option A : Supprimer depuis l'application (Recommandé)",
+    "s1_step1_title": "Ouvrir SportTracking",
+    "s1_step1_text": "Lancez l'application et assurez-vous d'être connecté.",
+    "s1_step2_title": "Accéder à votre profil",
+    "s1_step2_text": "Appuyez sur <strong>Profil",
+    "s1_step3_title": "Ouvrir les paramètres",
+    "s1_step3_text": "Appuyez sur l'icône des paramètres (engrenage) dans le coin supérieur droit de l'écran Profil.",
+    "s1_step4_title": "Supprimer le compte",
+    "s1_step4_text": "Faites défiler vers le bas et appuyez sur <strong>« Supprimer le compte »",
+    "s1_option_b": "Option B : Demander la suppression par e-mail",
+    "s1_email_intro": "Si vous ne pouvez pas accéder à l'application, vous pouvez demander la suppression de votre compte en envoyant un e-mail à :",
+    "s1_email_note": "Veuillez inclure l'adresse e-mail associée à votre compte SportTracking. Nous traiterons votre demande dans un délai de <strong>30 jours",
+    "s2_title": "2. Données supprimées",
+    "s2_intro": "Lorsque vous supprimez votre compte, les données suivantes sont <strong>définitivement supprimées",
+    "th_data_type": "Type de données",
+    "th_status": "Statut",
+    "th_timeframe": "Délai",
+    "d_personal": "Informations personnelles (nom, e-mail, date de naissance, sexe, téléphone)",
+    "status_deleted": "Supprimées",
+    "timeframe_immediately": "Immédiatement",
+    "d_photo": "Photo de profil",
+    "d_trips": "Historique des trajets et traces GPS",
+    "d_events": "Participation aux événements et événements créés",
+    "d_chat": "Messages de chat",
+    "d_challenges": "Progression et scores des défis",
+    "d_leaderboard": "Entrées du classement",
+    "d_notifications": "Notifications",
+    "d_fcm": "Jeton de notification push (FCM)",
+    "d_local": "Données locales (base de données Room, préférences)",
+    "d_auth": "Compte Firebase Authentication",
+    "d_ai": "Conversations AI Coach et plans d'entraînement",
+    "d_referral": "Codes de parrainage et historique de parrainage",
+    "d_routes": "Itinéraires enregistrés",
+    "d_reminders": "Préférences de rappel d'événements",
+    "s3_title": "3. Données conservées",
+    "s3_intro": "Certaines données peuvent être conservées pendant une période limitée après la suppression du compte :",
+    "th_retention": "Période de conservation",
+    "th_reason": "Raison",
+    "r_crash": "Journaux de plantage (Firebase Crashlytics)",
+    "r_crash_period": "Jusqu'à 90 jours",
+    "r_crash_reason": "Conservation par défaut de Firebase pour le débogage",
+    "r_analytics": "Données analytiques agrégées (Firebase Analytics)",
+    "r_analytics_period": "Jusqu'à 14 mois",
+    "r_analytics_reason": "Conservation par défaut de Firebase (anonymisées, non identifiables personnellement)",
+    "r_reports": "Signalements de chat déposés par d'autres utilisateurs",
+    "r_reports_period": "Jusqu'à 90 jours",
+    "r_reports_reason": "À des fins de sécurité et de modération",
+    "s3_note": "Les données conservées sont soit anonymisées, soit non identifiables personnellement. Elles ne peuvent pas être utilisées pour reconstituer votre compte ou vous identifier.",
+    "s4_title": "4. Ce qui se passe après la suppression",
+    "s4_li1": "Vous serez <strong>déconnecté",
+    "s4_li2": "Vous <strong>n'apparaîtrez plus",
+    "s4_li3": "Vos <strong>messages de chat",
+    "s4_li4": "Tous les événements que vous avez créés seront <strong>supprimés",
+    "s4_li5": "Vos <strong>conversations AI Coach",
+    "s4_li6": "Votre <strong>code de parrainage",
+    "s4_li7": "Vos <strong>itinéraires enregistrés",
+    "s4_li8": "Vous pouvez <strong>créer un nouveau compte",
+    "s5_title": "5. Nous contacter",
+    "s5_text": "Si vous avez des questions concernant la suppression de compte ou la suppression de données, veuillez nous contacter à :",
+    "s5_contact": "<strong>SLAMA Consulting",
+    "s5_link": "Voir également notre <a href=\"sportTracking.html\">Politique de confidentialité",
+    "footer": "&copy; 2026 SLAMA Consulting. Tous droits réservés."
+  },
+  "de": {
+    "title": "Konto löschen",
+    "last_updated": "Zuletzt aktualisiert: 13. März 2026",
+    "intro": "SLAMA Consulting (\"wir\", \"unser\" oder \"uns\") respektiert Ihr Recht, Ihr Konto und die zugehörigen Daten aus der SportTracking Mobile-App zu löschen. Diese Seite erklärt, wie Sie die Kontolöschung beantragen können und welche Daten betroffen sind.",
+    "warning_title": "&#9888; Warnung: Diese Aktion ist dauerhaft",
+    "warning_text": "Das Löschen Ihres Kontos entfernt dauerhaft alle Ihre persönlichen Daten, Ihren Fahrtenverlauf, Ihre Event-Teilnahmen, Chat-Nachrichten, Challenge-Fortschritte, Bestenlisten-Punkte, AI Coach-Konversationen, Trainingspläne, Empfehlungsdaten und gespeicherten Routen. Diese Aktion <strong>kann nicht rückgängig gemacht werden",
+    "s1_title": "1. So löschen Sie Ihr Konto",
+    "s1_option_a": "Option A: Löschen innerhalb der App (Empfohlen)",
+    "s1_step1_title": "SportTracking öffnen",
+    "s1_step1_text": "Starten Sie die App und stellen Sie sicher, dass Sie angemeldet sind.",
+    "s1_step2_title": "Zu Ihrem Profil gehen",
+    "s1_step2_text": "Tippen Sie auf <strong>Profil",
+    "s1_step3_title": "Einstellungen öffnen",
+    "s1_step3_text": "Tippen Sie auf das Einstellungssymbol (Zahnrad) in der oberen rechten Ecke des Profilbildschirms.",
+    "s1_step4_title": "Konto löschen",
+    "s1_step4_text": "Scrollen Sie nach unten und tippen Sie auf <strong>\"Konto löschen\"",
+    "s1_option_b": "Option B: Löschung per E-Mail beantragen",
+    "s1_email_intro": "Wenn Sie keinen Zugriff auf die App haben, können Sie die Kontolöschung per E-Mail beantragen an:",
+    "s1_email_note": "Bitte geben Sie die E-Mail-Adresse an, die mit Ihrem SportTracking-Konto verknüpft ist. Wir werden Ihren Antrag innerhalb von <strong>30 Tagen",
+    "s2_title": "2. Gelöschte Daten",
+    "s2_intro": "Wenn Sie Ihr Konto löschen, werden die folgenden Daten <strong>dauerhaft entfernt",
+    "th_data_type": "Datentyp",
+    "th_status": "Status",
+    "th_timeframe": "Zeitrahmen",
+    "d_personal": "Persönliche Informationen (Name, E-Mail, Geburtsdatum, Geschlecht, Telefon)",
+    "status_deleted": "Gelöscht",
+    "timeframe_immediately": "Sofort",
+    "d_photo": "Profilfoto",
+    "d_trips": "Fahrtenverlauf und GPS-Tracks",
+    "d_events": "Event-Teilnahmen und erstellte Events",
+    "d_chat": "Chat-Nachrichten",
+    "d_challenges": "Challenge-Fortschritte und Punkte",
+    "d_leaderboard": "Bestenlisten-Einträge",
+    "d_notifications": "Benachrichtigungen",
+    "d_fcm": "Push-Benachrichtigungs-Token (FCM)",
+    "d_local": "Lokale Daten (Room-Datenbank, Einstellungen)",
+    "d_auth": "Firebase Authentication-Konto",
+    "d_ai": "AI Coach-Konversationen und Trainingspläne",
+    "d_referral": "Empfehlungscodes und Empfehlungsverlauf",
+    "d_routes": "Gespeicherte Routen",
+    "d_reminders": "Event-Erinnerungseinstellungen",
+    "s3_title": "3. Aufbewahrte Daten",
+    "s3_intro": "Einige Daten können nach der Kontolöschung für eine begrenzte Zeit aufbewahrt werden:",
+    "th_retention": "Aufbewahrungsfrist",
+    "th_reason": "Grund",
+    "r_crash": "Absturzprotokolle (Firebase Crashlytics)",
+    "r_crash_period": "Bis zu 90 Tage",
+    "r_crash_reason": "Firebase-Standardaufbewahrung zur Fehlersuche",
+    "r_analytics": "Aggregierte Analysedaten (Firebase Analytics)",
+    "r_analytics_period": "Bis zu 14 Monate",
+    "r_analytics_reason": "Firebase-Standardaufbewahrung (anonymisiert, nicht personenbezogen)",
+    "r_reports": "Chat-Meldungen von anderen Nutzern",
+    "r_reports_period": "Bis zu 90 Tage",
+    "r_reports_reason": "Sicherheits- und Moderationszwecke",
+    "s3_note": "Aufbewahrte Daten sind entweder anonymisiert oder nicht personenbezogen. Sie können nicht verwendet werden, um Ihr Konto wiederherzustellen oder Sie zu identifizieren.",
+    "s4_title": "4. Was nach der Löschung passiert",
+    "s4_li1": "Sie werden <strong>abgemeldet",
+    "s4_li2": "Sie werden <strong>nicht mehr erscheinen",
+    "s4_li3": "Ihre <strong>Chat-Nachrichten",
+    "s4_li4": "Alle von Ihnen erstellten Events werden <strong>gelöscht",
+    "s4_li5": "Ihre <strong>AI Coach-Konversationen",
+    "s4_li6": "Ihr <strong>Empfehlungscode",
+    "s4_li7": "Ihre <strong>gespeicherten Routen",
+    "s4_li8": "Sie können <strong>ein neues Konto erstellen",
+    "s5_title": "5. Kontaktieren Sie uns",
+    "s5_text": "Wenn Sie Fragen zur Kontolöschung oder Datenentfernung haben, kontaktieren Sie uns bitte unter:",
+    "s5_contact": "<strong>SLAMA Consulting",
+    "s5_link": "Siehe auch unsere <a href=\"sportTracking.html\">Datenschutzerklärung",
+    "footer": "&copy; 2026 SLAMA Consulting. Alle Rechte vorbehalten."
+  },
+  "es": {
+    "title": "Eliminar tu cuenta",
+    "last_updated": "Última actualización: 13 de marzo de 2026",
+    "intro": "SLAMA Consulting (\"nosotros\", \"nuestro\" o \"nos\") respeta tu derecho a eliminar tu cuenta y los datos asociados de la aplicación móvil SportTracking. Esta página explica cómo solicitar la eliminación de la cuenta y qué datos se ven afectados.",
+    "warning_title": "&#9888; Advertencia: Esta acción es permanente",
+    "warning_text": "Eliminar tu cuenta eliminará permanentemente todos tus datos personales, historial de viajes, participación en eventos, mensajes de chat, progreso de desafíos, puntuaciones de clasificación, conversaciones con AI Coach, planes de entrenamiento, datos de referidos y rutas guardadas. Esta acción <strong>no se puede deshacer",
+    "s1_title": "1. Cómo eliminar tu cuenta",
+    "s1_option_a": "Opción A: Eliminar desde la aplicación (Recomendado)",
+    "s1_step1_title": "Abre SportTracking",
+    "s1_step1_text": "Inicia la aplicación y asegúrate de haber iniciado sesión.",
+    "s1_step2_title": "Ve a tu perfil",
+    "s1_step2_text": "Toca <strong>Perfil",
+    "s1_step3_title": "Abre Configuración",
+    "s1_step3_text": "Toca el icono de configuración (engranaje) en la esquina superior derecha de la pantalla de Perfil.",
+    "s1_step4_title": "Eliminar cuenta",
+    "s1_step4_text": "Desplázate hacia abajo y toca <strong>\"Eliminar cuenta\"",
+    "s1_option_b": "Opción B: Solicitar eliminación por correo electrónico",
+    "s1_email_intro": "Si no puedes acceder a la aplicación, puedes solicitar la eliminación de la cuenta enviando un correo electrónico a:",
+    "s1_email_note": "Por favor, incluye la dirección de correo electrónico asociada a tu cuenta de SportTracking. Procesaremos tu solicitud en un plazo de <strong>30 días",
+    "s2_title": "2. Datos eliminados",
+    "s2_intro": "Cuando eliminas tu cuenta, los siguientes datos se <strong>eliminan permanentemente",
+    "th_data_type": "Tipo de datos",
+    "th_status": "Estado",
+    "th_timeframe": "Plazo",
+    "d_personal": "Información personal (nombre, correo electrónico, fecha de nacimiento, género, teléfono)",
+    "status_deleted": "Eliminado",
+    "timeframe_immediately": "Inmediatamente",
+    "d_photo": "Foto de perfil",
+    "d_trips": "Historial de viajes y tracks GPS",
+    "d_events": "Participación en eventos y eventos creados",
+    "d_chat": "Mensajes de chat",
+    "d_challenges": "Progreso y puntuaciones de desafíos",
+    "d_leaderboard": "Entradas de clasificación",
+    "d_notifications": "Notificaciones",
+    "d_fcm": "Token de notificaciones push (FCM)",
+    "d_local": "Datos locales (base de datos Room, preferencias)",
+    "d_auth": "Cuenta de Firebase Authentication",
+    "d_ai": "Conversaciones con AI Coach y planes de entrenamiento",
+    "d_referral": "Códigos de referido e historial de referidos",
+    "d_routes": "Rutas guardadas",
+    "d_reminders": "Preferencias de recordatorios de eventos",
+    "s3_title": "3. Datos conservados",
+    "s3_intro": "Algunos datos pueden conservarse por un período limitado después de la eliminación de la cuenta:",
+    "th_retention": "Período de retención",
+    "th_reason": "Motivo",
+    "r_crash": "Registros de fallos (Firebase Crashlytics)",
+    "r_crash_period": "Hasta 90 días",
+    "r_crash_reason": "Retención predeterminada de Firebase para depuración",
+    "r_analytics": "Datos analíticos agregados (Firebase Analytics)",
+    "r_analytics_period": "Hasta 14 meses",
+    "r_analytics_reason": "Retención predeterminada de Firebase (anonimizados, no identificables personalmente)",
+    "r_reports": "Reportes de chat presentados por otros usuarios",
+    "r_reports_period": "Hasta 90 días",
+    "r_reports_reason": "Propósitos de seguridad y moderación",
+    "s3_note": "Los datos conservados están anonimizados o no son identificables personalmente. No se pueden utilizar para reconstruir tu cuenta o identificarte.",
+    "s4_title": "4. Qué sucede después de la eliminación",
+    "s4_li1": "Se <strong>cerrará tu sesión",
+    "s4_li2": "<strong>Ya no aparecerás",
+    "s4_li3": "Tus <strong>mensajes de chat",
+    "s4_li4": "Cualquier evento que hayas creado será <strong>eliminado",
+    "s4_li5": "Tus <strong>conversaciones con AI Coach",
+    "s4_li6": "Tu <strong>código de referido",
+    "s4_li7": "Tus <strong>rutas guardadas",
+    "s4_li8": "Puedes <strong>crear una nueva cuenta",
+    "s5_title": "5. Contáctanos",
+    "s5_text": "Si tienes alguna pregunta sobre la eliminación de la cuenta o la eliminación de datos, contáctanos en:",
+    "s5_contact": "<strong>SLAMA Consulting",
+    "s5_link": "Consulta también nuestra <a href=\"sportTracking.html\">Política de privacidad",
+    "footer": "&copy; 2026 SLAMA Consulting. Todos los derechos reservados."
+  },
+  "ar": {
+    "title": "حذف حسابك",
+    "last_updated": "آخر تحديث: 13 مارس 2026",
+    "intro": "تحترم SLAMA Consulting (\"نحن\" أو \"خاصتنا\") حقك في حذف حسابك والبيانات المرتبطة به من تطبيق SportTracking للهاتف المحمول. توضح هذه الصفحة كيفية طلب حذف الحساب والبيانات المتأثرة.",
+    "warning_title": "&#9888; تحذير: هذا الإجراء نهائي",
+    "warning_text": "سيؤدي حذف حسابك إلى إزالة جميع بياناتك الشخصية وسجل الرحلات ومشاركة الفعاليات ورسائل المحادثة وتقدم التحديات ونتائج لوحة المتصدرين ومحادثات AI Coach وخطط التدريب وبيانات الإحالة والمسارات المحفوظة بشكل دائم. لا يمكن <strong>التراجع عن هذا الإجراء</strong>.",
+    "s1_title": "1. كيفية حذف حسابك",
+    "s1_option_a": "الخيار أ: الحذف من داخل التطبيق (موصى به)",
+    "s1_step1_title": "افتح SportTracking",
+    "s1_step1_text": "شغّل التطبيق وتأكد من تسجيل دخولك.",
+    "s1_step2_title": "انتقل إلى ملفك الشخصي",
+    "s1_step2_text": "اضغط على أيقونة <strong>الملف الشخصي</strong> في شريط التنقل السفلي.",
+    "s1_step3_title": "افتح الإعدادات",
+    "s1_step3_text": "اضغط على أيقونة الإعدادات (الترس) في الزاوية العلوية اليمنى من شاشة الملف الشخصي.",
+    "s1_step4_title": "حذف الحساب",
+    "s1_step4_text": "مرر لأسفل واضغط على <strong>\"حذف الحساب\"</strong> واتبع التعليمات.",
+    "s1_option_b": "الخيار ب: طلب الحذف عبر البريد الإلكتروني",
+    "s1_email_intro": "إذا لم تتمكن من الوصول إلى التطبيق، يمكنك طلب حذف الحساب بإرسال بريد إلكتروني إلى:",
+    "s1_email_note": "يرجى تضمين عنوان البريد الإلكتروني المرتبط بحسابك في SportTracking. سنقوم بمعالجة طلبك في غضون <strong>30 يومًا</strong>.",
+    "s2_title": "2. البيانات المحذوفة",
+    "s2_intro": "عند حذف حسابك، يتم <strong>حذف البيانات التالية نهائيًا</strong>:",
+    "th_data_type": "نوع البيانات",
+    "th_status": "الحالة",
+    "th_timeframe": "الإطار الزمني",
+    "d_personal": "المعلومات الشخصية (الاسم، البريد الإلكتروني، تاريخ الميلاد، الجنس، الهاتف)",
+    "status_deleted": "محذوف",
+    "timeframe_immediately": "فورًا",
+    "d_photo": "صورة الملف الشخصي",
+    "d_trips": "سجل الرحلات ومسارات GPS",
+    "d_events": "مشاركة الفعاليات والفعاليات المنشأة",
+    "d_chat": "رسائل المحادثة",
+    "d_challenges": "تقدم التحديات والنتائج",
+    "d_leaderboard": "إدراجات لوحة المتصدرين",
+    "d_notifications": "الإشعارات",
+    "d_fcm": "رمز الإشعارات الفورية (FCM)",
+    "d_local": "البيانات المحلية (قاعدة بيانات Room، التفضيلات)",
+    "d_auth": "حساب المصادقة في Firebase",
+    "d_ai": "محادثات AI Coach وخطط التدريب",
+    "d_referral": "رموز الإحالة وسجل الإحالات",
+    "d_routes": "المسارات المحفوظة",
+    "d_reminders": "تفضيلات تذكير الفعاليات",
+    "s3_title": "3. البيانات المحتفظ بها",
+    "s3_intro": "قد يتم الاحتفاظ ببعض البيانات لفترة محدودة بعد حذف الحساب:",
+    "th_retention": "فترة الاحتفاظ",
+    "th_reason": "السبب",
+    "r_crash": "سجلات الأعطال (Firebase Crashlytics)",
+    "r_crash_period": "حتى 90 يومًا",
+    "r_crash_reason": "فترة الاحتفاظ الافتراضية في Firebase لأغراض تصحيح الأخطاء",
+    "r_analytics": "بيانات التحليلات المجمعة (Firebase Analytics)",
+    "r_analytics_period": "حتى 14 شهرًا",
+    "r_analytics_reason": "فترة الاحتفاظ الافتراضية في Firebase (مجهولة الهوية، لا تحدد الهوية الشخصية)",
+    "r_reports": "تقارير المحادثة المقدمة من مستخدمين آخرين",
+    "r_reports_period": "حتى 90 يومًا",
+    "r_reports_reason": "لأغراض السلامة والإشراف",
+    "s3_note": "البيانات المحتفظ بها إما مجهولة الهوية أو لا تحدد الهوية الشخصية. لا يمكن استخدامها لإعادة بناء حسابك أو تحديد هويتك.",
+    "s4_title": "4. ما يحدث بعد الحذف",
+    "s4_li1": "سيتم <strong>تسجيل خروجك</strong> من جميع الأجهزة.",
+    "s4_li2": "<strong>لن تظهر بعد الآن</strong> في لوحة المتصدرين أو قوائم المشاركين في الفعاليات.",
+    "s4_li3": "<strong>رسائل المحادثة الخاصة بك</strong> ستظهر كـ \"مستخدم محذوف\".",
+    "s4_li4": "سيتم <strong>حذف</strong> أي فعاليات قمت بإنشائها.",
+    "s4_li5": "ستُفقد <strong>محادثات AI Coach</strong> وخطط التدريب الخاصة بك نهائيًا.",
+    "s4_li6": "لن يعمل <strong>رمز الإحالة الخاص بك</strong> بعد الآن.",
+    "s4_li7": "سيتم حذف <strong>مساراتك المحفوظة</strong> نهائيًا.",
+    "s4_li8": "يمكنك <strong>إنشاء حساب جديد</strong> في أي وقت، لكنه سيبدأ من الصفر.",
+    "s5_title": "5. اتصل بنا",
+    "s5_text": "إذا كان لديك أي أسئلة حول حذف الحساب أو إزالة البيانات، يرجى الاتصال بنا على:",
+    "s5_contact": "<strong>SLAMA Consulting</strong><br>البريد الإلكتروني: <a href=\"mailto:walid.slama@celadodc-rswl.com\">walid.slama@celadodc-rswl.com</a>",
+    "s5_link": "اطلع أيضًا على <a href=\"sportTracking.html\">سياسة الخصوصية</a> الخاصة بنا.",
+    "footer": "&copy; 2026 SLAMA Consulting. جميع الحقوق محفوظة."
+  },
+  "cs": {
+    "title": "Smazat váš účet",
+    "last_updated": "Poslední aktualizace: 13. března 2026",
+    "intro": "SLAMA Consulting (\"my\", \"naše\" nebo \"nás\") respektuje vaše právo smazat váš účet a související data z mobilní aplikace SportTracking. Tato stránka vysvětluje, jak požádat o smazání účtu a jaká data jsou ovlivněna.",
+    "warning_title": "&#9888; Varování: Tato akce je nevratná",
+    "warning_text": "Smazáním účtu trvale odstraníte všechna vaše osobní data, historii cest, účast na událostech, chatové zprávy, pokrok ve výzvách, skóre v žebříčcích, konverzace s AI Coach, tréninkové plány, data o doporučeních a uložené trasy. Tuto akci <strong>nelze vrátit zpět",
+    "s1_title": "1. Jak smazat váš účet",
+    "s1_option_a": "Možnost A: Smazat přímo v aplikaci (doporučeno)",
+    "s1_step1_title": "Otevřete SportTracking",
+    "s1_step1_text": "Spusťte aplikaci a ujistěte se, že jste přihlášeni.",
+    "s1_step2_title": "Přejděte do profilu",
+    "s1_step2_text": "Klepněte na <strong>Profil",
+    "s1_step3_title": "Otevřete nastavení",
+    "s1_step3_text": "Klepněte na ikonu nastavení (ozubené kolo) v pravém horním rohu obrazovky Profil.",
+    "s1_step4_title": "Smazat účet",
+    "s1_step4_text": "Posuňte se dolů a klepněte na <strong>\"Smazat účet\"",
+    "s1_option_b": "Možnost B: Požádat o smazání e-mailem",
+    "s1_email_intro": "Pokud nemáte přístup k aplikaci, můžete požádat o smazání účtu zasláním e-mailu na:",
+    "s1_email_note": "Uveďte prosím e-mailovou adresu spojenou s vaším účtem SportTracking. Vaši žádost zpracujeme do <strong>30 dnů",
+    "s2_title": "2. Smazaná data",
+    "s2_intro": "Když smažete svůj účet, následující data budou <strong>trvale odstraněna",
+    "th_data_type": "Typ dat",
+    "th_status": "Stav",
+    "th_timeframe": "Časový rámec",
+    "d_personal": "Osobní údaje (jméno, e-mail, datum narození, pohlaví, telefon)",
+    "status_deleted": "Smazáno",
+    "timeframe_immediately": "Okamžitě",
+    "d_photo": "Profilová fotografie",
+    "d_trips": "Historie cest a GPS trasy",
+    "d_events": "Účast na událostech a vytvořené události",
+    "d_chat": "Chatové zprávy",
+    "d_challenges": "Pokrok ve výzvách a skóre",
+    "d_leaderboard": "Položky v žebříčku",
+    "d_notifications": "Oznámení",
+    "d_fcm": "Token pro push oznámení (FCM)",
+    "d_local": "Lokální data (Room databáze, předvolby)",
+    "d_auth": "Účet Firebase Authentication",
+    "d_ai": "Konverzace s AI Coach a tréninkové plány",
+    "d_referral": "Doporučovací kódy a historie doporučení",
+    "d_routes": "Uložené trasy",
+    "d_reminders": "Předvolby připomínek událostí",
+    "s3_title": "3. Uchovávaná data",
+    "s3_intro": "Některá data mohou být po smazání účtu uchována po omezenou dobu:",
+    "th_retention": "Doba uchovávání",
+    "th_reason": "Důvod",
+    "r_crash": "Záznamy pádů (Firebase Crashlytics)",
+    "r_crash_period": "Až 90 dní",
+    "r_crash_reason": "Výchozí doba uchovávání Firebase pro ladění",
+    "r_analytics": "Agregovaná analytická data (Firebase Analytics)",
+    "r_analytics_period": "Až 14 měsíců",
+    "r_analytics_reason": "Výchozí doba uchovávání Firebase (anonymizováno, bez osobní identifikace)",
+    "r_reports": "Nahlášení chatu podaná jinými uživateli",
+    "r_reports_period": "Až 90 dní",
+    "r_reports_reason": "Účely bezpečnosti a moderování",
+    "s3_note": "Uchovávaná data jsou buď anonymizována, nebo neumožňují osobní identifikaci. Nemohou být použita k obnovení vašeho účtu nebo k vaší identifikaci.",
+    "s4_title": "4. Co se stane po smazání",
+    "s4_li1": "Budete <strong>odhlášeni",
+    "s4_li2": "<strong>Již se nebudete zobrazovat",
+    "s4_li3": "Vaše <strong>chatové zprávy",
+    "s4_li4": "Veškeré události, které jste vytvořili, budou <strong>smazány",
+    "s4_li5": "Vaše <strong>konverzace s AI Coach",
+    "s4_li6": "Váš <strong>doporučovací kód",
+    "s4_li7": "Vaše <strong>uložené trasy",
+    "s4_li8": "Můžete si <strong>vytvořit nový účet",
+    "s5_title": "5. Kontaktujte nás",
+    "s5_text": "Pokud máte jakékoli otázky ohledně smazání účtu nebo odstranění dat, kontaktujte nás na:",
+    "s5_contact": "<strong>SLAMA Consulting",
+    "s5_link": "Viz také naše <a href=\"sportTracking.html\">Zásady ochrany osobních údajů",
+    "footer": "&copy; 2026 SLAMA Consulting. Všechna práva vyhrazena."
+  },
+  "da": {
+    "title": "Slet din konto",
+    "last_updated": "Sidst opdateret: 13. marts 2026",
+    "intro": "SLAMA Consulting (\"vi\", \"vores\" eller \"os\") respekterer din ret til at slette din konto og tilknyttede data fra SportTracking-mobilapplikationen. Denne side forklarer, hvordan du anmoder om kontosletning, og hvilke data der påvirkes.",
+    "warning_title": "&#9888; Advarsel: Denne handling er permanent",
+    "warning_text": "Hvis du sletter din konto, fjernes alle dine personlige data, rejshistorik, deltageelse i begivenheder, chatbeskeder, udfordringsfremdrift, scoreboard-scores, AI Coach-samtaler, træningsplaner, referraldata og gemte ruter permanent. Denne handling <strong>kan ikke fortrydes",
+    "s1_title": "1. Sådan sletter du din konto",
+    "s1_option_a": "Mulighed A: Slet fra appen (anbefalet)",
+    "s1_step1_title": "Åbn SportTracking",
+    "s1_step1_text": "Start appen, og sørg for, at du er logget ind.",
+    "s1_step2_title": "Gå til din profil",
+    "s1_step2_text": "Tryk på <strong>Profil",
+    "s1_step3_title": "Åbn indstillinger",
+    "s1_step3_text": "Tryk på indstillingsikonet (tandhjul) i øverste højre hjørne af profilskærmen.",
+    "s1_step4_title": "Slet konto",
+    "s1_step4_text": "Rul ned, og tryk på <strong>\"Slet konto\"",
+    "s1_option_b": "Mulighed B: Anmod om sletning via e-mail",
+    "s1_email_intro": "Hvis du ikke kan få adgang til appen, kan du anmode om kontosletning ved at sende en e-mail til:",
+    "s1_email_note": "Inkluder venligst den e-mailadresse, der er knyttet til din SportTracking-konto. Vi behandler din anmodning inden for <strong>30 dage",
+    "s2_title": "2. Data slettet",
+    "s2_intro": "Når du sletter din konto, fjernes følgende data <strong>permanent",
+    "th_data_type": "Datatype",
+    "th_status": "Status",
+    "th_timeframe": "Tidsramme",
+    "d_personal": "Personlige oplysninger (navn, e-mail, fødselsdato, køn, telefon)",
+    "status_deleted": "Slettet",
+    "timeframe_immediately": "Øjeblikkeligt",
+    "d_photo": "Profilbillede",
+    "d_trips": "Rejshistorik og GPS-spor",
+    "d_events": "Deltageelse i begivenheder og oprettede begivenheder",
+    "d_chat": "Chatbeskeder",
+    "d_challenges": "Udfordringsfremdrift og scores",
+    "d_leaderboard": "Scoreboard-poster",
+    "d_notifications": "Meddelelser",
+    "d_fcm": "Push-meddelelsestoken (FCM)",
+    "d_local": "Lokale data (Room-database, præferencer)",
+    "d_auth": "Firebase-godkendelseskonto",
+    "d_ai": "AI Coach-samtaler og træningsplaner",
+    "d_referral": "Henvisningskoder og henvisningshistorik",
+    "d_routes": "Gemte ruter",
+    "d_reminders": "Præferencer for begivenhedspåmindelser",
+    "s3_title": "3. Data bevaret",
+    "s3_intro": "Nogle data kan bevares i en begrænset periode efter kontosletning:",
+    "th_retention": "Opbevaringsperiode",
+    "th_reason": "Årsag",
+    "r_crash": "Nedbrudslogs (Firebase Crashlytics)",
+    "r_crash_period": "Op til 90 dage",
+    "r_crash_reason": "Firebase-standardopbevaring til fejlfinding",
+    "r_analytics": "Aggregerede analysedata (Firebase Analytics)",
+    "r_analytics_period": "Op til 14 måneder",
+    "r_analytics_reason": "Firebase-standardopbevaring (anonymiseret, ikke personligt identifiserbar)",
+    "r_reports": "Chatrapporter indgivet af andre brugere",
+    "r_reports_period": "Op til 90 dage",
+    "r_reports_reason": "Sikkerhed og moderatørformål",
+    "s3_note": "Bevarede data er enten anonymiseret eller ikke personligt identifiserbar. Det kan ikke bruges til at rekonstruere din konto eller identificere dig.",
+    "s4_title": "4. Hvad der sker efter sletning",
+    "s4_li1": "Du vil blive <strong>logget ud",
+    "s4_li2": "Du vil <strong>ikke længere vises",
+    "s4_li3": "Dine <strong>chatbeskeder",
+    "s4_li4": "Alle begivenheder, du oprettede, vil blive <strong>slettet",
+    "s4_li5": "Dine <strong>AI Coach-samtaler",
+    "s4_li6": "Din <strong>henvisningskode",
+    "s4_li7": "Dine <strong>gemte ruter",
+    "s4_li8": "Du kan <strong>oprette en ny konto",
+    "s5_title": "5. Kontakt os",
+    "s5_text": "Hvis du har spørgsmål om kontosletning eller fjernelse af data, kontakt os venligst på:",
+    "s5_contact": "<strong>SLAMA Consulting",
+    "s5_link": "Se også vores <a href=\"sportTracking.html\">Privatlivspolitik",
+    "footer": "&copy; 2026 SLAMA Consulting. Alle rettigheder forbeholdt."
+  },
+  "el": {
+    "title": "Διαγραφή του λογαριασμού σας",
+    "last_updated": "Τελευταία ενημέρωση: 13 Μαρτίου 2026",
+    "intro": "SLAMA Consulting (\"εμείς\", \"δικό μας\" ή \"εμάς\") σεβόμαστε το δικαίωμά σας να διαγράψετε τον λογαριασμό σας και τα σχετικά δεδομένα από την εφαρμογή κινητού SportTracking. Αυτή η σελίδα εξηγεί πώς να ζητήσετε διαγραφή λογαριασμού και ποια δεδομένα επηρεάζονται.",
+    "warning_title": "&#9888; Προειδοποίηση: Αυτή η ενέργεια είναι μόνιμη",
+    "warning_text": "Η διαγραφή του λογαριασμού σας θα αφαιρέσει μόνιμα όλα τα προσωπικά σας δεδομένα, το ιστορικό ταξιδιών, τη συμμετοχή σε εκδηλώσεις, τα μηνύματα συνομιλίας, την πρόοδο προκλήσεων, τα σκορ κατάταξης, τις συνομιλίες AI Coach, τα σχέδια εκπαίδευσης, τα δεδομένα παραπομπής και τις αποθηκευμένες διαδρομές. Αυτή η ενέργεια <strong>δεν μπορεί να αναιρεθεί</strong>.",
+    "s1_title": "1. Πώς να διαγράψετε τον λογαριασμό σας",
+    "s1_option_a": "Επιλογή Α: Διαγραφή από την εφαρμογή (Συνιστάται)",
+    "s1_step1_title": "Ανοίξτε το SportTracking",
+    "s1_step1_text": "Ξεκινήστε την εφαρμογή και βεβαιωθείτε ότι είστε συνδεδεμένοι.",
+    "s1_step2_title": "Μεταβείτε στο προφίλ σας",
+    "s1_step2_text": "Πατήστε <strong>Προφίλ</strong>.",
+    "s1_step3_title": "Ανοίξτε τις Ρυθμίσεις",
+    "s1_step3_text": "Πατήστε το εικονίδιο ρυθμίσεων (γρανάζι) στην πάνω δεξιά γωνία της οθόνης Προφίλ.",
+    "s1_step4_title": "Διαγραφή λογαριασμού",
+    "s1_step4_text": "Κάντε κύλιση προς τα κάτω και πατήστε <strong>\"Διαγραφή λογαριασμού\"</strong>.",
+    "s1_option_b": "Επιλογή Β: Ζητήστε διαγραφή μέσω ηλεκτρονικού ταχυδρομείου",
+    "s1_email_intro": "Εάν δεν μπορείτε να έχετε πρόσβαση στην εφαρμογή, μπορείτε να ζητήσετε διαγραφή λογαριασμού στέλνοντας ένα ηλεκτρονικό μήνυμα στο:",
+    "s1_email_note": "Παρακαλώ συμπεριλάβετε τη διεύθυνση ηλεκτρονικού ταχυδρομείου που σχετίζεται με τον λογαριασμό σας SportTracking. Θα επεξεργαστούμε το αίτημά σας εντός <strong>30 ημερών</strong>.",
+    "s2_title": "2. Διαγραφή δεδομένων",
+    "s2_intro": "Όταν διαγράψετε τον λογαριασμό σας, τα ακόλουθα δεδομένα <strong>αφαιρούνται μόνιμα</strong>:",
+    "th_data_type": "Τύπος δεδομένων",
+    "th_status": "Κατάσταση",
+    "th_timeframe": "Χρονοδιάγραμμα",
+    "d_personal": "Προσωπικές πληροφορίες (όνομα, ηλεκτρονικό ταχυδρομείο, ημερομηνία γέννησης, φύλο, τηλέφωνο)",
+    "status_deleted": "Διαγράφηκε",
+    "timeframe_immediately": "Αμέσως",
+    "d_photo": "Φωτογραφία προφίλ",
+    "d_trips": "Ιστορικό ταξιδιών και διαδρομές GPS",
+    "d_events": "Συμμετοχή σε εκδηλώσεις και δημιουργημένες εκδηλώσεις",
+    "d_chat": "Μηνύματα συνομιλίας",
+    "d_challenges": "Πρόοδος και σκορ προκλήσεων",
+    "d_leaderboard": "Καταχωρήσεις κατάταξης",
+    "d_notifications": "Ειδοποιήσεις",
+    "d_fcm": "Διακριτικό ειδοποιήσεων push (FCM)",
+    "d_local": "Τοπικά δεδομένα (Room database, preferences)",
+    "d_auth": "Λογαριασμός Firebase Authentication",
+    "d_ai": "Συνομιλίες AI Coach και σχέδια εκπαίδευσης",
+    "d_referral": "Κωδικοί παραπομπής και ιστορικό παραπομπών",
+    "d_routes": "Αποθηκευμένες διαδρομές",
+    "d_reminders": "Προτιμήσεις υπενθυμίσεων εκδηλώσεων",
+    "s3_title": "3. Διατηρηθείσα δεδομένα",
+    "s3_intro": "Ορισμένα δεδομένα μπορεί να διατηρηθούν για περιορισμένο χρόνο μετά την διαγραφή του λογαριασμού:",
+    "th_retention": "Περίοδος διατήρησης",
+    "th_reason": "Λόγος",
+    "r_crash": "Αρχεία καταστροφής (Firebase Crashlytics)",
+    "r_crash_period": "Έως 90 ημέρες",
+    "r_crash_reason": "Προεπιλεγμένη διατήρηση Firebase για εντοπισμό σφαλμάτων",
+    "r_analytics": "Συγκεντρωτικά δεδομένα ανάλυσης (Firebase Analytics)",
+    "r_analytics_period": "Έως 14 μήνες",
+    "r_analytics_reason": "Προεπιλεγμένη διατήρηση Firebase (ανώνυμη, όχι προσωπικά αναγνωρίσιμη)",
+    "r_reports": "Αναφορές συνομιλίας που υποβάλλουν άλλοι χρήστες",
+    "r_reports_period": "Έως 90 ημέρες",
+    "r_reports_reason": "Σκοποί ασφάλειας και διαμεσολάβησης",
+    "s3_note": "Τα διατηρηθέντα δεδομένα είναι είτε ανώνυμα είτε όχι προσωπικά αναγνωρίσιμα. Δεν μπορούν να χρησιμοποιηθούν για ανακατασκευή του λογαριασμού σας ή για να σας ταυτοποιήσουν.",
+    "s4_title": "4. Τι συμβαίνει μετά τη διαγραφή",
+    "s4_li1": "Θα <strong>αποσυνδεθείτε</strong>.",
+    "s4_li2": "Δεν θα <strong>εμφανίζεστε πλέον</strong> σε λίστες χρηστών ή κατάταξης.",
+    "s4_li3": "Τα <strong>μηνύματα συνομιλίας σας</strong> θα διαγραφούν ή θα γίνουν ανώνυμα.",
+    "s4_li4": "Οποιεσδήποτε εκδηλώσεις που δημιουργήσατε θα <strong>διαγραφούν</strong>.",
+    "s4_li5": "Οι <strong>συνομιλίες AI Coach σας</strong> θα διαγραφούν.",
+    "s4_li6": "Ο <strong>κωδικός παραπομπής σας</strong> θα απενεργοποιηθεί.",
+    "s4_li7": "Οι <strong>αποθηκευμένες διαδρομές σας</strong> θα διαγραφούν.",
+    "s4_li8": "Μπορείτε να <strong>δημιουργήσετε έναν νέο λογαριασμό</strong> ανά πάσα στιγμή.",
+    "s5_title": "5. Επικοινωνήστε μαζί μας",
+    "s5_text": "Εάν έχετε ερωτήσεις σχετικά με τη διαγραφή λογαριασμού ή την αφαίρεση δεδομένων, παρακαλώ επικοινωνήστε μαζί μας στο:",
+    "s5_contact": "<strong>SLAMA Consulting</strong>",
+    "s5_link": "Δείτε επίσης την <a href=\"sportTracking.html\">Πολιτική Απορρήτου</a>",
+    "footer": "&copy; 2026 SLAMA Consulting. Όλα τα δικαιώματα διατηρούνται."
+  },
+  "hi": {
+    "title": "अपना खाता हटाएं",
+    "last_updated": "अंतिम अपडेट: 13 मार्च, 2026",
+    "intro": "SLAMA Consulting (\"हम\", \"हमारा\", या \"हमें\") आपके SportTracking मोबाइल एप्लिकेशन से अपना खाता और संबंधित डेटा हटाने के अधिकार का सम्मान करता है। यह पृष्ठ बताता है कि खाता हटाने के लिए कैसे अनुरोध करें और कौन सा डेटा प्रभावित होता है।",
+    "warning_title": "&#9888; चेतावनी: यह कार्रवाई स्थायी है",
+    "warning_text": "अपना खाता हटाने से आपके सभी व्यक्तिगत डेटा, ट्रिप इतिहास, इवेंट भागीदारी, चैट संदेश, चुनौती प्रगति, लीडरबोर्ड स्कोर, AI Coach बातचीत, प्रशिक्षण योजनाएं, रेफरल डेटा और सहेजे गए मार्ग स्थायी रूप से हटा दिए जाएंगे। यह कार्रवाई <strong>वापस नहीं की जा सकती",
+    "s1_title": "1. अपना खाता कैसे हटाएं",
+    "s1_option_a": "विकल्प ए: ऐप के भीतर से हटाएं (अनुशंसित)",
+    "s1_step1_title": "SportTracking खोलें",
+    "s1_step1_text": "ऐप लॉन्च करें और सुनिश्चित करें कि आप लॉगिन हैं।",
+    "s1_step2_title": "अपनी प्रोफ़ाइल पर जाएं",
+    "s1_step2_text": "<strong>प्रोफ़ाइल पर टैप करें",
+    "s1_step3_title": "सेटिंग्स खोलें",
+    "s1_step3_text": "प्रोफ़ाइल स्क्रीन के शीर्ष-दाईं ओर सेटिंग्स आइकन (गियर) पर टैप करें।",
+    "s1_step4_title": "खाता हटाएं",
+    "s1_step4_text": "नीचे स्क्रॉल करें और <strong>\"खाता हटाएं\" पर टैप करें",
+    "s1_option_b": "विकल्प बी: ईमेल द्वारा हटाने का अनुरोध करें",
+    "s1_email_intro": "यदि आप ऐप तक नहीं पहुंच सकते हैं, तो आप निम्नलिखित पते पर ईमेल भेजकर खाता हटाने का अनुरोध कर सकते हैं:",
+    "s1_email_note": "कृपया अपने SportTracking खाते से जुड़ा ईमेल पता शामिल करें। हम आपके अनुरोध को <strong>30 दिनों के भीतर संसाधित करेंगे",
+    "s2_title": "2. हटाया गया डेटा",
+    "s2_intro": "जब आप अपना खाता हटाते हैं, तो निम्नलिखित डेटा <strong>स्थायी रूप से हटा दिया जाता है",
+    "th_data_type": "डेटा प्रकार",
+    "th_status": "स्थिति",
+    "th_timeframe": "समय सीमा",
+    "d_personal": "व्यक्तिगत जानकारी (नाम, ईमेल, जन्म तारीख, लिंग, फोन)",
+    "status_deleted": "हटाया गया",
+    "timeframe_immediately": "तुरंत",
+    "d_photo": "प्रोफ़ाइल फ़ोटो",
+    "d_trips": "ट्रिप इतिहास और जीपीएस ट्रैक",
+    "d_events": "इवेंट भागीदारी और बनाए गए इवेंट",
+    "d_chat": "चैट संदेश",
+    "d_challenges": "चुनौती प्रगति और स्कोर",
+    "d_leaderboard": "लीडरबोर्ड प्रविष्टियां",
+    "d_notifications": "सूचनाएं",
+    "d_fcm": "पुश नोटिफिकेशन टोकन (FCM)",
+    "d_local": "स्थानीय डेटा (Room डेटाबेस, वरीयताएं)",
+    "d_auth": "Firebase प्रमाणीकरण खाता",
+    "d_ai": "AI Coach बातचीत और प्रशिक्षण योजनाएं",
+    "d_referral": "रेफरल कोड और रेफरल इतिहास",
+    "d_routes": "सहेजे गए मार्ग",
+    "d_reminders": "इवेंट रिमाइंडर प्राथमिकताएं",
+    "s3_title": "3. बनाए रखा गया डेटा",
+    "s3_intro": "खाता हटाने के बाद कुछ डेटा सीमित अवधि के लिए बनाए रखा जा सकता है:",
+    "th_retention": "प्रतिधारण अवधि",
+    "th_reason": "कारण",
+    "r_crash": "क्रैश लॉग (Firebase Crashlytics)",
+    "r_crash_period": "90 दिन तक",
+    "r_crash_reason": "डिबगिंग के लिए Firebase डिफ़ॉल्ट प्रतिधारण",
+    "r_analytics": "एकत्रित विश्लेषण डेटा (Firebase Analytics)",
+    "r_analytics_period": "14 महीने तक",
+    "r_analytics_reason": "Firebase डिफ़ॉल्ट प्रतिधारण (गुमनाम, व्यक्तिगत रूप से पहचान योग्य नहीं)",
+    "r_reports": "अन्य उपयोगकर्ताओं द्वारा दायर किए गए चैट रिपोर्ट",
+    "r_reports_period": "90 दिन तक",
+    "r_reports_reason": "सुरक्षा और मॉडरेशन उद्देश्य",
+    "s3_note": "बनाए रखा गया डेटा गुमनाम है या व्यक्तिगत रूप से पहचान योग्य नहीं है। इसका उपयोग आपके खाते को पुनर्निर्माण करने या आपकी पहचान करने के लिए नहीं किया जा सकता है।",
+    "s4_title": "4. हटाने के बाद क्या होता है",
+    "s4_li1": "आप <strong>लॉगआउट कर दिए जाएंगे",
+    "s4_li2": "आप अब <strong>दिखाई नहीं देंगे",
+    "s4_li3": "आपके <strong>चैट संदेश",
+    "s4_li4": "आपके द्वारा बनाए गए किसी भी इवेंट को <strong>हटा दिया जाएगा",
+    "s4_li5": "आपकी <strong>AI Coach बातचीत",
+    "s4_li6": "आपका <strong>रेफरल कोड",
+    "s4_li7": "आपके <strong>सहेजे गए मार्ग",
+    "s4_li8": "आप <strong>एक नया खाता बना सकते हैं",
+    "s5_title": "5. हमसे संपर्क करें",
+    "s5_text": "यदि आपके पास खाता हटाने या डेटा हटाने के बारे में कोई प्रश्न है, तो कृपया हमसे यहां संपर्क करें:",
+    "s5_contact": "<strong>SLAMA Consulting",
+    "s5_link": "हमारी <a href=\"sportTracking.html\">गोपनीयता नीति भी देखें",
+    "footer": "&copy; 2026 SLAMA Consulting. सर्वाधिकार सुरक्षित।"
+  },
+  "hu": {
+    "title": "Fiókja törlése",
+    "last_updated": "Utolsó frissítés: 2026. március 13.",
+    "intro": "A SLAMA Consulting (\"mi\", \"a miénk\" vagy \"minket\") tiszteletben tartjuk a jogát, hogy törölje fiókját és a hozzá tartozó adatokat a SportTracking mobilalkalmazásból. Ez az oldal elmagyarázza, hogyan lehet fiók törlést kérni, és mely adatok érintettek.",
+    "warning_title": "&#9888; Figyelmeztetés: Ez az intézmény véglegesen",
+    "warning_text": "A fiók törlése véglegesen eltávolítja az összes személyes adatait, utazási előzményeit, esemény részvételét, csevegési üzeneteit, kihívás előrehaladásait, ranglistán szereplő pontjait, AI Coach beszélgetéseit, edzésterveit, ajánlási adatait és mentett útvonalait. Ez az intézmény <strong>nem vonható vissza",
+    "s1_title": "1. Fiókja törlésének módja",
+    "s1_option_a": "A lehetőség: Törlés az alkalmazásból (javasolt)",
+    "s1_step1_title": "Nyissa meg a SportTracking alkalmazást",
+    "s1_step1_text": "Indítsa el az alkalmazást, és győződjön meg arról, hogy bejelentkezve van.",
+    "s1_step2_title": "Lépjen a profilhoz",
+    "s1_step2_text": "Koppintson a <strong>Profil",
+    "s1_step3_title": "Nyissa meg a beállításokat",
+    "s1_step3_text": "Koppintson a beállítások ikonra (fogaskerék) a Profil képernyő jobb felső sarkában.",
+    "s1_step4_title": "Fiók törlése",
+    "s1_step4_text": "Görgessen lefelé, és koppintson a <strong>\"Fiók törlése\"",
+    "s1_option_b": "B lehetőség: A törlést e-mailben kérje",
+    "s1_email_intro": "Ha nem tudja elérni az alkalmazást, fiók törlést kérhet egy e-mail küldésével:",
+    "s1_email_note": "Kérjük, adja meg a SportTracking fiókjához tartozó e-mail címet. Az Ön kérelmét <strong>30 napon belül feldolgozzuk",
+    "s2_title": "2. Törölt adatok",
+    "s2_intro": "A fiók törlése után a következő adatok <strong>véglegesen törlődnek",
+    "th_data_type": "Adattípus",
+    "th_status": "Állapot",
+    "th_timeframe": "Időkeret",
+    "d_personal": "Személyes információk (név, e-mail, születési dátum, nem, telefon)",
+    "status_deleted": "Törölve",
+    "timeframe_immediately": "Azonnal",
+    "d_photo": "Profilkép",
+    "d_trips": "Utazási előzmények és GPS-nyomok",
+    "d_events": "Esemény részvétele és létrehozott események",
+    "d_chat": "Csevegési üzenetek",
+    "d_challenges": "Kihívás előrehaladása és pontjait",
+    "d_leaderboard": "Ranglistán szereplő bejegyzések",
+    "d_notifications": "Értesítések",
+    "d_fcm": "Leküldéses értesítési token (FCM)",
+    "d_local": "Helyi adatok (Room adatbázis, beállítások)",
+    "d_auth": "Firebase Authentication fiók",
+    "d_ai": "AI Coach beszélgetések és edzéstervek",
+    "d_referral": "Ajánlási kódok és ajánlási előzmények",
+    "d_routes": "Mentett útvonalak",
+    "d_reminders": "Esemény emlékeztetési beállítások",
+    "s3_title": "3. Megőrzött adatok",
+    "s3_intro": "Egyes adatok a fiók törlése után korlátozott ideig megmaradhatnak:",
+    "th_retention": "Megőrzési időszak",
+    "th_reason": "Indok",
+    "r_crash": "Összeomlási naplók (Firebase Crashlytics)",
+    "r_crash_period": "Akár 90 nap",
+    "r_crash_reason": "Firebase alapértelmezett megőrzése a hibakereséshez",
+    "r_analytics": "Összesített elemzési adatok (Firebase Analytics)",
+    "r_analytics_period": "Akár 14 hónapig",
+    "r_analytics_reason": "Firebase alapértelmezett megőrzése (anonimizált, nem személyazonosítható)",
+    "r_reports": "Más felhasználók által benyújtott csevegési jelentések",
+    "r_reports_period": "Akár 90 nap",
+    "r_reports_reason": "Biztonsági és moderálási célok",
+    "s3_note": "A megőrzött adatok anonimizáltak vagy nem személyazonosíthatók. Nem használhatók a fiók rekonstruálásához vagy az Ön azonosításához.",
+    "s4_title": "4. Mi történik a törlés után",
+    "s4_li1": "<strong>Kijelentkezteti",
+    "s4_li2": "<strong>már nem jelenik meg",
+    "s4_li3": "A <strong>csevegési üzenetei",
+    "s4_li4": "A létrehozott események <strong>törlödnek",
+    "s4_li5": "Az <strong>AI Coach beszélgetések",
+    "s4_li6": "Az <strong>ajánlási kódja",
+    "s4_li7": "Az <strong>mentett útvonalai",
+    "s4_li8": "<strong>Létrehozhat új fiókot",
+    "s5_title": "5. Lépjen kapcsolatba velünk",
+    "s5_text": "Ha bármilyen kérdése van a fiók törlésével vagy az adatok eltávolításával kapcsolatban, kérjük, vegye fel velünk a kapcsolatot:",
+    "s5_contact": "<strong>SLAMA Consulting",
+    "s5_link": "Lásd még a <a href=\"sportTracking.html\">Adatvédelmi irányelveket",
+    "footer": "&copy; 2026 SLAMA Consulting. Minden jog fenntartva."
+  },
+  "id": {
+    "title": "Hapus Akun Anda",
+    "last_updated": "Terakhir diperbarui: 13 Maret 2026",
+    "intro": "SLAMA Consulting (\"kami\", \"milik kami\", atau \"kami\") menghormati hak Anda untuk menghapus akun dan data terkait dari aplikasi mobile SportTracking. Halaman ini menjelaskan cara meminta penghapusan akun dan data apa yang terpengaruh.",
+    "warning_title": "&#9888; Peringatan: Tindakan ini permanen",
+    "warning_text": "Menghapus akun Anda akan secara permanen menghapus semua data pribadi Anda, riwayat perjalanan, partisipasi acara, pesan obrolan, kemajuan tantangan, skor leaderboard, percakapan AI Coach, rencana pelatihan, data rujukan, dan rute yang disimpan. Tindakan ini <strong>tidak dapat dibatalkan",
+    "s1_title": "1. Cara Menghapus Akun Anda",
+    "s1_option_a": "Opsi A: Hapus dari dalam aplikasi (Direkomendasikan)",
+    "s1_step1_title": "Buka SportTracking",
+    "s1_step1_text": "Luncurkan aplikasi dan pastikan Anda sudah masuk.",
+    "s1_step2_title": "Buka Profil Anda",
+    "s1_step2_text": "Ketuk <strong>Profil",
+    "s1_step3_title": "Buka Pengaturan",
+    "s1_step3_text": "Ketuk ikon pengaturan (gear) di sudut kanan atas layar Profil.",
+    "s1_step4_title": "Hapus Akun",
+    "s1_step4_text": "Gulir ke bawah dan ketuk <strong>\"Hapus Akun\"",
+    "s1_option_b": "Opsi B: Minta penghapusan melalui email",
+    "s1_email_intro": "Jika Anda tidak dapat mengakses aplikasi, Anda dapat meminta penghapusan akun dengan mengirim email ke:",
+    "s1_email_note": "Harap sertakan alamat email yang terkait dengan akun SportTracking Anda. Kami akan memproses permintaan Anda dalam <strong>30 hari",
+    "s2_title": "2. Data yang Dihapus",
+    "s2_intro": "Saat Anda menghapus akun Anda, data berikut akan <strong>dihapus secara permanen",
+    "th_data_type": "Jenis Data",
+    "th_status": "Status",
+    "th_timeframe": "Kerangka Waktu",
+    "d_personal": "Informasi pribadi (nama, email, tanggal lahir, jenis kelamin, telepon)",
+    "status_deleted": "Dihapus",
+    "timeframe_immediately": "Segera",
+    "d_photo": "Foto profil",
+    "d_trips": "Riwayat perjalanan dan jalur GPS",
+    "d_events": "Partisipasi acara dan acara yang dibuat",
+    "d_chat": "Pesan obrolan",
+    "d_challenges": "Kemajuan tantangan dan skor",
+    "d_leaderboard": "Entri leaderboard",
+    "d_notifications": "Pemberitahuan",
+    "d_fcm": "Token pemberitahuan push (FCM)",
+    "d_local": "Data lokal (basis data Room, preferensi)",
+    "d_auth": "Akun Firebase Authentication",
+    "d_ai": "Percakapan AI Coach dan rencana pelatihan",
+    "d_referral": "Kode rujukan dan riwayat rujukan",
+    "d_routes": "Rute yang disimpan",
+    "d_reminders": "Preferensi pengingat acara",
+    "s3_title": "3. Data yang Dipertahankan",
+    "s3_intro": "Beberapa data dapat dipertahankan untuk periode terbatas setelah penghapusan akun:",
+    "th_retention": "Periode Retensi",
+    "th_reason": "Alasan",
+    "r_crash": "Log kerusakan (Firebase Crashlytics)",
+    "r_crash_period": "Hingga 90 hari",
+    "r_crash_reason": "Retensi default Firebase untuk debugging",
+    "r_analytics": "Data analitik gabungan (Firebase Analytics)",
+    "r_analytics_period": "Hingga 14 bulan",
+    "r_analytics_reason": "Retensi default Firebase (anonim, tidak dapat diidentifikasi secara pribadi)",
+    "r_reports": "Laporan obrolan yang diajukan oleh pengguna lain",
+    "r_reports_period": "Hingga 90 hari",
+    "r_reports_reason": "Tujuan keamanan dan moderasi",
+    "s3_note": "Data yang dipertahankan adalah anonim atau tidak dapat diidentifikasi secara pribadi. Data ini tidak dapat digunakan untuk merekonstruksi akun Anda atau mengidentifikasi Anda.",
+    "s4_title": "4. Apa yang Terjadi Setelah Penghapusan",
+    "s4_li1": "Anda akan <strong>keluar",
+    "s4_li2": "Anda akan <strong>tidak lagi muncul",
+    "s4_li3": "Pesan obrolan Anda",
+    "s4_li4": "Acara apa pun yang Anda buat akan <strong>dihapus",
+    "s4_li5": "Percakapan AI Coach Anda",
+    "s4_li6": "Kode rujukan Anda",
+    "s4_li7": "Rute yang disimpan Anda",
+    "s4_li8": "Anda dapat <strong>membuat akun baru",
+    "s5_title": "5. Hubungi Kami",
+    "s5_text": "Jika Anda memiliki pertanyaan tentang penghapusan akun atau penghapusan data, harap hubungi kami di:",
+    "s5_contact": "<strong>SLAMA Consulting",
+    "s5_link": "Lihat juga <a href=\"sportTracking.html\">Kebijakan Privasi",
+    "footer": "&copy; 2026 SLAMA Consulting. Semua hak dilindungi."
+  },
+  "it": {
+    "title": "Elimina il Tuo Account",
+    "last_updated": "Ultimo aggiornamento: 13 marzo 2026",
+    "intro": "SLAMA Consulting (\"noi\", \"nostro\" o \"nostri\") rispetta il tuo diritto di eliminare il tuo account e i dati associati dall'applicazione mobile SportTracking. Questa pagina spiega come richiedere l'eliminazione dell'account e quali dati sono interessati.",
+    "warning_title": "&#9888; Avvertimento: Questa azione è permanente",
+    "warning_text": "L'eliminazione del tuo account rimuoverà permanentemente tutti i tuoi dati personali, la cronologia dei viaggi, la partecipazione agli eventi, i messaggi di chat, i progressi delle sfide, i punteggi della classifica, le conversazioni con AI Coach, i piani di allenamento, i dati di riferimento e i percorsi salvati. Questa azione <strong>non può essere annullata",
+    "s1_title": "1. Come eliminare il tuo account",
+    "s1_option_a": "Opzione A: Elimina dall'app (Consigliato)",
+    "s1_step1_title": "Apri SportTracking",
+    "s1_step1_text": "Avvia l'app e assicurati di essere connesso.",
+    "s1_step2_title": "Vai al tuo Profilo",
+    "s1_step2_text": "Tocca <strong>Profilo",
+    "s1_step3_title": "Apri Impostazioni",
+    "s1_step3_text": "Tocca l'icona delle impostazioni (ingranaggio) nell'angolo in alto a destra della schermata del Profilo.",
+    "s1_step4_title": "Elimina Account",
+    "s1_step4_text": "Scorri verso il basso e tocca <strong>\"Elimina Account\"",
+    "s1_option_b": "Opzione B: Richiedi l'eliminazione via email",
+    "s1_email_intro": "Se non riesci ad accedere all'app, puoi richiedere l'eliminazione dell'account inviando un'email a:",
+    "s1_email_note": "Includi l'indirizzo email associato al tuo account SportTracking. Elaboreremo la tua richiesta entro <strong>30 giorni",
+    "s2_title": "2. Dati Eliminati",
+    "s2_intro": "Quando elimini il tuo account, i seguenti dati vengono <strong>rimossi permanentemente",
+    "th_data_type": "Tipo di dato",
+    "th_status": "Stato",
+    "th_timeframe": "Intervallo temporale",
+    "d_personal": "Informazioni personali (nome, email, data di nascita, genere, telefono)",
+    "status_deleted": "Eliminato",
+    "timeframe_immediately": "Immediatamente",
+    "d_photo": "Foto del profilo",
+    "d_trips": "Cronologia dei viaggi e tracce GPS",
+    "d_events": "Partecipazione agli eventi e eventi creati",
+    "d_chat": "Messaggi di chat",
+    "d_challenges": "Progressi delle sfide e punteggi",
+    "d_leaderboard": "Voci della classifica",
+    "d_notifications": "Notifiche",
+    "d_fcm": "Token di notifica push (FCM)",
+    "d_local": "Dati locali (database Room, preferenze)",
+    "d_auth": "Account Firebase Authentication",
+    "d_ai": "Conversazioni AI Coach e piani di allenamento",
+    "d_referral": "Codici di riferimento e cronologia di riferimento",
+    "d_routes": "Percorsi salvati",
+    "d_reminders": "Preferenze promemoria evento",
+    "s3_title": "3. Dati Conservati",
+    "s3_intro": "Alcuni dati possono essere conservati per un periodo limitato dopo l'eliminazione dell'account:",
+    "th_retention": "Periodo di conservazione",
+    "th_reason": "Motivo",
+    "r_crash": "Log di arresto anomalo (Firebase Crashlytics)",
+    "r_crash_period": "Fino a 90 giorni",
+    "r_crash_reason": "Conservazione predefinita Firebase per il debug",
+    "r_analytics": "Dati analitici aggregati (Firebase Analytics)",
+    "r_analytics_period": "Fino a 14 mesi",
+    "r_analytics_reason": "Conservazione predefinita Firebase (anonimizzato, non personalmente identificabile)",
+    "r_reports": "Segnalazioni di chat presentate da altri utenti",
+    "r_reports_period": "Fino a 90 giorni",
+    "r_reports_reason": "Scopi di sicurezza e moderazione",
+    "s3_note": "I dati conservati sono anonimizzati o non personalmente identificabili. Non possono essere utilizzati per ricostruire il tuo account o identificarti.",
+    "s4_title": "4. Cosa accade dopo l'eliminazione",
+    "s4_li1": "Verrai <strong>disconnesso",
+    "s4_li2": "Non <strong>apparirai più",
+    "s4_li3": "I tuoi <strong>messaggi di chat",
+    "s4_li4": "Tutti gli eventi che hai creato verranno <strong>eliminati",
+    "s4_li5": "Le tue <strong>conversazioni con AI Coach",
+    "s4_li6": "Il tuo <strong>codice di riferimento",
+    "s4_li7": "I tuoi <strong>percorsi salvati",
+    "s4_li8": "Potrai <strong>creare un nuovo account",
+    "s5_title": "5. Contattaci",
+    "s5_text": "Se hai domande sull'eliminazione dell'account o la rimozione dei dati, contattaci a:",
+    "s5_contact": "<strong>SLAMA Consulting",
+    "s5_link": "Vedi anche la nostra <a href=\"sportTracking.html\">Informativa sulla privacy",
+    "footer": "&copy; 2026 SLAMA Consulting. Tutti i diritti riservati."
+  },
+  "iw": {
+    "title": "הסר את חשבונך",
+    "last_updated": "עדכון אחרון: 13 במרץ 2026",
+    "intro": "SLAMA Consulting (\"אנחנו\", \"שלנו\") מכבדת את זכותך למחוק את חשבונך ואת הנתונים המשויכים מאפליקציית SportTracking. דף זה מסביר כיצד לבקש מחיקת חשבון ואילו נתונים מושפעים.",
+    "warning_title": "&#9888; אזהרה: פעולה זו היא קבועה",
+    "warning_text": "מחיקת חשבונך תסיר כל את נתוניך האישיים, היסטוריית נסיעות, השתתפות באירועים, הודעות צ'אט, התקדמות אתגרים, ניקוד לוח דירוג, שיחות AI Coach, תוכניות אימון, נתוני הפנייה ונסיעות שמורות. פעולה זו <strong>לא ניתן לבטל",
+    "s1_title": "1. כיצד למחוק את חשבונך",
+    "s1_option_a": "אפשרות א': מחק מתוך האפליקציה (מומלץ)",
+    "s1_step1_title": "פתח את SportTracking",
+    "s1_step1_text": "הפעל את האפליקציה וודא שאתה מחובר.",
+    "s1_step2_title": "עבור לפרופיל שלך",
+    "s1_step2_text": "הקש על <strong>פרופיל",
+    "s1_step3_title": "פתח הגדרות",
+    "s1_step3_text": "הקש על אייקון ההגדרות (הגלגל) בפינה הימנית העליונה של מסך הפרופיל.",
+    "s1_step4_title": "מחק חשבון",
+    "s1_step4_text": "גלול למטה והקש על <strong>\"מחק חשבון\"",
+    "s1_option_b": "אפשרות ב': בקש מחיקה בדוא\"ל",
+    "s1_email_intro": "אם אינך יכול לגשת לאפליקציה, תוכל לבקש מחיקת חשבון על ידי שליחת דוא\"ל אל:",
+    "s1_email_note": "אנא הכלל את כתובת הדוא\"ל המשויכת לחשבון SportTracking שלך. נעבד את בקשתך תוך <strong>30 ימים",
+    "s2_title": "2. נתונים שנמחקו",
+    "s2_intro": "כאשר אתה מוחק את חשבונך, הנתונים הבאים <strong>מוסרים לצמיתות",
+    "th_data_type": "סוג נתונים",
+    "th_status": "סטטוס",
+    "th_timeframe": "לוח זמנים",
+    "d_personal": "מידע אישי (שם, דוא\"ל, תאריך לידה, מגדר, טלפון)",
+    "status_deleted": "נמחק",
+    "timeframe_immediately": "מיד",
+    "d_photo": "תמונת פרופיל",
+    "d_trips": "היסטוריית נסיעות וטראקים GPS",
+    "d_events": "השתתפות באירועים ואירועים שנוצרו",
+    "d_chat": "הודעות צ'אט",
+    "d_challenges": "התקדמות אתגרים וניקוד",
+    "d_leaderboard": "ערכים בלוח הדירוג",
+    "d_notifications": "הודעות",
+    "d_fcm": "אסימון הודעה דחופה (FCM)",
+    "d_local": "נתונים מקומיים (מסד נתונים Room, העדפות)",
+    "d_auth": "חשבון Firebase Authentication",
+    "d_ai": "שיחות AI Coach ותוכניות אימון",
+    "d_referral": "קודים הפנייה והיסטוריית הפנייה",
+    "d_routes": "נסיעות שמורות",
+    "d_reminders": "העדפות תזכורת אירוע",
+    "s3_title": "3. נתונים שנשמרו",
+    "s3_intro": "ייתכן שנתונים מסוימים יישמרו לתקופה מוגבלת לאחר מחיקת חשבון:",
+    "th_retention": "תקופת שמירה",
+    "th_reason": "סיבה",
+    "r_crash": "יומני קריסה (Firebase Crashlytics)",
+    "r_crash_period": "עד 90 ימים",
+    "r_crash_reason": "Firebase שמירה ברירת מחדל לניפוי באגים",
+    "r_analytics": "נתוני ניתוח מצטברים (Firebase Analytics)",
+    "r_analytics_period": "עד 14 חודשים",
+    "r_analytics_reason": "Firebase שמירה ברירת מחדל (אנונימי, לא ניתן לזהות אישית)",
+    "r_reports": "דוחות צ'אט שהוגשו על ידי משתמשים אחרים",
+    "r_reports_period": "עד 90 ימים",
+    "r_reports_reason": "מטרות בטיחות והמתנה",
+    "s3_note": "נתונים שמורים אנונימי או לא ניתן לזהות אישית. לא ניתן להשתמש בהם כדי לשחזר את חשבונך או לזהות אותך.",
+    "s4_title": "4. מה קורה לאחר מחיקה",
+    "s4_li1": "תהיה <strong>מנותק",
+    "s4_li2": "לא תופיע עוד <strong>",
+    "s4_li3": "ההודעות <strong>שלך בצ'אט",
+    "s4_li4": "כל אירוע שיצרת יהיה <strong>נמחק",
+    "s4_li5": "שיחות ה-<strong>AI Coach שלך",
+    "s4_li6": "קוד ה-<strong>הפנייה שלך",
+    "s4_li7": "המסלולים <strong>השמורים שלך",
+    "s4_li8": "אתה יכול <strong>ליצור חשבון חדש",
+    "s5_title": "5. צור קשר איתנו",
+    "s5_text": "אם יש לך שאלות כלשהן לגבי מחיקת חשבון או הסרת נתונים, אנא צור קשר איתנו בכתובת:",
+    "s5_contact": "<strong>SLAMA Consulting",
+    "s5_link": "ראה גם את <a href=\"sportTracking.html\">מדיניות הפרטיות שלנו",
+    "footer": "&copy; 2026 SLAMA Consulting. כל הזכויות שמורות."
+  },
+  "ko": {
+    "title": "계정 삭제",
+    "last_updated": "마지막 업데이트: 2026년 3월 13일",
+    "intro": "SLAMA Consulting (\"우리\", \"우리의\", \"저희\")은 SportTracking 모바일 애플리케이션에서 계정 및 관련 데이터를 삭제할 수 있는 귀하의 권리를 존중합니다. 이 페이지는 계정 삭제를 요청하는 방법과 영향을 받는 데이터를 설명합니다.",
+    "warning_title": "&#9888; 경고: 이 작업은 영구적입니다",
+    "warning_text": "계정을 삭제하면 모든 개인 데이터, 여행 기록, 이벤트 참여, 채팅 메시지, 챌린지 진행 상황, 리더보드 점수, AI Coach 대화, 훈련 계획, 추천 데이터 및 저장된 경로가 영구적으로 제거됩니다. 이 작업은 <strong>취소할 수 없습니다",
+    "s1_title": "1. 계정 삭제 방법",
+    "s1_option_a": "옵션 A: 앱 내에서 삭제 (권장)",
+    "s1_step1_title": "SportTracking 열기",
+    "s1_step1_text": "앱을 실행하고 로그인되어 있는지 확인하세요.",
+    "s1_step2_title": "프로필로 이동",
+    "s1_step2_text": "<strong>프로필",
+    "s1_step3_title": "설정 열기",
+    "s1_step3_text": "프로필 화면의 오른쪽 상단에 있는 설정 아이콘(기어)을 탭하세요.",
+    "s1_step4_title": "계정 삭제",
+    "s1_step4_text": "아래로 스크롤하여 <strong>\"계정 삭제\"",
+    "s1_option_b": "옵션 B: 이메일로 삭제 요청",
+    "s1_email_intro": "앱에 액세스할 수 없는 경우 다음 이메일 주소로 계정 삭제를 요청할 수 있습니다:",
+    "s1_email_note": "SportTracking 계정과 연결된 이메일 주소를 포함하세요. 우리는 <strong>30일 이내",
+    "s2_title": "2. 삭제된 데이터",
+    "s2_intro": "계정을 삭제하면 다음 데이터가 <strong>영구적으로 제거됩니다",
+    "th_data_type": "데이터 유형",
+    "th_status": "상태",
+    "th_timeframe": "기간",
+    "d_personal": "개인 정보 (이름, 이메일, 생년월일, 성별, 전화번호)",
+    "status_deleted": "삭제됨",
+    "timeframe_immediately": "즉시",
+    "d_photo": "프로필 사진",
+    "d_trips": "여행 기록 및 GPS 추적",
+    "d_events": "이벤트 참여 및 생성된 이벤트",
+    "d_chat": "채팅 메시지",
+    "d_challenges": "챌린지 진행 상황 및 점수",
+    "d_leaderboard": "리더보드 항목",
+    "d_notifications": "알림",
+    "d_fcm": "푸시 알림 토큰 (FCM)",
+    "d_local": "로컬 데이터 (Room 데이터베이스, 환경 설정)",
+    "d_auth": "Firebase 인증 계정",
+    "d_ai": "AI Coach 대화 및 훈련 계획",
+    "d_referral": "추천 코드 및 추천 기록",
+    "d_routes": "저장된 경로",
+    "d_reminders": "이벤트 알림 환경 설정",
+    "s3_title": "3. 보유된 데이터",
+    "s3_intro": "일부 데이터는 계정 삭제 후 제한된 기간 동안 보유될 수 있습니다:",
+    "th_retention": "보유 기간",
+    "th_reason": "이유",
+    "r_crash": "충돌 로그 (Firebase Crashlytics)",
+    "r_crash_period": "최대 90일",
+    "r_crash_reason": "디버깅을 위한 Firebase 기본 보유 정책",
+    "r_analytics": "집계된 분석 데이터 (Firebase Analytics)",
+    "r_analytics_period": "최대 14개월",
+    "r_analytics_reason": "Firebase 기본 보유 정책 (익명화되었으며 개인 식별 정보 없음)",
+    "r_reports": "다른 사용자가 제출한 채팅 보고서",
+    "r_reports_period": "최대 90일",
+    "r_reports_reason": "안전 및 중재 목적",
+    "s3_note": "보유된 데이터는 익명화되었거나 개인 식별 정보가 아닙니다. 계정을 재구성하거나 귀하를 식별하는 데 사용할 수 없습니다.",
+    "s4_title": "4. 삭제 후 어떻게 되는지",
+    "s4_li1": "<strong>로그아웃",
+    "s4_li2": "더 이상 <strong>나타나지 않습니다",
+    "s4_li3": "<strong>채팅 메시지",
+    "s4_li4": "생성한 모든 이벤트는 <strong>삭제됩니다",
+    "s4_li5": "<strong>AI Coach 대화",
+    "s4_li6": "<strong>추천 코드",
+    "s4_li7": "<strong>저장된 경로",
+    "s4_li8": "<strong>새 계정을 생성",
+    "s5_title": "5. 문의",
+    "s5_text": "계정 삭제 또는 데이터 제거에 대한 질문이 있으시면 다음 주소로 문의하세요:",
+    "s5_contact": "<strong>SLAMA Consulting",
+    "s5_link": "또한 <a href=\"sportTracking.html\">개인정보 보호정책",
+    "footer": "&copy; 2026 SLAMA Consulting. 모든 권리는 보호됩니다."
+  },
+  "nb": {
+    "title": "Slett kontoen din",
+    "last_updated": "Sist oppdatert: 13. mars 2026",
+    "intro": "SLAMA Consulting (\"vi\", \"vår\" eller \"oss\") respekterer retten din til å slette kontoen din og tilknyttede data fra SportTracking mobilapplikasjonen. Denne siden forklarer hvordan du ber om kontosletting og hvilke data som påvirkes.",
+    "warning_title": "&#9888; Advarsel: Denne handlingen er permanent",
+    "warning_text": "Sletting av kontoen din vil permanent fjerne alle dine personopplysninger, reisehistorikk, deltakelse i arrangementer, chattmeldinger, fremgangsmeldinger, rangeringspoeng, AI Coach-samtaler, treningsplaner, referraldata og lagrede ruter. Denne handlingen <strong>kan ikke angres",
+    "s1_title": "1. Slik sletter du kontoen din",
+    "s1_option_a": "Alternativ A: Slett fra appen (Anbefalt)",
+    "s1_step1_title": "Åpne SportTracking",
+    "s1_step1_text": "Start appen og kontroller at du er logget inn.",
+    "s1_step2_title": "Gå til profilen din",
+    "s1_step2_text": "Trykk på <strong>Profil",
+    "s1_step3_title": "Åpne Innstillinger",
+    "s1_step3_text": "Trykk på innstillingsikonet (tannhjul) i øvre høyre hjørne av Profil-skjermen.",
+    "s1_step4_title": "Slett konto",
+    "s1_step4_text": "Rull ned og trykk <strong>\"Slett konto\"",
+    "s1_option_b": "Alternativ B: Be om sletting via e-post",
+    "s1_email_intro": "Hvis du ikke kan få tilgang til appen, kan du be om kontosletting ved å sende en e-post til:",
+    "s1_email_note": "Vennligst inkluder e-postadressen som er knyttet til SportTracking-kontoen din. Vi vil behandle din forespørsel innen <strong>30 dager",
+    "s2_title": "2. Data som slettes",
+    "s2_intro": "Når du sletter kontoen din, fjernes følgende data <strong>permanent",
+    "th_data_type": "Datatype",
+    "th_status": "Status",
+    "th_timeframe": "Tidsramme",
+    "d_personal": "Personopplysninger (navn, e-post, fødselsdato, kjønn, telefon)",
+    "status_deleted": "Slettet",
+    "timeframe_immediately": "Umiddelbar",
+    "d_photo": "Profilbilde",
+    "d_trips": "Reisehistorikk og GPS-spor",
+    "d_events": "Deltakelse i arrangementer og opprettede arrangementer",
+    "d_chat": "Chattmeldinger",
+    "d_challenges": "Fremgangsutfordringer og poengsum",
+    "d_leaderboard": "Rangeringsposter",
+    "d_notifications": "Varsler",
+    "d_fcm": "Push-varseltoken (FCM)",
+    "d_local": "Lokale data (Room-database, preferanser)",
+    "d_auth": "Firebase Authentication-konto",
+    "d_ai": "AI Coach-samtaler og treningsplaner",
+    "d_referral": "Referralkoder og referralhistorikk",
+    "d_routes": "Lagrede ruter",
+    "d_reminders": "Innstillinger for arrangementspadminnelser",
+    "s3_title": "3. Data som beholdes",
+    "s3_intro": "Noen data kan beholdes i en begrenset periode etter kontosletting:",
+    "th_retention": "Oppbevaringsperiode",
+    "th_reason": "Grunn",
+    "r_crash": "Krassjournaler (Firebase Crashlytics)",
+    "r_crash_period": "Opptil 90 dager",
+    "r_crash_reason": "Firebase-standardoppbevaring for feilsøking",
+    "r_analytics": "Aggregerte analysedata (Firebase Analytics)",
+    "r_analytics_period": "Opptil 14 måneder",
+    "r_analytics_reason": "Firebase-standardoppbevaring (anonymisert, ikke personlig identifiserbar)",
+    "r_reports": "Chatrapporter arkivert av andre brukere",
+    "r_reports_period": "Opptil 90 dager",
+    "r_reports_reason": "Sikkerhet og moderasjonsformål",
+    "s3_note": "Beholdt data er enten anonymisert eller ikke personlig identifiserbar. Den kan ikke brukes til å rekonstruere kontoen din eller identifisere deg.",
+    "s4_title": "4. Hva som skjer etter sletting",
+    "s4_li1": "Du vil bli <strong>logget ut",
+    "s4_li2": "Du vil <strong>ikke lenger vises",
+    "s4_li3": "Dine <strong>chattmeldinger",
+    "s4_li4": "Alle arrangementer du opprettet vil bli <strong>slettet",
+    "s4_li5": "Dine <strong>AI Coach-samtaler",
+    "s4_li6": "Din <strong>referralkode",
+    "s4_li7": "Dine <strong>lagrede ruter",
+    "s4_li8": "Du kan <strong>opprette en ny konto",
+    "s5_title": "5. Kontakt oss",
+    "s5_text": "Hvis du har spørsmål om kontosletting eller datasletting, kontakt oss på:",
+    "s5_contact": "<strong>SLAMA Consulting",
+    "s5_link": "Se også vår <a href=\"sportTracking.html\">Personvernerklæring",
+    "footer": "&copy; 2026 SLAMA Consulting. Alle rettigheter reservert."
+  },
+  "ja": {
+    "title": "アカウントの削除",
+    "last_updated": "最終更新日：2026年3月13日",
+    "intro": "SLAMA Consulting（「当社」、「当社の」、または「私たち」）は、SportTracking モバイルアプリケーションからアカウントと関連データを削除する権利を尊重します。このページでは、アカウント削除のリクエスト方法と影響を受けるデータについて説明します。",
+    "warning_title": "&#9888; 警告：この操作は永久的です",
+    "warning_text": "アカウントを削除すると、すべての個人データ、トリップ履歴、イベント参加、チャットメッセージ、チャレンジ進捗、リーダーボードスコア、AI Coach の会話、トレーニング計画、紹介データ、保存されたルートが完全に削除されます。この操作は<strong>元に戻すことができません</strong>。",
+    "s1_title": "1. アカウントの削除方法",
+    "s1_option_a": "オプションA：アプリ内から削除する（推奨）",
+    "s1_step1_title": "SportTracking を開く",
+    "s1_step1_text": "アプリを起動し、ログインしていることを確認してください。",
+    "s1_step2_title": "プロフィールに移動する",
+    "s1_step2_text": "<strong>プロフィール</strong>タブをタップします。",
+    "s1_step3_title": "設定を開く",
+    "s1_step3_text": "プロフィール画面の右上にある設定アイコン（歯車）をタップします。",
+    "s1_step4_title": "アカウントを削除する",
+    "s1_step4_text": "下にスクロールして<strong>「アカウントを削除」</strong>をタップし、確認手順に従います。",
+    "s1_option_b": "オプションB：メールで削除をリクエストする",
+    "s1_email_intro": "アプリにアクセスできない場合は、以下のアドレスにメールを送信してアカウント削除をリクエストできます：",
+    "s1_email_note": "SportTracking アカウントに関連付けられたメールアドレスを記載してください。<strong>30日以内</strong>にリクエストを処理いたします。",
+    "s2_title": "2. 削除されるデータ",
+    "s2_intro": "アカウントを削除すると、以下のデータが<strong>完全に削除</strong>されます：",
+    "th_data_type": "データの種類",
+    "th_status": "ステータス",
+    "th_timeframe": "期間",
+    "d_personal": "個人情報（名前、メールアドレス、生年月日、性別、電話番号）",
+    "status_deleted": "削除済み",
+    "timeframe_immediately": "即時",
+    "d_photo": "プロフィール写真",
+    "d_trips": "トリップ履歴とGPSトラック",
+    "d_events": "イベント参加と作成したイベント",
+    "d_chat": "チャットメッセージ",
+    "d_challenges": "チャレンジ進捗とスコア",
+    "d_leaderboard": "リーダーボードエントリー",
+    "d_notifications": "通知",
+    "d_fcm": "プッシュ通知トークン（FCM）",
+    "d_local": "ローカルデータ（Room データベース、設定）",
+    "d_auth": "Firebase Authentication アカウント",
+    "d_ai": "AI Coach の会話とトレーニング計画",
+    "d_referral": "紹介コードと紹介履歴",
+    "d_routes": "保存されたルート",
+    "d_reminders": "イベントリマインダーの設定",
+    "s3_title": "3. 保持されるデータ",
+    "s3_intro": "一部のデータは、アカウント削除後も一定期間保持される場合があります：",
+    "th_retention": "保持期間",
+    "th_reason": "理由",
+    "r_crash": "クラッシュログ（Firebase Crashlytics）",
+    "r_crash_period": "最大90日",
+    "r_crash_reason": "デバッグのための Firebase のデフォルト保持",
+    "r_analytics": "集計された分析データ（Firebase Analytics）",
+    "r_analytics_period": "最大14か月",
+    "r_analytics_reason": "Firebase のデフォルト保持（匿名化され、個人を特定できません）",
+    "r_reports": "他のユーザーによって提出されたチャット報告",
+    "r_reports_period": "最大90日",
+    "r_reports_reason": "安全性とモデレーションの目的",
+    "s3_note": "保持されるデータは匿名化されているか、個人を特定できません。アカウントの再構築やあなたの特定には使用できません。",
+    "s4_title": "4. 削除後に起こること",
+    "s4_li1": "<strong>ログアウト</strong>され、同じアカウントで再度ログインすることはできなくなります。",
+    "s4_li2": "リーダーボード、イベント、チャットに<strong>表示されなくなります</strong>。",
+    "s4_li3": "あなたの<strong>チャットメッセージ</strong>は他のユーザーに表示されなくなります。",
+    "s4_li4": "あなたが作成したイベントは<strong>削除</strong>されます。",
+    "s4_li5": "あなたの<strong>AI Coach の会話</strong>は完全に削除されます。",
+    "s4_li6": "あなたの<strong>紹介コード</strong>は無効になります。",
+    "s4_li7": "あなたの<strong>保存されたルート</strong>は削除されます。",
+    "s4_li8": "後で同じメールアドレスで<strong>新しいアカウントを作成</strong>できますが、以前のデータは復元されません。",
+    "s5_title": "5. お問い合わせ",
+    "s5_text": "アカウント削除やデータ削除に関してご質問がある場合は、以下までお問い合わせください：",
+    "s5_contact": "<strong>SLAMA Consulting</strong><br>メール：walidslama.dev@gmail.com",
+    "s5_link": "<a href=\"sportTracking.html\">プライバシーポリシー</a>もご覧ください。",
+    "footer": "&copy; 2026 SLAMA Consulting. All rights reserved."
+  },
+  "nl": {
+    "title": "Verwijder uw account",
+    "last_updated": "Laatst bijgewerkt: 13 maart 2026",
+    "intro": "SLAMA Consulting (\"wij\", \"onze\" of \"ons\") respecteert uw recht om uw account en bijbehorende gegevens uit de SportTracking mobiele applicatie te verwijderen. Deze pagina legt uit hoe u account verwijdering kunt aanvragen en welke gegevens worden beïnvloed.",
+    "warning_title": "&#9888; Waarschuwing: Deze actie is permanent",
+    "warning_text": "Het verwijderen van uw account verwijdert permanent alle uw persoonlijke gegevens, reisgeschiedenis, deelname aan evenementen, chatberichten, voortgang van uitdagingen, leaderboard scores, AI Coach gesprekken, trainingsplannen, verwijzingsgegevens en opgeslagen routes. Deze actie <strong>kan niet ongedaan gemaakt worden",
+    "s1_title": "1. Hoe u uw account kunt verwijderen",
+    "s1_option_a": "Optie A: Verwijderen vanuit de app (Aanbevolen)",
+    "s1_step1_title": "Open SportTracking",
+    "s1_step1_text": "Start de app en zorg ervoor dat u bent aangemeld.",
+    "s1_step2_title": "Ga naar uw profiel",
+    "s1_step2_text": "Tik op <strong>Profiel",
+    "s1_step3_title": "Open instellingen",
+    "s1_step3_text": "Tik op het instellingenpictogram (tandwiel) in de rechterbovenhoek van het profielscherm.",
+    "s1_step4_title": "Account verwijderen",
+    "s1_step4_text": "Schuif omlaag en tik op <strong>\"Account verwijderen\"",
+    "s1_option_b": "Optie B: Verwijderingverzoek per e-mail aanvragen",
+    "s1_email_intro": "Als u geen toegang tot de app hebt, kunt u verwijdering aanvragen door een e-mail te sturen naar:",
+    "s1_email_note": "Neem het e-mailadres op dat aan uw SportTracking account is gekoppeld. Wij verwerken uw verzoek binnen <strong>30 dagen",
+    "s2_title": "2. Verwijderde gegevens",
+    "s2_intro": "Wanneer u uw account verwijdert, worden de volgende gegevens <strong>permanent verwijderd",
+    "th_data_type": "Gegevenstype",
+    "th_status": "Status",
+    "th_timeframe": "Tijdsbestek",
+    "d_personal": "Persoonlijke informatie (naam, e-mail, geboortedatum, geslacht, telefoonnummer)",
+    "status_deleted": "Verwijderd",
+    "timeframe_immediately": "Onmiddellijk",
+    "d_photo": "Profielfoto",
+    "d_trips": "Reisgeschiedenis en GPS-sporen",
+    "d_events": "Deelname aan evenementen en gemaakte evenementen",
+    "d_chat": "Chatberichten",
+    "d_challenges": "Voortgang en scores van uitdagingen",
+    "d_leaderboard": "Leaderboard-vermeldingen",
+    "d_notifications": "Meldingen",
+    "d_fcm": "Push notificatie token (FCM)",
+    "d_local": "Lokale gegevens (Room database, voorkeuren)",
+    "d_auth": "Firebase Authentication account",
+    "d_ai": "AI Coach gesprekken en trainingsplannen",
+    "d_referral": "Verwijzingscodes en verwijzingsgeschiedenis",
+    "d_routes": "Opgeslagen routes",
+    "d_reminders": "Voorkeursinstellingen voor herinneringen aan evenementen",
+    "s3_title": "3. Behouden gegevens",
+    "s3_intro": "Enkele gegevens kunnen gedurende een beperkte periode na account verwijdering worden behouden:",
+    "th_retention": "Bewaartermijn",
+    "th_reason": "Reden",
+    "r_crash": "Crashlogboeken (Firebase Crashlytics)",
+    "r_crash_period": "Tot 90 dagen",
+    "r_crash_reason": "Firebase standaard bewaartermijn voor debugging",
+    "r_analytics": "Geaggregeerde analysegegevens (Firebase Analytics)",
+    "r_analytics_period": "Tot 14 maanden",
+    "r_analytics_reason": "Firebase standaard bewaartermijn (geanonimiseerd, niet persoonlijk identificeerbaar)",
+    "r_reports": "Chatrapportages ingediend door andere gebruikers",
+    "r_reports_period": "Tot 90 dagen",
+    "r_reports_reason": "Veiligheids- en moderatiedoeleinden",
+    "s3_note": "Bewaarde gegevens zijn geanonimiseerd of niet persoonlijk identificeerbaar. Deze kunnen niet worden gebruikt om uw account te reconstrueren of u te identificeren.",
+    "s4_title": "4. Wat gebeurt er na verwijdering",
+    "s4_li1": "U wordt <strong>afgemeld",
+    "s4_li2": "U zult <strong>niet langer zichtbaar zijn",
+    "s4_li3": "Uw <strong>chatberichten",
+    "s4_li4": "Alle evenementen die u hebt gemaakt, worden <strong>verwijderd",
+    "s4_li5": "Uw <strong>AI Coach gesprekken",
+    "s4_li6": "Uw <strong>verwijzingscode",
+    "s4_li7": "Uw <strong>opgeslagen routes",
+    "s4_li8": "U kunt <strong>een nieuw account maken",
+    "s5_title": "5. Neem contact met ons op",
+    "s5_text": "Als u vragen hebt over account verwijdering of gegevensverwijdering, neem dan contact met ons op via:",
+    "s5_contact": "<strong>SLAMA Consulting",
+    "s5_link": "Zie ook ons <a href=\"sportTracking.html\">Privacybeleid",
+    "footer": "&copy; 2026 SLAMA Consulting. Alle rechten voorbehouden."
+  },
+  "pl": {
+    "title": "Usuń swoje konto",
+    "last_updated": "Ostatnia aktualizacja: 13 marca 2026",
+    "intro": "SLAMA Consulting (\"my\", \"nasze\" lub \"nas\") szanuje twoje prawo do usunięcia konta i powiązanych danych z aplikacji mobilnej SportTracking. Ta strona wyjaśnia, jak zażądać usunięcia konta i jakie dane będą dotkniętą.",
+    "warning_title": "&#9888; Ostrzeżenie: Ta czynność jest nieodwracalna",
+    "warning_text": "Usunięcie konta spowoduje trwałe usunięcie wszystkich twoich danych osobowych, historii podróży, uczestnictwa w wydarzeniach, wiadomości czatu, postępu wyzwań, wyników rankingu, rozmów AI Coach, planów treningowych, danych referencyjnych i zapisanych tras. Ta czynność <strong>nie może być cofnięta</strong>.",
+    "s1_title": "1. Jak usunąć swoje konto",
+    "s1_option_a": "Opcja A: Usuń z poziomu aplikacji (zalecane)",
+    "s1_step1_title": "Otwórz SportTracking",
+    "s1_step1_text": "Uruchom aplikację i upewnij się, że jesteś zalogowany.",
+    "s1_step2_title": "Przejdź do swojego profilu",
+    "s1_step2_text": "Naciśnij <strong>Profil</strong>.",
+    "s1_step3_title": "Otwórz Ustawienia",
+    "s1_step3_text": "Naciśnij ikonę ustawień (koło zębate) w prawym górnym rogu ekranu Profilu.",
+    "s1_step4_title": "Usuń konto",
+    "s1_step4_text": "Przewiń w dół i naciśnij <strong>\"Usuń konto\"</strong>.",
+    "s1_option_b": "Opcja B: Zażądaj usunięcia przez e-mail",
+    "s1_email_intro": "Jeśli nie możesz uzyskać dostępu do aplikacji, możesz zażądać usunięcia konta, wysyłając e-mail na adres:",
+    "s1_email_note": "Proszę podaj adres e-mail powiązany z twoim kontem SportTracking. Przetwarzamy twoje żądanie w ciągu <strong>30 dni</strong>.",
+    "s2_title": "2. Usunięte dane",
+    "s2_intro": "Po usunięciu konta następujące dane są <strong>trwale usuwane</strong>:",
+    "th_data_type": "Typ danych",
+    "th_status": "Status",
+    "th_timeframe": "Ramy czasowe",
+    "d_personal": "Dane osobowe (imię, e-mail, data urodzenia, płeć, telefon)",
+    "status_deleted": "Usunięte",
+    "timeframe_immediately": "Natychmiast",
+    "d_photo": "Zdjęcie profilowe",
+    "d_trips": "Historia podróży i ścieżki GPS",
+    "d_events": "Uczestnictwo w wydarzeniach i utworzone wydarzenia",
+    "d_chat": "Wiadomości czatu",
+    "d_challenges": "Postęp wyzwań i wyniki",
+    "d_leaderboard": "Wpisy w rankingu",
+    "d_notifications": "Powiadomienia",
+    "d_fcm": "Token powiadomienia push (FCM)",
+    "d_local": "Dane lokalne (Room database, preferencje)",
+    "d_auth": "Konto Firebase Authentication",
+    "d_ai": "Rozmowy AI Coach i plany treningowe",
+    "d_referral": "Kody referencyjne i historia referencji",
+    "d_routes": "Zapisane trasy",
+    "d_reminders": "Preferencje przypomnień o wydarzeniach",
+    "s3_title": "3. Zachowane dane",
+    "s3_intro": "Niektóre dane mogą być przechowywane przez ograniczony czas po usunięciu konta:",
+    "th_retention": "Okres przechowywania",
+    "th_reason": "Powód",
+    "r_crash": "Dzienniki awarii (Firebase Crashlytics)",
+    "r_crash_period": "Do 90 dni",
+    "r_crash_reason": "Domyślne przechowywanie Firebase na potrzeby debugowania",
+    "r_analytics": "Zagregowane dane analityczne (Firebase Analytics)",
+    "r_analytics_period": "Do 14 miesięcy",
+    "r_analytics_reason": "Domyślne przechowywanie Firebase (anonimizowane, nieosobowe)",
+    "r_reports": "Raporty czatu złożone przez innych użytkowników",
+    "r_reports_period": "Do 90 dni",
+    "r_reports_reason": "Cele bezpieczeństwa i moderacji",
+    "s3_note": "Przechowywane dane są anonimizowane lub nieosobowe. Nie mogą być używane do rekonstrukcji twojego konta ani do ciebie zidentyfikowania.",
+    "s4_title": "4. Co się stanie po usunięciu",
+    "s4_li1": "Będziesz <strong>wylogowany</strong>.",
+    "s4_li2": "Nie będziesz już <strong>widoczny</strong> w rankingach ani na listach uczestników.",
+    "s4_li3": "Twoje <strong>wiadomości czatu</strong> będą usunięte.",
+    "s4_li4": "Wszystkie utworzone przez ciebie wydarzenia będą <strong>usunięte</strong>.",
+    "s4_li5": "Twoje <strong>rozmowy AI Coach</strong> będą usunięte.",
+    "s4_li6": "Twój <strong>kod referencyjny</strong> nie będzie już aktywny.",
+    "s4_li7": "Twoje <strong>zapisane trasy</strong> będą usunięte.",
+    "s4_li8": "Możesz <strong>utworzyć nowe konto</strong> w dowolnym momencie, korzystając z tego samego lub innego adresu e-mail.",
+    "s5_title": "5. Skontaktuj się z nami",
+    "s5_text": "Jeśli masz jakieś pytania dotyczące usunięcia konta lub usuwania danych, skontaktuj się z nami pod adresem:",
+    "s5_contact": "<strong>SLAMA Consulting</strong>",
+    "s5_link": "Zobacz także naszą <a href=\"sportTracking.html\">Politykę prywatności</a>.",
+    "footer": "&copy; 2026 SLAMA Consulting. Wszelkie prawa zastrzeżone."
+  },
+  "pt": {
+    "title": "Elimine Sua Conta",
+    "last_updated": "Última atualização: 13 de março de 2026",
+    "intro": "SLAMA Consulting (\"nós\", \"nosso\" ou \"nos\") respeita seu direito de excluir sua conta e dados associados do aplicativo móvel SportTracking. Esta página explica como solicitar a exclusão da conta e quais dados são afetados.",
+    "warning_title": "&#9888; Aviso: Esta ação é permanente",
+    "warning_text": "Excluir sua conta removerá permanentemente todos os seus dados pessoais, histórico de viagens, participação em eventos, mensagens de bate-papo, progresso de desafios, pontuações do placar, conversas do AI Coach, planos de treinamento, dados de referência e rotas salvas. Esta ação <strong>não pode ser desfeita</strong>.",
+    "s1_title": "1. Como Excluir Sua Conta",
+    "s1_option_a": "Opção A: Excluir pelo aplicativo (Recomendado)",
+    "s1_step1_title": "Abra SportTracking",
+    "s1_step1_text": "Inicie o aplicativo e certifique-se de que você está conectado.",
+    "s1_step2_title": "Vá para seu Perfil",
+    "s1_step2_text": "Toque em <strong>Perfil</strong>.",
+    "s1_step3_title": "Abra Configurações",
+    "s1_step3_text": "Toque no ícone de configurações (engrenagem) no canto superior direito da tela Perfil.",
+    "s1_step4_title": "Excluir Conta",
+    "s1_step4_text": "Role para baixo e toque em <strong>\"Excluir Conta\"</strong>.",
+    "s1_option_b": "Opção B: Solicitar exclusão por email",
+    "s1_email_intro": "Se você não conseguir acessar o aplicativo, pode solicitar a exclusão da conta enviando um email para:",
+    "s1_email_note": "Inclua o endereço de email associado à sua conta SportTracking. Processaremos sua solicitação em <strong>até 30 dias</strong>.",
+    "s2_title": "2. Dados Excluídos",
+    "s2_intro": "Quando você exclui sua conta, os seguintes dados são <strong>permanentemente removidos</strong>:",
+    "th_data_type": "Tipo de Dados",
+    "th_status": "Status",
+    "th_timeframe": "Período",
+    "d_personal": "Informações pessoais (nome, email, data de nascimento, gênero, telefone)",
+    "status_deleted": "Excluído",
+    "timeframe_immediately": "Imediatamente",
+    "d_photo": "Foto do perfil",
+    "d_trips": "Histórico de viagens e rastreamentos GPS",
+    "d_events": "Participação em eventos e eventos criados",
+    "d_chat": "Mensagens de bate-papo",
+    "d_challenges": "Progresso de desafios e pontuações",
+    "d_leaderboard": "Entradas do placar",
+    "d_notifications": "Notificações",
+    "d_fcm": "Token de notificação push (FCM)",
+    "d_local": "Dados locais (banco de dados Room, preferências)",
+    "d_auth": "Conta Firebase Authentication",
+    "d_ai": "Conversas e planos de treinamento do AI Coach",
+    "d_referral": "Códigos de referência e histórico de referência",
+    "d_routes": "Rotas salvas",
+    "d_reminders": "Preferências de lembretes de eventos",
+    "s3_title": "3. Dados Retidos",
+    "s3_intro": "Alguns dados podem ser retidos por um período limitado após a exclusão da conta:",
+    "th_retention": "Período de Retenção",
+    "th_reason": "Motivo",
+    "r_crash": "Logs de falha (Firebase Crashlytics)",
+    "r_crash_period": "Até 90 dias",
+    "r_crash_reason": "Retenção padrão Firebase para depuração",
+    "r_analytics": "Dados de análise agregados (Firebase Analytics)",
+    "r_analytics_period": "Até 14 meses",
+    "r_analytics_reason": "Retenção padrão Firebase (anônimos, não identificáveis pessoalmente)",
+    "r_reports": "Relatórios de bate-papo apresentados por outros usuários",
+    "r_reports_period": "Até 90 dias",
+    "r_reports_reason": "Fins de segurança e moderação",
+    "s3_note": "Os dados retidos são anônimos ou não identificáveis pessoalmente. Não podem ser usados para reconstruir sua conta ou identificá-lo.",
+    "s4_title": "4. O Que Acontece Após a Exclusão",
+    "s4_li1": "Você será <strong>desconectado</strong>.",
+    "s4_li2": "Você <strong>não aparecerá mais</strong> nos placares ou rankings.",
+    "s4_li3": "Suas <strong>mensagens de bate-papo</strong> serão removidas de todas as conversas.",
+    "s4_li4": "Todos os eventos que você criou serão <strong>excluídos</strong>.",
+    "s4_li5": "Suas <strong>conversas do AI Coach</strong> serão permanentemente removidas.",
+    "s4_li6": "Seu <strong>código de referência</strong> se tornará inativo.",
+    "s4_li7": "Suas <strong>rotas salvas</strong> serão removidas.",
+    "s4_li8": "Você pode <strong>criar uma nova conta</strong> usando o mesmo email após 30 dias.",
+    "s5_title": "5. Entre em Contato Conosco",
+    "s5_text": "Se tiver dúvidas sobre exclusão de conta ou remoção de dados, entre em contato conosco em:",
+    "s5_contact": "<strong>SLAMA Consulting</strong>",
+    "s5_link": "Veja também nossa <a href=\"sportTracking.html\">Política de Privacidade</a>.",
+    "footer": "&copy; 2026 SLAMA Consulting. Todos os direitos reservados."
+  },
+  "ro": {
+    "title": "Ștergeți-vă contul",
+    "last_updated": "Actualizat ultima dată: 13 martie 2026",
+    "intro": "SLAMA Consulting (\"noi\", \"al nostru\" sau \"nouă\") respectă dreptul dvs. de a șterge contul și datele asociate din aplicația mobilă SportTracking. Această pagină explică cum să solicitați ștergerea contului și ce date sunt afectate.",
+    "warning_title": "&#9888; Avertisment: Această acțiune este permanentă",
+    "warning_text": "Ștergerea contului dvs. va elimina permanent toate datele personale, istoricul călătoriilor, participarea la evenimente, mesajele de chat, progresul provocărilor, scorurile leaderboard, conversațiile AI Coach, planurile de antrenament, datele de recomandare și rutele salvate. Această acțiune <strong>nu poate fi anulată",
+    "s1_title": "1. Cum să vă ștergeți contul",
+    "s1_option_a": "Opțiunea A: Ștergeți din cadrul aplicației (Recomandat)",
+    "s1_step1_title": "Deschideți SportTracking",
+    "s1_step1_text": "Lansați aplicația și asigurați-vă că sunteți conectat.",
+    "s1_step2_title": "Accesați profilul dvs.",
+    "s1_step2_text": "Atingeți <strong>Profil",
+    "s1_step3_title": "Deschideți Setări",
+    "s1_step3_text": "Atingeți pictograma setărilor (angrenaj) din colțul din dreapta sus al ecranului Profil.",
+    "s1_step4_title": "Ștergeți contul",
+    "s1_step4_text": "Derulați în jos și atingeți <strong>\"Ștergeți contul\"",
+    "s1_option_b": "Opțiunea B: Solicitați ștergerea prin e-mail",
+    "s1_email_intro": "Dacă nu puteți accesa aplicația, puteți solicita ștergerea contului trimițând un e-mail la:",
+    "s1_email_note": "Vă rugăm să includeți adresa de e-mail asociată contului dvs. SportTracking. Vom procesa cererea dvs. în termen de <strong>30 de zile",
+    "s2_title": "2. Datele șterse",
+    "s2_intro": "Când vă ștergeți contul, următoarele date sunt <strong>permanent eliminate",
+    "th_data_type": "Tipul de date",
+    "th_status": "Stare",
+    "th_timeframe": "Calendar",
+    "d_personal": "Informații personale (nume, e-mail, data nașterii, gen, telefon)",
+    "status_deleted": "Șters",
+    "timeframe_immediately": "Imediat",
+    "d_photo": "Fotografia profilului",
+    "d_trips": "Istoricul călătoriilor și urmele GPS",
+    "d_events": "Participarea la evenimente și evenimentele create",
+    "d_chat": "Mesaje de chat",
+    "d_challenges": "Progresul și scorurile provocărilor",
+    "d_leaderboard": "Intrări leaderboard",
+    "d_notifications": "Notificări",
+    "d_fcm": "Jeton notificare push (FCM)",
+    "d_local": "Datele locale (Room database, preferințe)",
+    "d_auth": "Contul Firebase Authentication",
+    "d_ai": "Conversațiile AI Coach și planurile de antrenament",
+    "d_referral": "Coduri de recomandare și istoricul recomandărilor",
+    "d_routes": "Rute salvate",
+    "d_reminders": "Preferințele de reamintire a evenimentelor",
+    "s3_title": "3. Datele reținute",
+    "s3_intro": "Unele date pot fi reținute pentru o perioadă limitată după ștergerea contului:",
+    "th_retention": "Perioada de păstrare",
+    "th_reason": "Motiv",
+    "r_crash": "Jurnalele de căderi (Firebase Crashlytics)",
+    "r_crash_period": "Până la 90 de zile",
+    "r_crash_reason": "Retenție implicită Firebase pentru depanare",
+    "r_analytics": "Datele de analiză agregate (Firebase Analytics)",
+    "r_analytics_period": "Până la 14 luni",
+    "r_analytics_reason": "Retenție implicită Firebase (anonimizate, nu sunt identificabile personal)",
+    "r_reports": "Rapoarte de chat depuse de alți utilizatori",
+    "r_reports_period": "Până la 90 de zile",
+    "r_reports_reason": "Scopuri de siguranță și moderare",
+    "s3_note": "Datele reținute sunt fie anonimizate, fie nu sunt identificabile personal. Nu pot fi utilizate pentru a reconstitui contul dvs. sau pentru a vă identifica.",
+    "s4_title": "4. Ce se întâmplă după ștergere",
+    "s4_li1": "Veți fi <strong>deconectat",
+    "s4_li2": "Nu veți <strong>mai apărea",
+    "s4_li3": "Mesajele dvs. <strong>de chat",
+    "s4_li4": "Orice evenimente pe care le-ați creat vor fi <strong>șterse",
+    "s4_li5": "Conversațiile dvs. <strong>AI Coach",
+    "s4_li6": "Codul dvs. <strong>de recomandare",
+    "s4_li7": "Rutele dvs. <strong>salvate",
+    "s4_li8": "Puteți <strong>crea un cont nou",
+    "s5_title": "5. Contactați-ne",
+    "s5_text": "Dacă aveți întrebări cu privire la ștergerea contului sau eliminarea datelor, vă rugăm să ne contactați la:",
+    "s5_contact": "<strong>SLAMA Consulting",
+    "s5_link": "Consultați și <a href=\"sportTracking.html\">Politica de confidențialitate",
+    "footer": "&copy; 2026 SLAMA Consulting. Toate drepturile rezervate."
+  },
+  "ru": {
+    "title": "Удалить учетную запись",
+    "last_updated": "Последнее обновление: 13 марта 2026 г.",
+    "intro": "SLAMA Consulting (\"мы\", \"наша\" или \"нас\") уважает ваше право удалить учетную запись и связанные с ней данные из мобильного приложения SportTracking. На этой странице объясняется, как запросить удаление учетной записи и какие данные будут затронуты.",
+    "warning_title": "&#9888; Предупреждение: это действие постоянно",
+    "warning_text": "Удаление учетной записи навсегда удалит все ваши личные данные, историю поездок, участие в событиях, сообщения чата, прогресс челленджей, оценки в таблице лидеров, диалоги с AI Coach, планы тренировок, данные рефералов и сохраненные маршруты. Это действие <strong>невозможно отменить</strong>.",
+    "s1_title": "1. Как удалить учетную запись",
+    "s1_option_a": "Вариант A: удалить из приложения (рекомендуется)",
+    "s1_step1_title": "Откройте SportTracking",
+    "s1_step1_text": "Запустите приложение и убедитесь, что вы вошли в систему.",
+    "s1_step2_title": "Перейдите в свой профиль",
+    "s1_step2_text": "Нажмите <strong>Профиль</strong>.",
+    "s1_step3_title": "Откройте настройки",
+    "s1_step3_text": "Нажмите значок настроек (шестеренка) в правом верхнем углу экрана профиля.",
+    "s1_step4_title": "Удалить учетную запись",
+    "s1_step4_text": "Прокрутите вниз и нажмите <strong>\"Удалить учетную запись\"</strong>.",
+    "s1_option_b": "Вариант B: запросить удаление по электронной почте",
+    "s1_email_intro": "Если вы не можете получить доступ к приложению, вы можете запросить удаление учетной записи, отправив электронное письмо на:",
+    "s1_email_note": "Пожалуйста, укажите адрес электронной почты, связанный с вашей учетной записью SportTracking. Мы обработаем ваш запрос в течение <strong>30 дней</strong>.",
+    "s2_title": "2. Удаленные данные",
+    "s2_intro": "При удалении учетной записи следующие данные <strong>навсегда удаляются</strong>:",
+    "th_data_type": "Тип данных",
+    "th_status": "Статус",
+    "th_timeframe": "Сроки",
+    "d_personal": "Личная информация (имя, электронная почта, дата рождения, пол, телефон)",
+    "status_deleted": "Удалено",
+    "timeframe_immediately": "Немедленно",
+    "d_photo": "Фото профиля",
+    "d_trips": "История поездок и GPS-треки",
+    "d_events": "Участие в событиях и созданные события",
+    "d_chat": "Сообщения чата",
+    "d_challenges": "Прогресс и оценки челленджей",
+    "d_leaderboard": "Записи таблицы лидеров",
+    "d_notifications": "Уведомления",
+    "d_fcm": "Токен push-уведомлений (FCM)",
+    "d_local": "Локальные данные (Room база данных, предпочтения)",
+    "d_auth": "Firebase Authentication учетная запись",
+    "d_ai": "Диалоги с AI Coach и планы тренировок",
+    "d_referral": "Коды рефералов и история рефералов",
+    "d_routes": "Сохраненные маршруты",
+    "d_reminders": "Предпочтения напоминаний о событиях",
+    "s3_title": "3. Сохраненные данные",
+    "s3_intro": "Некоторые данные могут быть сохранены в течение ограниченного периода после удаления учетной записи:",
+    "th_retention": "Период хранения",
+    "th_reason": "Причина",
+    "r_crash": "Журналы сбоев (Firebase Crashlytics)",
+    "r_crash_period": "До 90 дней",
+    "r_crash_reason": "Стандартное хранение Firebase для отладки",
+    "r_analytics": "Агрегированные аналитические данные (Firebase Analytics)",
+    "r_analytics_period": "До 14 месяцев",
+    "r_analytics_reason": "Стандартное хранение Firebase (анонимизировано, не персонально идентифицируемо)",
+    "r_reports": "Жалобы на чат, поданные другими пользователями",
+    "r_reports_period": "До 90 дней",
+    "r_reports_reason": "Цели безопасности и модерации",
+    "s3_note": "Сохраненные данные либо анонимизированы, либо не содержат персональной информации. Они не могут быть использованы для восстановления вашей учетной записи или вашей идентификации.",
+    "s4_title": "4. Что происходит после удаления",
+    "s4_li1": "Вы будете <strong>выйти из системы</strong>.",
+    "s4_li2": "Вы <strong>больше не будете отображаться</strong> в таблице лидеров и других общих областях.",
+    "s4_li3": "Ваши <strong>сообщения чата</strong> будут удалены из всех чатов.",
+    "s4_li4": "Все созданные вами события будут <strong>удалены</strong>.",
+    "s4_li5": "Ваши <strong>диалоги с AI Coach</strong> будут удалены.",
+    "s4_li6": "Ваш <strong>реферальный код</strong> больше не будет активным.",
+    "s4_li7": "Ваши <strong>сохраненные маршруты</strong> будут удалены.",
+    "s4_li8": "Вы можете <strong>создать новую учетную запись</strong> с тем же адресом электронной почты позже.",
+    "s5_title": "5. Свяжитесь с нами",
+    "s5_text": "Если у вас есть вопросы об удалении учетной записи или удалении данных, свяжитесь с нами по адресу:",
+    "s5_contact": "<strong>SLAMA Consulting</strong>",
+    "s5_link": "См. также нашу <a href=\"sportTracking.html\">Политику конфиденциальности</a>.",
+    "footer": "&copy; 2026 SLAMA Consulting. Все права защищены."
+  },
+  "sv": {
+    "title": "Radera ditt konto",
+    "last_updated": "Senast uppdaterad: 13 mars 2026",
+    "intro": "SLAMA Consulting (\"vi\", \"vår\" eller \"oss\") respekterar din rätt att radera ditt konto och associerad data från SportTracking-mobilapplikationen. Den här sidan förklarar hur du begär kontoborttagning och vilken data som påverkas.",
+    "warning_title": "&#9888; Varning: Den här åtgärden är permanent",
+    "warning_text": "Om du raderar ditt konto kommer all din personliga data, reshistorik, delttagande i händelser, chattmeddelanden, förloppsprogression, resultattavlor, AI Coach-samtal, träningsplaner, referraldata och sparade rutter att raderas permanent. Den här åtgärden <strong>kan inte ångras",
+    "s1_title": "1. Så här raderar du ditt konto",
+    "s1_option_a": "Alternativ A: Radera inifrån appen (Rekommenderas)",
+    "s1_step1_title": "Öppna SportTracking",
+    "s1_step1_text": "Starta appen och se till att du är inloggad.",
+    "s1_step2_title": "Gå till din profil",
+    "s1_step2_text": "Tryck på <strong>Profil",
+    "s1_step3_title": "Öppna inställningar",
+    "s1_step3_text": "Tryck på inställningsikonen (kugghjul) i det övre högra hörnet av profilskärmen.",
+    "s1_step4_title": "Radera konto",
+    "s1_step4_text": "Bläddra ned och tryck på <strong>\"Radera konto\"",
+    "s1_option_b": "Alternativ B: Begär borttagning via e-post",
+    "s1_email_intro": "Om du inte kan komma åt appen kan du begära kontoborttagning genom att skicka ett e-postmeddelande till:",
+    "s1_email_note": "Inkludera e-postadressen som är associerad med ditt SportTracking-konto. Vi behandlar din begäran inom <strong>30 dagar",
+    "s2_title": "2. Data som raderas",
+    "s2_intro": "När du raderar ditt konto raderas följande data <strong>permanent",
+    "th_data_type": "Datatyp",
+    "th_status": "Status",
+    "th_timeframe": "Tidsram",
+    "d_personal": "Personlig information (namn, e-post, födelsedatum, kön, telefon)",
+    "status_deleted": "Raderad",
+    "timeframe_immediately": "Omedelbar",
+    "d_photo": "Profilbild",
+    "d_trips": "Reshistorik och GPS-spår",
+    "d_events": "Delttagande i händelser och skapade händelser",
+    "d_chat": "Chattmeddelanden",
+    "d_challenges": "Utmaningsprogression och poäng",
+    "d_leaderboard": "Resultattavlor",
+    "d_notifications": "Aviseringar",
+    "d_fcm": "Push-aviseringstoken (FCM)",
+    "d_local": "Lokal data (Room-databas, preferenser)",
+    "d_auth": "Firebase Authentication-konto",
+    "d_ai": "AI Coach-samtal och träningsplaner",
+    "d_referral": "Referralkoder och referralhistorik",
+    "d_routes": "Sparade rutter",
+    "d_reminders": "Inställningar för händelseerinringar",
+    "s3_title": "3. Data som behålls",
+    "s3_intro": "Vissa data kan behållas under en begränsad period efter kontoborttagning:",
+    "th_retention": "Retentionsperiod",
+    "th_reason": "Anledning",
+    "r_crash": "Kraschloggar (Firebase Crashlytics)",
+    "r_crash_period": "Upp till 90 dagar",
+    "r_crash_reason": "Firebase standardbevarande för felsökning",
+    "r_analytics": "Aggregerad analytikdata (Firebase Analytics)",
+    "r_analytics_period": "Upp till 14 månader",
+    "r_analytics_reason": "Firebase standardbevarande (anonymiserad, inte personligt identifierbar)",
+    "r_reports": "Chattrapporter inlagda av andra användare",
+    "r_reports_period": "Upp till 90 dagar",
+    "r_reports_reason": "Säkerhet och modereringsändamål",
+    "s3_note": "Bevarad data är antingen anonymiserad eller inte personligt identifierbar. Det kan inte användas för att återskapa ditt konto eller identifiera dig.",
+    "s4_title": "4. Vad händer efter borttagning",
+    "s4_li1": "Du kommer att <strong>loggas ut",
+    "s4_li2": "Du kommer <strong>inte längre att visas",
+    "s4_li3": "Dina <strong>chattmeddelanden",
+    "s4_li4": "Alla händelser du skapade kommer att <strong>raderas",
+    "s4_li5": "Dina <strong>AI Coach-samtal",
+    "s4_li6": "Din <strong>referralkod",
+    "s4_li7": "Dina <strong>sparade rutter",
+    "s4_li8": "Du kan <strong>skapa ett nytt konto",
+    "s5_title": "5. Kontakta oss",
+    "s5_text": "Om du har några frågor om kontoborttagning eller databorttagning kontaktar du oss på:",
+    "s5_contact": "<strong>SLAMA Consulting",
+    "s5_link": "Se även vår <a href=\"sportTracking.html\">Integritetspolicy",
+    "footer": "&copy; 2026 SLAMA Consulting. Alla rättigheter förbehållna."
+  },
+  "th": {
+    "title": "ลบบัญชีของคุณ",
+    "last_updated": "อัปเดตล่าสุด: 13 มีนาคม 2026",
+    "intro": "SLAMA Consulting (\"เรา\", \"ของเรา\" หรือ \"เรา\") เคารพสิทธิของคุณในการลบบัญชีและข้อมูลที่เกี่ยวข้องจากแอปพลิเคชันมือถือ SportTracking แหน่งนี้อธิบายวิธีการขอให้ลบบัญชีและข้อมูลที่ได้รับผลกระทบ",
+    "warning_title": "&#9888; คำเตือน: การดำเนินการนี้ไม่สามารถย้อนกลับได้",
+    "warning_text": "การลบบัญชีของคุณจะลบข้อมูลส่วนบุคคล ประวัติการเดินทาง การเข้าร่วมกิจกรรม ข้อความแชท ความคืบหน้าของการท้าทาย คะแนนลีดเดอร์บอร์ด การสนทนา AI Coach แผนการฝึกอบรม ข้อมูลการอ้างอิง และเส้นทางที่บันทึกไว้ทั้งหมด การดำเนินการนี้ <strong>ไม่สามารถย้อนกลับได้",
+    "s1_title": "1. วิธีการลบบัญชีของคุณ",
+    "s1_option_a": "ตัวเลือก A: ลบจากในแอป (แนะนำ)",
+    "s1_step1_title": "เปิด SportTracking",
+    "s1_step1_text": "เปิดแอปและตรวจสอบให้แน่ใจว่าคุณเข้าสู่ระบบแล้ว",
+    "s1_step2_title": "ไปที่โปรไฟล์ของคุณ",
+    "s1_step2_text": "แตะ <strong>โปรไฟล์",
+    "s1_step3_title": "เปิดการตั้งค่า",
+    "s1_step3_text": "แตะไอคอนการตั้งค่า (เกียร์) ที่มุมขวาบนของหน้าจออโปรไฟล์",
+    "s1_step4_title": "ลบบัญชี",
+    "s1_step4_text": "เลื่อนลงและแตะ <strong>\"ลบบัญชี\"",
+    "s1_option_b": "ตัวเลือก B: ขอการลบทางอีเมล",
+    "s1_email_intro": "หากคุณไม่สามารถเข้าถึงแอปได้ คุณสามารถขอให้ลบบัญชีได้โดยส่งอีเมลไปที่:",
+    "s1_email_note": "โปรดระบุที่อยู่อีเมลที่เกี่ยวข้องกับบัญชี SportTracking ของคุณ เราจะประมวลผลคำขอของคุณภายใน <strong>30 วัน",
+    "s2_title": "2. ข้อมูลที่ลบ",
+    "s2_intro": "เมื่อคุณลบบัญชี ข้อมูลต่อไปนี้จะ <strong>ถูกลบอย่างถาวร",
+    "th_data_type": "ประเภทข้อมูล",
+    "th_status": "สถานะ",
+    "th_timeframe": "กรอบเวลา",
+    "d_personal": "ข้อมูลส่วนบุคคล (ชื่อ อีเมล วันเดือนปีเกิด เพศ โทรศัพท์)",
+    "status_deleted": "ลบแล้ว",
+    "timeframe_immediately": "ทันที",
+    "d_photo": "รูปภาพโปรไฟล์",
+    "d_trips": "ประวัติการเดินทางและติดตามตำแหน่ง GPS",
+    "d_events": "การเข้าร่วมกิจกรรมและกิจกรรมที่สร้าง",
+    "d_chat": "ข้อความแชท",
+    "d_challenges": "ความคืบหน้าและคะแนนของการท้าทาย",
+    "d_leaderboard": "รายการลีดเดอร์บอร์ด",
+    "d_notifications": "การแจ้งเตือน",
+    "d_fcm": "โทเค็นการแจ้งเตือนแบบพุช (FCM)",
+    "d_local": "ข้อมูลในเครื่อง (ฐานข้อมูล Room การตั้งค่า)",
+    "d_auth": "บัญชี Firebase Authentication",
+    "d_ai": "การสนทนา AI Coach และแผนการฝึกอบรม",
+    "d_referral": "รหัสการอ้างอิงและประวัติการอ้างอิง",
+    "d_routes": "เส้นทางที่บันทึกไว้",
+    "d_reminders": "การตั้งค่าการเตือนกิจกรรม",
+    "s3_title": "3. ข้อมูลที่เก็บไว้",
+    "s3_intro": "อาจมีการเก็บข้อมูลบางอย่างไว้เป็นระยะเวลาจำกัดหลังจากลบบัญชี:",
+    "th_retention": "ระยะเวลาการเก็บรักษา",
+    "th_reason": "เหตุผล",
+    "r_crash": "บันทึกข้อบกพร่อง (Firebase Crashlytics)",
+    "r_crash_period": "สูงสุด 90 วัน",
+    "r_crash_reason": "การเก็บรักษาเริ่มต้นของ Firebase เพื่อการแก้ไขข้อบกพร่อง",
+    "r_analytics": "ข้อมูลการวิเคราะห์แบบรวม (Firebase Analytics)",
+    "r_analytics_period": "สูงสุด 14 เดือน",
+    "r_analytics_reason": "การเก็บรักษาเริ่มต้นของ Firebase (ไม่ระบุตัวตน ไม่สามารถระบุตัวตนได้)",
+    "r_reports": "รายงานแชทที่ยื่นโดยผู้ใช้รายอื่น",
+    "r_reports_period": "สูงสุด 90 วัน",
+    "r_reports_reason": "วัตถุประสงค์ด้านความปลอดภัยและการปกครอง",
+    "s3_note": "ข้อมูลที่เก็บไว้เป็นข้อมูลที่ไม่ระบุตัวตนหรือไม่สามารถระบุตัวตนได้ ไม่สามารถใช้เพื่อสร้างบัญชีของคุณใหม่หรือระบุตัวตนของคุณ",
+    "s4_title": "4. สิ่งที่เกิดขึ้นหลังจากการลบ",
+    "s4_li1": "คุณจะ <strong>ออกจากระบบ",
+    "s4_li2": "คุณจะ <strong>ไม่ปรากฏ",
+    "s4_li3": "<strong>ข้อความแชทของคุณ",
+    "s4_li4": "กิจกรรมที่คุณสร้างจะ <strong>ถูกลบ",
+    "s4_li5": "<strong>การสนทนา AI Coach ของคุณ",
+    "s4_li6": "<strong>รหัสการอ้างอิงของคุณ",
+    "s4_li7": "<strong>เส้นทางที่บันทึกไว้ของคุณ",
+    "s4_li8": "คุณ <strong>สามารถสร้างบัญชีใหม่",
+    "s5_title": "5. ติดต่อเรา",
+    "s5_text": "หากคุณมีคำถามเกี่ยวกับการลบบัญชีหรือการลบข้อมูล โปรดติดต่อเราที่:",
+    "s5_contact": "<strong>SLAMA Consulting",
+    "s5_link": "ดูเพิ่มเติม <a href=\"sportTracking.html\">นโยบายความเป็นส่วนตัว",
+    "footer": "&copy; 2026 SLAMA Consulting สงวนลิขสิทธิ์"
+  },
+  "tr": {
+    "title": "Hesabınızı Silin",
+    "last_updated": "Son güncelleme: 13 Mart 2026",
+    "intro": "SLAMA Consulting (\"biz\", \"bizim\" veya \"kami\"), SportTracking mobil uygulamasından hesabınızı ve ilişkili verilerinizi silme hakkınıza saygı duyuyoruz. Bu sayfa, hesap silme talebinde bulunmanın nasıl yapılacağını ve hangi verilerin etkileneceğini açıklamaktadır.",
+    "warning_title": "&#9888; Uyarı: Bu işlem kalıcıdır",
+    "warning_text": "Hesabınızı silmek, tüm kişisel verilerinizi, seyahat geçmişinizi, etkinlik katılımınızı, sohbet mesajlarınızı, zorluk ilerlemenizi, liderlik tablosu puanlarınızı, AI Coach konuşmalarınızı, eğitim planlarınızı, referans verilerinizi ve kaydedilmiş rotalarınızı kalıcı olarak kaldıracaktır. Bu işlem <strong>geri alınamaz</strong>.",
+    "s1_title": "1. Hesabınızı Silme",
+    "s1_option_a": "Seçenek A: Uygulamadan silin (Önerilen)",
+    "s1_step1_title": "SportTracking Uygulamasını Açın",
+    "s1_step1_text": "Uygulamayı başlatın ve oturum açtığınızdan emin olun.",
+    "s1_step2_title": "Profilinize Gidin",
+    "s1_step2_text": "<strong>Profil</strong> sekmesine dokunun.",
+    "s1_step3_title": "Ayarları Açın",
+    "s1_step3_text": "Profil ekranının sağ üst köşesindeki ayarlar simgesine (dişli) dokunun.",
+    "s1_step4_title": "Hesabı Silin",
+    "s1_step4_text": "Aşağıya kaydırın ve <strong>\"Hesabı Sil\"</strong> öğesine dokunun.",
+    "s1_option_b": "Seçenek B: E-posta ile silme isteği gönderin",
+    "s1_email_intro": "Uygulamaya erişemiyorsanız, aşağıdaki adrese e-posta göndererek hesap silme talebinde bulunabilirsiniz:",
+    "s1_email_note": "Lütfen SportTracking hesabınızla ilişkili e-posta adresini ekleyin. Talebinizi <strong>30 gün</strong> içinde işleyeceğiz.",
+    "s2_title": "2. Silinen Veriler",
+    "s2_intro": "Hesabınızı sildiğinizde, aşağıdaki veriler <strong>kalıcı olarak kaldırılır</strong>:",
+    "th_data_type": "Veri Türü",
+    "th_status": "Durum",
+    "th_timeframe": "Zaman Çerçevesi",
+    "d_personal": "Kişisel bilgiler (ad, e-posta, doğum tarihi, cinsiyet, telefon)",
+    "status_deleted": "Silindi",
+    "timeframe_immediately": "Hemen",
+    "d_photo": "Profil fotoğrafı",
+    "d_trips": "Seyahat geçmişi ve GPS izleri",
+    "d_events": "Etkinlik katılımı ve oluşturulan etkinlikler",
+    "d_chat": "Sohbet mesajları",
+    "d_challenges": "Zorluk ilerleme ve puanları",
+    "d_leaderboard": "Liderlik tablosu girdileri",
+    "d_notifications": "Bildirimler",
+    "d_fcm": "Anında iletme bildirimi belirteci (FCM)",
+    "d_local": "Yerel veriler (Room veritabanı, tercihler)",
+    "d_auth": "Firebase Kimlik Doğrulama hesabı",
+    "d_ai": "AI Coach konuşmaları ve eğitim planları",
+    "d_referral": "Referans kodları ve referans geçmişi",
+    "d_routes": "Kaydedilmiş rotalar",
+    "d_reminders": "Etkinlik anımsatıcı tercihleri",
+    "s3_title": "3. Saklanan Veriler",
+    "s3_intro": "Hesap silindikten sonra bazı veriler sınırlı bir süre için tutulabilir:",
+    "th_retention": "Saklama Süresi",
+    "th_reason": "Neden",
+    "r_crash": "Çökme günlükleri (Firebase Crashlytics)",
+    "r_crash_period": "90 güne kadar",
+    "r_crash_reason": "Hata ayıklama için Firebase varsayılan saklama süresi",
+    "r_analytics": "Toplam analitik verileri (Firebase Analytics)",
+    "r_analytics_period": "14 aya kadar",
+    "r_analytics_reason": "Firebase varsayılan saklama süresi (anonim, kişisel olarak tanımlanamaz)",
+    "r_reports": "Diğer kullanıcılar tarafından yapılan sohbet raporları",
+    "r_reports_period": "90 güne kadar",
+    "r_reports_reason": "Güvenlik ve moderasyon amaçları",
+    "s3_note": "Saklanan veriler anonim hale getirilmiş veya kişisel olarak tanımlanamaz. Hesabınızı yeniden oluşturmak veya sizi tanımlamak için kullanılamaz.",
+    "s4_title": "4. Silme Sonrasında Ne Olur?",
+    "s4_li1": "<strong>Oturumu kapatılacaksınız</strong>.",
+    "s4_li2": "<strong>Artık görünmeyeceksiniz</strong> liderlik tablolarında, etkinliklerde veya uygulama topluluğunda.",
+    "s4_li3": "<strong>Sohbet mesajlarınız</strong> tüm konuşmalardan kaldırılacaktır.",
+    "s4_li4": "Oluşturduğunuz herhangi bir etkinlik <strong>silinecektir</strong>.",
+    "s4_li5": "<strong>AI Coach konuşmalarınız</strong> kaldırılacaktır.",
+    "s4_li6": "<strong>Referans kodunuz</strong> devre dışı bırakılacaktır.",
+    "s4_li7": "<strong>Kaydedilmiş rotalarınız</strong> silinecektir.",
+    "s4_li8": "İstediğiniz zaman <strong>yeni bir hesap oluşturabilirsiniz</strong>.",
+    "s5_title": "5. Bizimle İletişime Geçin",
+    "s5_text": "Hesap silme veya veri kaldırma hakkında herhangi bir sorunuz varsa, lütfen bize şu adresten ulaşın:",
+    "s5_contact": "<strong>SLAMA Consulting</strong>",
+    "s5_link": "Ayrıca <a href=\"sportTracking.html\">Gizlilik Politikamız</a> sayfasına bakın.",
+    "footer": "&copy; 2026 SLAMA Consulting. Tüm hakları saklıdır."
+  },
+  "vi": {
+    "title": "Xóa Tài Khoản Của Bạn",
+    "last_updated": "Cập nhật lần cuối: 13 tháng 3, 2026",
+    "intro": "SLAMA Consulting (\"chúng tôi\", \"của chúng tôi\", hoặc \"chúng ta\") tôn trọng quyền xóa tài khoản và dữ liệu liên quan của bạn khỏi ứng dụng di động SportTracking. Trang này giải thích cách yêu cầu xóa tài khoản và dữ liệu nào bị ảnh hưởng.",
+    "warning_title": "&#9888; Cảnh báo: Hành động này là vĩnh viễn",
+    "warning_text": "Xóa tài khoản của bạn sẽ xóa vĩnh viễn tất cả dữ liệu cá nhân, lịch sử chuyến đi, tham gia sự kiện, tin nhắn trò chuyện, tiến độ thử thách, điểm bảng xếp hạng, cuộc trò chuyện AI Coach, kế hoạch đào tạo, dữ liệu giới thiệu và tuyến đường đã lưu của bạn. Hành động này <strong>không thể được hoàn tác",
+    "s1_title": "1. Cách Xóa Tài Khoản",
+    "s1_option_a": "Tùy chọn A: Xóa trong ứng dụng (Được khuyến nghị)",
+    "s1_step1_title": "Mở SportTracking",
+    "s1_step1_text": "Khởi chạy ứng dụng và đảm bảo bạn đã đăng nhập.",
+    "s1_step2_title": "Đi tới Hồ sơ của bạn",
+    "s1_step2_text": "Nhấn vào <strong>Hồ sơ",
+    "s1_step3_title": "Mở Cài đặt",
+    "s1_step3_text": "Nhấn vào biểu tượng cài đặt (bánh răng) ở góc trên cùng bên phải của màn hình Hồ sơ.",
+    "s1_step4_title": "Xóa Tài Khoản",
+    "s1_step4_text": "Cuộn xuống và nhấn vào <strong>\"Xóa Tài Khoản\"",
+    "s1_option_b": "Tùy chọn B: Yêu cầu xóa qua email",
+    "s1_email_intro": "Nếu bạn không thể truy cập ứng dụng, bạn có thể yêu cầu xóa tài khoản bằng cách gửi email đến:",
+    "s1_email_note": "Vui lòng bao gồm địa chỉ email được liên kết với tài khoản SportTracking của bạn. Chúng tôi sẽ xử lý yêu cầu của bạn trong vòng <strong>30 ngày",
+    "s2_title": "2. Dữ Liệu Bị Xóa",
+    "s2_intro": "Khi bạn xóa tài khoản, dữ liệu sau sẽ <strong>bị xóa vĩnh viễn",
+    "th_data_type": "Loại Dữ Liệu",
+    "th_status": "Trạng Thái",
+    "th_timeframe": "Khung Thời Gian",
+    "d_personal": "Thông tin cá nhân (tên, email, ngày sinh, giới tính, điện thoại)",
+    "status_deleted": "Đã xóa",
+    "timeframe_immediately": "Ngay lập tức",
+    "d_photo": "Ảnh hồ sơ",
+    "d_trips": "Lịch sử chuyến đi và GPS tracks",
+    "d_events": "Tham gia sự kiện và sự kiện đã tạo",
+    "d_chat": "Tin nhắn trò chuyện",
+    "d_challenges": "Tiến độ thử thách và điểm số",
+    "d_leaderboard": "Mục nhập bảng xếp hạng",
+    "d_notifications": "Thông báo",
+    "d_fcm": "Token thông báo đẩy (FCM)",
+    "d_local": "Dữ liệu cục bộ (cơ sở dữ liệu Room, tùy chọn)",
+    "d_auth": "Tài khoản Firebase Authentication",
+    "d_ai": "Cuộc trò chuyện AI Coach và kế hoạch đào tạo",
+    "d_referral": "Mã giới thiệu và lịch sử giới thiệu",
+    "d_routes": "Tuyến đường đã lưu",
+    "d_reminders": "Tùy chọn nhắc nhở sự kiện",
+    "s3_title": "3. Dữ Liệu Được Giữ Lại",
+    "s3_intro": "Một số dữ liệu có thể được giữ lại trong một khoảng thời gian hạn chế sau khi xóa tài khoản:",
+    "th_retention": "Thời Gian Giữ Lại",
+    "th_reason": "Lý Do",
+    "r_crash": "Nhật ký sự cố (Firebase Crashlytics)",
+    "r_crash_period": "Tối đa 90 ngày",
+    "r_crash_reason": "Giữ lại mặc định Firebase cho gỡ lỗi",
+    "r_analytics": "Dữ liệu phân tích tổng hợp (Firebase Analytics)",
+    "r_analytics_period": "Tối đa 14 tháng",
+    "r_analytics_reason": "Giữ lại mặc định Firebase (ẩn danh, không thể xác định cá nhân)",
+    "r_reports": "Báo cáo trò chuyện được nộp bởi những người dùng khác",
+    "r_reports_period": "Tối đa 90 ngày",
+    "r_reports_reason": "Mục đích an toàn và kiểm duyệt",
+    "s3_note": "Dữ liệu được giữ lại được ẩn danh hoặc không thể xác định cá nhân. Nó không thể được sử dụng để tái tạo tài khoản của bạn hoặc xác định bạn.",
+    "s4_title": "4. Điều Gì Xảy Ra Sau Khi Xóa",
+    "s4_li1": "Bạn sẽ <strong>đăng xuất",
+    "s4_li2": "Bạn sẽ <strong>không còn xuất hiện",
+    "s4_li3": "<strong>Tin nhắn trò chuyện",
+    "s4_li4": "Bất kỳ sự kiện nào bạn tạo sẽ <strong>bị xóa",
+    "s4_li5": "<strong>Cuộc trò chuyện AI Coach",
+    "s4_li6": "<strong>Mã giới thiệu",
+    "s4_li7": "<strong>Tuyến đường đã lưu",
+    "s4_li8": "Bạn có thể <strong>tạo một tài khoản mới",
+    "s5_title": "5. Liên Hệ Chúng Tôi",
+    "s5_text": "Nếu bạn có bất kỳ câu hỏi nào về xóa tài khoản hoặc xóa dữ liệu, vui lòng liên hệ với chúng tôi tại:",
+    "s5_contact": "<strong>SLAMA Consulting",
+    "s5_link": "Xem thêm <a href=\"sportTracking.html\">Chính Sách Bảo Mật",
+    "footer": "&copy; 2026 SLAMA Consulting. Tất cả quyền được bảo lưu."
+  },
+  "zh": {
+    "title": "删除您的账户",
+    "last_updated": "最后更新：2026年3月13日",
+    "intro": "SLAMA Consulting（\"我们\"、\"我们的\"或\"我们\"）尊重您删除账户和从SportTracking移动应用程序中关联数据的权利。此页面说明如何请求删除账户以及受影响的数据。",
+    "warning_title": "&#9888; 警告：此操作是永久性的",
+    "warning_text": "删除您的账户将永久删除您的所有个人数据、行程历史、事件参与、聊天消息、挑战进度、排行榜分数、AI Coach对话、训练计划、推荐数据和保存的路线。此操作<strong>无法撤消</strong>",
+    "s1_title": "1. 如何删除您的账户",
+    "s1_option_a": "选项A：从应用程序中删除（推荐）",
+    "s1_step1_title": "打开SportTracking",
+    "s1_step1_text": "启动应用程序并确保您已登录。",
+    "s1_step2_title": "转到您的个人资料",
+    "s1_step2_text": "点击<strong>个人资料</strong>",
+    "s1_step3_title": "打开设置",
+    "s1_step3_text": "点击个人资料屏幕右上角的设置图标（齿轮）。",
+    "s1_step4_title": "删除账户",
+    "s1_step4_text": "向下滚动并点击<strong>\\\"删除账户\\\"</strong>",
+    "s1_option_b": "选项B：通过电子邮件请求删除",
+    "s1_email_intro": "如果您无法访问应用程序，您可以通过发送电子邮件来请求删除账户：",
+    "s1_email_note": "请包括与您的SportTracking账户关联的电子邮件地址。我们将在<strong>30天内</strong>处理您的请求",
+    "s2_title": "2. 删除的数据",
+    "s2_intro": "删除您的账户时，以下数据将<strong>永久删除</strong>",
+    "th_data_type": "数据类型",
+    "th_status": "状态",
+    "th_timeframe": "时间范围",
+    "d_personal": "个人信息（姓名、电子邮件、出生日期、性别、电话）",
+    "status_deleted": "已删除",
+    "timeframe_immediately": "立即",
+    "d_photo": "个人资料照片",
+    "d_trips": "行程历史和GPS轨道",
+    "d_events": "事件参与和创建的事件",
+    "d_chat": "聊天消息",
+    "d_challenges": "挑战进度和分数",
+    "d_leaderboard": "排行榜条目",
+    "d_notifications": "通知",
+    "d_fcm": "推送通知令牌（FCM）",
+    "d_local": "本地数据（Room数据库、首选项）",
+    "d_auth": "Firebase身份验证账户",
+    "d_ai": "AI Coach对话和训练计划",
+    "d_referral": "推荐代码和推荐历史",
+    "d_routes": "保存的路线",
+    "d_reminders": "事件提醒首选项",
+    "s3_title": "3. 保留的数据",
+    "s3_intro": "某些数据可能在账户删除后保留一段有限的时间：",
+    "th_retention": "保留期限",
+    "th_reason": "原因",
+    "r_crash": "崩溃日志（Firebase Crashlytics）",
+    "r_crash_period": "最多90天",
+    "r_crash_reason": "Firebase默认调试保留期",
+    "r_analytics": "汇总分析数据（Firebase Analytics）",
+    "r_analytics_period": "最多14个月",
+    "r_analytics_reason": "Firebase默认保留期（匿名，不可个人识别）",
+    "r_reports": "其他用户提交的聊天举报",
+    "r_reports_period": "最多90天",
+    "r_reports_reason": "安全和审核目的",
+    "s3_note": "保留的数据已匿名化或不可个人识别。它无法用于重建您的账户或识别您。",
+    "s4_title": "4. 删除后会发生什么",
+    "s4_li1": "您将被<strong>注销</strong>",
+    "s4_li2": "您将<strong>不再出现</strong>",
+    "s4_li3": "您的<strong>聊天消息</strong>",
+    "s4_li4": "您创建的任何事件将被<strong>删除</strong>",
+    "s4_li5": "您的<strong>AI Coach对话</strong>",
+    "s4_li6": "您的<strong>推荐代码</strong>",
+    "s4_li7": "您的<strong>保存的路线</strong>",
+    "s4_li8": "您可以<strong>创建新账户</strong>",
+    "s5_title": "5. 联系我们",
+    "s5_text": "如果您对账户删除或数据删除有任何疑问，请通过以下方式与我们联系：",
+    "s5_contact": "<strong>SLAMA Consulting</strong>",
+    "s5_link": "另请参阅我们的<a href=\\\"sportTracking.html\\\">隐私政策</a>",
+    "footer": "&copy; 2026 SLAMA Consulting。版权所有。"
+  }
+};
+
+    function switchLanguage(lang) {
+        if (!translations[lang]) lang = 'en';
+        document.querySelectorAll('[data-i18n]').forEach(function(el) {
+            var key = el.getAttribute('data-i18n');
+            if (translations[lang] && translations[lang][key]) {
+                el.innerHTML = translations[lang][key];
+            }
+        });
+        var sel = document.getElementById('langSelect');
+        if (sel) sel.value = lang;
+        document.documentElement.lang = lang;
+        var rtlLangs = ['ar', 'iw'];
+        document.body.dir = rtlLangs.indexOf(lang) !== -1 ? 'rtl' : 'ltr';
+        if (rtlLangs.indexOf(lang) !== -1) {
+            document.querySelector('.lang-switcher').style.textAlign = 'left';
+        } else {
+            document.querySelector('.lang-switcher').style.textAlign = 'right';
+        }
+        try { localStorage.setItem('preferred_lang', lang); } catch(e) {}
+    }
+
+    (function() {
+        var saved = null;
+        try { saved = localStorage.getItem('preferred_lang'); } catch(e) {}
+        var browserLang = (navigator.language || navigator.userLanguage || 'en').substring(0, 2);
+        switchLanguage(saved || browserLang || 'en');
+    })();
+    </script>
+
 </body>
 </html>
