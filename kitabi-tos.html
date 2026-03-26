@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service - Kitabi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: #1A1035;
+            background: linear-gradient(180deg, #F5F0FF 0%, #FAFAF8 40%);
+            padding: 0;
+        }
+        .header-banner {
+            background: linear-gradient(135deg, #1E0845 0%, #4B2A7A 50%, #3A1A70 100%);
+            padding: 48px 24px 36px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .header-banner::before {
+            content: '\u262A';
+            position: absolute;
+            top: 12px;
+            right: 24px;
+            font-size: 2.5rem;
+            color: #D4A843;
+            opacity: 0.3;
+        }
+        .header-banner h1 {
+            font-family: 'Nunito', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 4px;
+        }
+        .header-banner .app-name {
+            font-family: 'Amiri', serif;
+            font-size: 1.3rem;
+            color: #D4A843;
+            margin-bottom: 8px;
+        }
+        .header-banner .last-updated {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 32px 24px 40px;
+        }
+        h2 {
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 16px;
+            color: #4B2A7A;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        h2 .num {
+            background: #4B2A7A;
+            color: #FFF;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        h3 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            margin-top: 18px;
+            margin-bottom: 8px;
+            color: #4B2A7A;
+        }
+        p { margin-bottom: 14px; }
+        ul { margin-left: 20px; margin-bottom: 14px; }
+        li { margin-bottom: 6px; }
+        li::marker { color: #C9A84C; }
+        .section {
+            background: #FFFFFF;
+            border: 1px solid #EDE9FE;
+            border-left: 4px solid #4B2A7A;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(75, 42, 122, 0.06);
+            transition: box-shadow 0.2s;
+        }
+        .section:hover { box-shadow: 0 4px 16px rgba(75, 42, 122, 0.1); }
+        .intro {
+            font-size: 1.05rem;
+            margin-bottom: 24px;
+            padding: 20px;
+            background: #EDE9FE;
+            border-radius: 12px;
+            border-left: 4px solid #C9A84C;
+        }
+        a { color: #4B2A7A; text-decoration: none; font-weight: 600; }
+        a:hover { text-decoration: underline; color: #C9A84C; }
+        strong { color: #1A1035; }
+        .footer {
+            margin-top: 40px;
+            padding: 24px;
+            text-align: center;
+            background: linear-gradient(135deg, #1E0845, #3A1A70);
+            border-radius: 12px;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+        }
+        .footer a { color: #D4A843; }
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 24px;
+        }
+        .nav-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: #EDE9FE;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #4B2A7A;
+            transition: all 0.2s;
+        }
+        .nav-links a:hover { background: #4B2A7A; color: #FFF; text-decoration: none; }
+        @media (max-width: 600px) {
+            .container { padding: 20px 16px; }
+            .header-banner { padding: 36px 16px 28px; }
+            .header-banner h1 { font-size: 1.7rem; }
+            h2 { font-size: 1.15rem; }
+            .section { padding: 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-banner">
+        <h1>Terms of Service</h1>
+        <div class="app-name">&#1603;&#1578;&#1575;&#1576;&#1610; &#8211; Kitabi</div>
+        <p class="last-updated">Last updated: March 26, 2026</p>
+    </div>
+
+    <div class="container">
+        <p class="intro">
+            Please read these Terms of Service ("Terms") carefully before using the Kitabi mobile application
+            operated by SLAMA Consulting ("we", "our", or "us"). By downloading, installing, or using Kitabi,
+            you agree to be bound by these Terms.
+        </p>
+
+        <div class="nav-links">
+            <a href="kitabi.html">Privacy Policy</a>
+            <a href="kitabi-delete-account.html">Delete Account</a>
+            <a href="kitabi-delete-data.html">Manage Your Data</a>
+        </div>
+
+        <div class="section">
+            <h2><span class="num">1</span> Acceptance of Terms</h2>
+            <p>By accessing or using Kitabi, you confirm that you have read, understood, and agree to be bound by these Terms of Service and our <a href="kitabi.html">Privacy Policy</a>. If you do not agree to these Terms, you must not use the application.</p>
+            <p>If you are using Kitabi on behalf of a minor (under 13 years of age), you as the parent or legal guardian agree to these Terms on their behalf and are responsible for their use of the application.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="num">2</span> Description of Service</h2>
+            <p>Kitabi is a Quran companion mobile application that provides the following features:</p>
+            <ul>
+                <li><strong>Quran Reading:</strong> Read the Quran with multiple display modes (Mushaf page, Surah reader), bookmarks, and reading progress tracking</li>
+                <li><strong>Hifz (Memorization) Tracking:</strong> Track your Quran memorization progress with spaced repetition review scheduling, session management, and mastery levels</li>
+                <li><strong>AI Search:</strong> Search the Quran and Hadith using AI-powered natural language queries (powered by Google Gemini)</li>
+                <li><strong>Tajweed Analysis:</strong> Record your Quran recitation and receive AI-powered Tajweed feedback and analysis</li>
+                <li><strong>Quranic Healing (Shifa):</strong> Track your emotional well-being through mood entries and journal notes, and receive personalized Quranic verse prescriptions generated by AI</li>
+                <li><strong>Tafsir:</strong> Access Quran commentary and interpretation</li>
+                <li><strong>Gamification:</strong> Earn XP, badges, maintain activity streaks, compete on leaderboards, and earn Hasanat (in-app currency) through interactive Quran games</li>
+                <li><strong>Cloud Sync:</strong> Synchronize your progress across multiple devices (subscription required)</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="num">3</span> User Accounts</h2>
+            <p>To access certain features of Kitabi, you must create an account using one of the following methods:</p>
+            <ul>
+                <li>Email address and password (via Firebase Authentication)</li>
+                <li>Google Sign-In</li>
+            </ul>
+            <p>You are responsible for:</p>
+            <ul>
+                <li>Maintaining the confidentiality of your account credentials</li>
+                <li>All activities that occur under your account</li>
+                <li>Providing accurate and up-to-date account information</li>
+                <li>Notifying us immediately of any unauthorized use of your account</li>
+            </ul>
+            <p>You may delete your account at any time through the app's Settings. See our <a href="kitabi-delete-account.html">Account Deletion page</a> for details.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="num">4</span> Subscriptions and Payments</h2>
+            <p>Kitabi offers free and premium subscription tiers:</p>
+            <h3>Free Tier</h3>
+            <p>Includes access to Quran reading, basic memorization tracking, gamification features, and local data storage.</p>
+            <h3>Cloud Subscription</h3>
+            <ul>
+                <li><strong>Monthly:</strong> &euro;2.99/month</li>
+                <li><strong>Yearly:</strong> &euro;23.99/year</li>
+            </ul>
+            <p>Includes cloud synchronization of your progress, bookmarks, and data across multiple devices.</p>
+            <h3>Cloud+AI Subscription</h3>
+            <ul>
+                <li><strong>Monthly:</strong> &euro;4.99/month</li>
+                <li><strong>Yearly:</strong> &euro;35.99/year</li>
+            </ul>
+            <p>Includes everything in the Cloud subscription plus AI-powered features: AI Search (Quran and Hadith), advanced Tajweed analysis, and Quranic Healing prescriptions.</p>
+            <h3>Payment Terms</h3>
+            <ul>
+                <li>All subscriptions are managed and processed entirely through <strong>Google Play</strong></li>
+                <li>Subscriptions automatically renew unless cancelled at least 24 hours before the end of the current billing period</li>
+                <li>You can manage or cancel your subscription at any time through the Google Play Store</li>
+                <li>We do not collect or store any payment information</li>
+                <li>Refund requests must be directed to Google Play according to their refund policies</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="num">5</span> AI Features</h2>
+            <p>Kitabi uses Google Gemini AI to power several features. By using these features, you acknowledge and agree that:</p>
+            <ul>
+                <li>AI-generated results (search results, Tajweed feedback, Quranic healing prescriptions) are provided for <strong>informational and educational purposes only</strong></li>
+                <li>AI results do <strong>not constitute religious rulings (fatwas)</strong>, scholarly opinions, or authoritative religious guidance</li>
+                <li>We do not guarantee the accuracy, completeness, or reliability of AI-generated content</li>
+                <li>You should always consult qualified scholars or religious authorities for matters of Islamic jurisprudence</li>
+                <li>Quranic Healing (Shifa) prescriptions are meant to complement, not replace, professional medical or psychological care</li>
+                <li>Your queries are processed by Google Gemini AI and are subject to <a href="https://policies.google.com/terms" target="_blank" rel="noopener">Google's Terms of Service</a></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="num">6</span> Intellectual Property</h2>
+            <ul>
+                <li>The text of the Holy Quran is in the <strong>public domain</strong> and is not subject to copyright restrictions</li>
+                <li>The Kitabi application design, user interface, code, logos, icons, and all original content are the <strong>property of SLAMA Consulting</strong> and are protected by intellectual property laws</li>
+                <li>Tafsir content and translations included in the app are used under their respective licenses and remain the property of their original authors or publishers</li>
+                <li>You are granted a limited, non-exclusive, non-transferable, revocable license to use Kitabi for personal, non-commercial purposes</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="num">7</span> User Content</h2>
+            <p>You retain ownership of all content you create within Kitabi, including:</p>
+            <ul>
+                <li>Memorization progress and session data</li>
+                <li>Shifa journal entries and mood records</li>
+                <li>Bookmarks and reading progress</li>
+                <li>Profile information</li>
+            </ul>
+            <p>By using Kitabi, you grant us a limited license to store and process your content solely for the purpose of providing the app's services. We may use <strong>anonymized and aggregated data</strong> (which cannot identify you personally) for analytics, research, and improving the application.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="num">8</span> Prohibited Uses</h2>
+            <p>You agree not to:</p>
+            <ul>
+                <li>Reverse engineer, decompile, or disassemble any part of the Kitabi application</li>
+                <li>Scrape, crawl, or use automated means to extract data from the app or its services</li>
+                <li>Redistribute, sublicense, or resell the application or any of its content</li>
+                <li>Use the app to transmit harmful, offensive, or illegal content</li>
+                <li>Attempt to gain unauthorized access to other users' accounts or our servers</li>
+                <li>Manipulate leaderboard rankings, XP, or gamification data through fraudulent means</li>
+                <li>Use the app in any way that violates applicable local, national, or international laws</li>
+                <li>Circumvent or attempt to circumvent subscription restrictions or AI usage quotas</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="num">9</span> Disclaimer</h2>
+            <p>Kitabi is a <strong>learning and productivity tool</strong> designed to assist users in their Quran studies. Please note:</p>
+            <ul>
+                <li>Kitabi does <strong>not provide fatwas</strong> (religious rulings) or act as a religious authority</li>
+                <li>AI-generated content (search results, Tajweed analysis, Shifa prescriptions) may contain errors and should be verified with qualified sources</li>
+                <li>The app is provided <strong>"as is"</strong> and <strong>"as available"</strong> without warranties of any kind, whether express or implied</li>
+                <li>We do not warrant that the app will be uninterrupted, error-free, or free of harmful components</li>
+                <li>Quranic Healing (Shifa) features are spiritual wellness tools and are <strong>not a substitute for professional medical or psychological treatment</strong></li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <h2><span class="num">10</span> Limitation of Liability</h2>
+            <p>To the maximum extent permitted by applicable law, SLAMA Consulting shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to:</p>
+            <ul>
+                <li>Loss of data or memorization progress</li>
+                <li>Interruption of service or inability to access features</li>
+                <li>Reliance on AI-generated content</li>
+                <li>Unauthorized access to your account</li>
+                <li>Any other damages arising from the use or inability to use Kitabi</li>
+            </ul>
+            <p>Our total liability for any claim arising from or related to these Terms or the use of Kitabi shall not exceed the amount you have paid us in the twelve (12) months preceding the claim.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="num">11</span> Termination</h2>
+            <p>We reserve the right to suspend or terminate your account and access to Kitabi at our sole discretion, without prior notice, if:</p>
+            <ul>
+                <li>You violate any provision of these Terms of Service</li>
+                <li>You engage in fraudulent or abusive behavior</li>
+                <li>Your account has been inactive for an extended period</li>
+                <li>We are required to do so by law</li>
+            </ul>
+            <p>Upon termination, your right to use the app ceases immediately. You may request deletion of your data in accordance with our <a href="kitabi.html">Privacy Policy</a>.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="num">12</span> Governing Law</h2>
+            <p>These Terms of Service shall be governed by and construed in accordance with the laws of <strong>France</strong>, without regard to its conflict of law provisions. Any disputes arising from or related to these Terms or the use of Kitabi shall be subject to the exclusive jurisdiction of the courts of France.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="num">13</span> Changes to Terms</h2>
+            <p>We reserve the right to modify these Terms of Service at any time. When we make changes, we will update the "Last updated" date at the top of this page. Continued use of Kitabi after changes constitutes acceptance of the updated Terms. We encourage you to review these Terms periodically.</p>
+            <p>For significant changes, we may provide additional notice through the app or by email.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="num">14</span> Contact Us</h2>
+            <p>If you have any questions or concerns about these Terms of Service, please contact us at:</p>
+            <p><strong>SLAMA Consulting</strong><br>
+            Email: <a href="mailto:slama.walid1985@gmail.com">slama.walid1985@gmail.com</a></p>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2026 SLAMA Consulting. All rights reserved.</p>
+            <p style="margin-top: 8px;"><a href="kitabi.html">Privacy Policy</a> &middot; <a href="kitabi-delete-account.html">Delete Account</a> &middot; <a href="kitabi-delete-data.html">Manage Data</a></p>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Your Data - Kitabi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Nunito', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.7;
+            color: #1A1035;
+            background: linear-gradient(180deg, #F5F0FF 0%, #FAFAF8 40%);
+            padding: 0;
+        }
+        .header-banner {
+            background: linear-gradient(135deg, #1E0845 0%, #4B2A7A 50%, #3A1A70 100%);
+            padding: 48px 24px 36px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .header-banner::before {
+            content: '\u262A';
+            position: absolute;
+            top: 12px;
+            right: 24px;
+            font-size: 2.5rem;
+            color: #D4A843;
+            opacity: 0.3;
+        }
+        .header-banner h1 {
+            font-family: 'Nunito', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: #FFFFFF;
+            margin-bottom: 4px;
+        }
+        .header-banner .app-name {
+            font-family: 'Amiri', serif;
+            font-size: 1.3rem;
+            color: #D4A843;
+            margin-bottom: 8px;
+        }
+        .header-banner .last-updated {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 32px 24px 40px;
+        }
+        h2 {
+            font-family: 'Nunito', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 16px;
+            color: #4B2A7A;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        h2 .num {
+            background: #4B2A7A;
+            color: #FFF;
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        p { margin-bottom: 14px; }
+        ul { margin-left: 20px; margin-bottom: 14px; }
+        li { margin-bottom: 6px; }
+        li::marker { color: #C9A84C; }
+        .section {
+            background: #FFFFFF;
+            border: 1px solid #EDE9FE;
+            border-left: 4px solid #4B2A7A;
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 16px;
+            box-shadow: 0 2px 8px rgba(75, 42, 122, 0.06);
+        }
+        .intro {
+            font-size: 1.05rem;
+            margin-bottom: 24px;
+            padding: 20px;
+            background: #EDE9FE;
+            border-radius: 12px;
+            border-left: 4px solid #C9A84C;
+        }
+        a { color: #4B2A7A; text-decoration: none; font-weight: 600; }
+        a:hover { text-decoration: underline; color: #C9A84C; }
+        .step {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 16px;
+            align-items: flex-start;
+        }
+        .step-number {
+            background: #4B2A7A;
+            color: #FFF;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            flex-shrink: 0;
+            font-size: 0.9rem;
+        }
+        .step-content { flex: 1; }
+        .step-content strong { display: block; margin-bottom: 4px; }
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 16px 0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        .data-table th, .data-table td {
+            border: 1px solid #EDE9FE;
+            padding: 10px 14px;
+            text-align: left;
+        }
+        .data-table th {
+            background: #4B2A7A;
+            color: #FFF;
+            font-weight: 600;
+        }
+        .data-table tr:nth-child(even) { background: #F5F0FF; }
+        .footer {
+            margin-top: 40px;
+            padding: 24px;
+            text-align: center;
+            background: linear-gradient(135deg, #1E0845, #3A1A70);
+            border-radius: 12px;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+        }
+        .footer a { color: #D4A843; }
+        @media (max-width: 600px) {
+            .container { padding: 20px 16px; }
+            .header-banner { padding: 36px 16px 28px; }
+            .header-banner h1 { font-size: 1.7rem; }
+            h2 { font-size: 1.15rem; }
+            .section { padding: 16px; }
+            .data-table { font-size: 0.85rem; }
+            .data-table th, .data-table td { padding: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header-banner">
+        <h1>Delete Your Data</h1>
+        <div class="app-name">&#1603;&#1578;&#1575;&#1576;&#1610; &#8211; Kitabi</div>
+        <p class="last-updated">Last updated: March 26, 2026</p>
+    </div>
+
+    <div class="container">
+        <p class="intro">
+            Kitabi by SLAMA Consulting allows you to manage and delete specific data
+            without deleting your entire account. This page explains what data you can
+            delete and how to do it.
+        </p>
+
+        <div class="section">
+            <h2><span class="num">1</span> Reset Memorization Progress (Hifz)</h2>
+            <p>You can reset your memorization progress for specific surahs or all surahs.</p>
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <strong>Open Hifz (Memorization)</strong>
+                    Tap the <strong>Hifz</strong> tab in the bottom navigation bar.
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <strong>Select a surah</strong>
+                    Tap on the surah whose progress you want to reset.
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <strong>Reset progress</strong>
+                    Use the reset option to clear your memorization progress for that surah. This removes mastery levels, review schedules, and session history for the selected surah.
+                </div>
+            </div>
+            <p><strong>Data deleted:</strong> Mastery levels, spaced repetition data, review dates, and session scores for the selected surah. Deleted from both your device and our servers.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="num">2</span> Manage Bookmarks</h2>
+            <p>You can manage and delete your saved bookmarks from within the app.</p>
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <strong>Open Favorites</strong>
+                    Navigate to the <strong>Favorites</strong> page from the Quran section.
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <strong>Remove bookmarks</strong>
+                    Swipe or tap the delete icon on any bookmark to remove it. You can remove individual bookmarks or clear all bookmarks at once.
+                </div>
+            </div>
+            <p><strong>Data deleted:</strong> Selected bookmarked verses and pages. Deleted from both your device and our servers (for Cloud subscribers).</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="num">3</span> Clear Shifa (Quranic Healing) Data</h2>
+            <p>You can clear your Quranic Healing data including mood entries, journal notes, and prescriptions.</p>
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <strong>Open Shifa</strong>
+                    Navigate to the <strong>Shifa</strong> (Quranic Healing) section from the main navigation.
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <strong>Manage your journal</strong>
+                    In the <strong>Journal</strong> tab, you can delete individual mood entries and journal notes by swiping or tapping the delete icon.
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <strong>Clear prescriptions</strong>
+                    In the <strong>Prescriptions</strong> tab, you can delete individual prescriptions or clear all prescription history.
+                </div>
+            </div>
+            <p><strong>Data deleted:</strong> Selected mood entries, journal notes, and/or Quranic prescriptions. This data is stored locally on your device and is removed immediately. If you have a Cloud subscription, synced Shifa data will also be removed from our servers.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="num">4</span> Clear AI Search History</h2>
+            <p>You can clear your AI search history (Quran and Hadith searches) from within the app.</p>
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <strong>Open AI Search</strong>
+                    Navigate to the <strong>AI Search</strong> section from the main navigation.
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <strong>Clear search history</strong>
+                    Tap the <strong>clear history</strong> option to remove all previous search queries and results from your local device.
+                </div>
+            </div>
+            <p><strong>Data deleted:</strong> Locally stored search queries and results. Note that search queries sent to Google Gemini AI are not stored by the AI service after processing, so there is no server-side search data to delete.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="num">5</span> Manage Analytics and Crash Reporting Consent</h2>
+            <p>You can withdraw your consent for analytics and crash reporting data collection at any time.</p>
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <strong>Open Settings</strong>
+                    Go to your <strong>Profile</strong>, then tap the <strong>settings icon</strong> (gear) in the top-right corner.
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <strong>Tap "Manage Consent"</strong>
+                    In the <strong>Privacy</strong> section, tap <strong>"Manage consent"</strong>.
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <strong>Disable data collection</strong>
+                    Toggle off <strong>"Allow usage analytics"</strong> and/or <strong>"Allow crash reports"</strong>, or tap <strong>"Reject all"</strong> to disable both.
+                </div>
+            </div>
+            <p><strong>Effect:</strong> Firebase Analytics and/or Firebase Crashlytics will stop collecting data immediately. Previously collected anonymous data may be retained by Firebase for up to 14 months (analytics) or 90 days (crash reports) but cannot be linked to your identity.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="num">6</span> Reset App Settings</h2>
+            <p>You can reset all app settings to their default values.</p>
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <strong>Open Settings</strong>
+                    Go to your <strong>Profile</strong>, then tap the <strong>settings icon</strong> (gear).
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <strong>Tap "Reset settings"</strong>
+                    Scroll to the bottom and tap the <strong>"Reset settings"</strong> button.
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <strong>Confirm</strong>
+                    A confirmation dialog will appear. Tap <strong>"Reset"</strong> to restore all settings to defaults.
+                </div>
+            </div>
+            <p><strong>Data reset:</strong> Theme mode, language, font size, Arabic font, notification preferences, and child mode settings are restored to defaults. Your account and progress data are <strong>not affected</strong>.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="num">7</span> Clear Local Cached Data</h2>
+            <p>Kitabi stores data locally on your device for offline access. You can clear this local cache through your device settings:</p>
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <strong>Open Android Settings</strong>
+                    Go to your device's <strong>Settings &gt; Apps &gt; Kitabi</strong>.
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <strong>Clear Cache or Clear Data</strong>
+                    Tap <strong>"Clear Cache"</strong> to remove temporary files, or <strong>"Clear Data"</strong> to remove all local data including your login session.
+                </div>
+            </div>
+            <p><strong>Data cleared:</strong> Locally cached memorization progress, leaderboard data, Shifa journal data, AI search history, bookmarks, downloaded audio files, and app preferences. Your data on our servers is <strong>not affected</strong> and will be re-synced when you log in again (for Cloud subscribers).</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="num">8</span> Data You Can Manage</h2>
+            <table class="data-table">
+                <thead>
+                    <tr><th>Data Type</th><th>How to Delete / Manage</th><th>Where Deleted</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>Hifz memorization progress</td><td>Reset per surah in the Hifz section</td><td>Device + Server</td></tr>
+                    <tr><td>Bookmarks</td><td>Remove in Favorites page</td><td>Device + Server</td></tr>
+                    <tr><td>Shifa mood entries</td><td>Delete in Shifa &gt; Journal</td><td>Device + Server</td></tr>
+                    <tr><td>Shifa journal notes</td><td>Delete in Shifa &gt; Journal</td><td>Device + Server</td></tr>
+                    <tr><td>Shifa prescriptions</td><td>Delete in Shifa &gt; Prescriptions</td><td>Device + Server</td></tr>
+                    <tr><td>AI search history</td><td>Clear in AI Search section</td><td>Device only</td></tr>
+                    <tr><td>Analytics consent</td><td>Settings &gt; Manage Consent</td><td>Stops future collection</td></tr>
+                    <tr><td>Crash reporting consent</td><td>Settings &gt; Manage Consent</td><td>Stops future collection</td></tr>
+                    <tr><td>App settings and preferences</td><td>Settings &gt; Reset Settings</td><td>Device only</td></tr>
+                    <tr><td>Local cached data</td><td>Android Settings &gt; Apps &gt; Kitabi &gt; Clear Cache</td><td>Device only</td></tr>
+                    <tr><td>Profile information</td><td>Edit your profile in the Profile tab</td><td>Device + Server</td></tr>
+                    <tr><td>Push notifications</td><td>Disable in Settings &gt; Notifications</td><td>Stops future notifications</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <h2><span class="num">9</span> Delete Your Entire Account</h2>
+            <p>If you want to delete your account and ALL associated data (memorization progress, Shifa data, AI search history, bookmarks, gamification, leaderboard, badges, and personal information), please visit our
+            <a href="kitabi-delete-account.html">Account Deletion page</a> for instructions.</p>
+        </div>
+
+        <div class="section">
+            <h2><span class="num">10</span> Contact Us</h2>
+            <p>If you need help deleting specific data or have questions, contact us at:</p>
+            <p><strong>SLAMA Consulting</strong><br>
+            Email: <a href="mailto:slama.walid1985@gmail.com">slama.walid1985@gmail.com</a></p>
+            <p>See also our <a href="kitabi.html">Privacy Policy</a> for more information.</p>
+        </div>
+
+        <div class="footer">
+            <p>&copy; 2026 SLAMA Consulting. All rights reserved.</p>
+            <p style="margin-top: 8px;"><a href="kitabi.html">Privacy Policy</a> &middot; <a href="kitabi-tos.html">Terms of Service</a> &middot; <a href="kitabi-delete-account.html">Delete Account</a></p>
+        </div>
+    </div>
+</body>
+</html>
