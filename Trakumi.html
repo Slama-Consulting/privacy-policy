@@ -84,7 +84,7 @@
 <body>
     <div class="container">
         <h1>Privacy Policy</h1>
-        <p class="last-updated">Last updated: April 19, 2026</p>
+        <p class="last-updated">Last updated: May 31, 2026</p>
 
         <p class="intro">
             SLAMA Consulting ("we", "our", or "us") operates the Trakumi mobile application.
@@ -168,6 +168,15 @@
 
             <h3>1.10 Referral Program Data</h3>
             <p>When you generate or redeem a referral code, we store: the referral code, the referrer user ID, the referred user ID, and the redemption timestamp. This data is used solely to grant Premium rewards and to detect abuse of the referral program.</p>
+
+            <h3>1.11 Duels and Competitive Data</h3>
+            <p>When you create or accept a 1v1 duel with a friend, we store the duel parameters (objective type, target, start and end dates), each participant's progress, the result, an optional free-text message or "provoke" message, and the chosen stake (a friendly wager such as a coffee, pizza, or a custom text you type yourself). Stakes are purely social — Trakumi does not process, hold, or transfer any money or goods for them. Your duel progress is calculated from the activity data you record and is visible to the other participant.</p>
+
+            <h3>1.12 Leaderboards and Rankings</h3>
+            <p>When you appear on a leaderboard (global, friends, club, or challenge), other users can see your display name, profile photo, and the ranked metric (such as distance, elevation, or score for the period). Leaderboards reflect activity you have recorded in the app.</p>
+
+            <h3>1.13 Live Location Sharing (Beacon)</h3>
+            <p>If you start a live "beacon" session, your real-time location (latitude, longitude, speed, altitude), your name, the sport type, and your live distance and duration are shared with the safety contacts you have selected, for the duration of that session only. This sharing happens only when you explicitly start a beacon session and stops when you end it. An automatic inactivity alert may be sent to your contacts if no movement is detected.</p>
         </div>
 
         <div class="section">
@@ -175,7 +184,8 @@
             <p>We use your information to:</p>
             <ul>
                 <li><strong>Provide core features:</strong> Track your sport activities, calculate performance metrics, and display your history</li>
-                <li><strong>Enable social features:</strong> Allow you to participate in community events, join clubs, post to the Social Feed, chat with other users, and appear on leaderboards</li>
+                <li><strong>Enable social features:</strong> Allow you to participate in community events, join clubs, post to the Social Feed, chat with other users, compete in 1v1 duels, and appear on leaderboards</li>
+                <li><strong>Keep you safe:</strong> Share your live location with the safety contacts you choose when you start a beacon session</li>
                 <li><strong>Personalize your experience:</strong> Calculate calories based on your physical profile, suggest relevant sports, and customize your dashboard</li>
                 <li><strong>Power the AI Coach:</strong> Send your activity data and messages to Google Gemini to provide personalized coaching, training plans, and post-trip analysis</li>
                 <li><strong>Send notifications:</strong> Inform you about event invitations, chat messages, club updates, challenge reminders, and training session reminders</li>
@@ -317,22 +327,37 @@
         </div>
 
         <div class="section">
-            <h2>14. Health Data Disclaimer</h2>
+            <h2>14. Live Location Sharing (Beacon)</h2>
+            <p>The optional beacon feature lets you share your live position with trusted safety contacts while you train. When you start a beacon session, your real-time location, speed, sport type, and live distance/duration are streamed to your selected contacts for the duration of the session only. We do not share your live location with anyone you have not selected, and the session stops as soon as you end it. Beacon sessions are stored in Firestore only while active and are not retained as historical location history beyond the underlying trip you record. An inactivity alert may be sent to your contacts if no movement is detected for a prolonged period.</p>
+        </div>
+
+        <div class="section">
+            <h2>15. Duels and Friendly Challenges</h2>
+            <p>Trakumi lets you challenge a friend to a 1v1 duel based on distance, elevation, or speed over a chosen period. To run a duel we store the duel parameters, each participant's progress (derived from the activity you record), the outcome, optional messages between participants, and the chosen "stake." Stakes (for example a coffee, a pizza, or a custom label you type) are a purely social, light-hearted wager: <strong>Trakumi never processes, holds, transfers, or guarantees any payment, money, or goods.</strong> Your progress and result are visible to the other participant in the duel.</p>
+        </div>
+
+        <div class="section">
+            <h2>16. Leaderboards and Rankings</h2>
+            <p>Leaderboards (global, friends, club, and challenge rankings) display your public profile information — your display name and profile photo — alongside the ranked metric for the relevant period. Rankings are computed from the activities you record in the app. If you do not wish to appear with identifying details, you can adjust your display name and profile photo, or refrain from recording activities that feed the leaderboards.</p>
+        </div>
+
+        <div class="section">
+            <h2>17. Health Data Disclaimer</h2>
             <p>Calorie estimates, VO2max values, heart rate summaries, and AI training recommendations provided by Trakumi are approximations for informational purposes only. They do not constitute professional medical or fitness advice. Always consult a qualified healthcare professional before starting or modifying any exercise program. SLAMA Consulting is not liable for any injury, health issue, or adverse outcome resulting from the use of these estimates or recommendations.</p>
         </div>
 
         <div class="section">
-            <h2>15. Event and Training Reminders</h2>
+            <h2>18. Event and Training Reminders</h2>
             <p>Trakumi sends push notifications for event invitations, event reminders (typically 3 hours before a scheduled event), club updates, challenge reminders, and training session reminders from your personalized training plan. Delivery of these notifications relies on the <code>POST_NOTIFICATIONS</code> Android permission and may be affected by device-specific battery optimization settings. You can disable any category of reminder at any time in the app's Settings.</p>
         </div>
 
         <div class="section">
-            <h2>16. Changes to This Policy</h2>
+            <h2>19. Changes to This Policy</h2>
             <p>We may update this Privacy Policy from time to time. We will notify you of any significant changes by updating the "Last updated" date at the top of this page. We encourage you to review this policy periodically.</p>
         </div>
 
         <div class="section">
-            <h2>17. Contact Us</h2>
+            <h2>20. Contact Us</h2>
             <p>If you have any questions or concerns about this Privacy Policy or our data practices, please contact us at:</p>
             <p><strong>SLAMA Consulting</strong><br>
             Email: <a href="mailto:slama.walid1985@gmail.com">slama.walid1985@gmail.com</a></p>
